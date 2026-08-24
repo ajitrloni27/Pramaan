@@ -1,0 +1,40 @@
+TO: The Chief Pharmacist / Procurement Head
+{{pharmacy_or_hospital_name}}
+{{address}}
+
+FROM: {{patient_name}}
+DATE: {{current_date}}
+
+SUBJECT: URGENT: SAFETY ALERT AND PRICING VIOLATION REGARDING DISPENSED MEDICATION
+
+Dear Sir/Madam,
+
+I am writing regarding the medication dispensed to me on {{dispense_date}} vide Invoice No. {{invoice_number}}. Pramaan's evidence engine has cross-referenced the batch numbers and prices against the CDSCO and NPPA databases.
+
+CRITICAL FINDINGS:
+
+{{#if safety_alert}}
+1. SAFETY RECALL ALERT:
+   - Drug: {{drug_name}}
+   - Batch No: {{batch_number}}
+   - Manufacturer: {{manufacturer}}
+   - CDSCO Status: NOT OF STANDARD QUALITY (NSQ) - {{defect_reason}} (Ref: CDSCO Alert {{alert_id}}, June 2025)
+   - Action Required: Immediate return and refund. This batch is unsafe for consumption.
+{{/if}}
+
+{{#if price_violation}}
+2. NPPA PRICE CAP VIOLATION:
+   - Drug: {{drug_name}} ({{formulation}})
+   - Billed Price: ₹{{billed_price}} per {{unit}}
+   - NPPA Ceiling Price: ₹{{mrp_inr}} per {{unit}} (Ref: Notification {{notification_no}})
+   - Overcharge Gap: ₹{{gap}} per {{unit}}
+   - Action Required: Refund of the excess amount collected in violation of the DPCO 2013.
+{{/if}}
+
+REQUEST FOR RESOLUTION:
+I expect a full refund for the unsafe batch and the overcharged amount within 48 hours. Failure to comply will result in a formal complaint to the State Drugs Controller and the National Pharmaceutical Pricing Authority (NPPA).
+
+Sincerely,
+
+{{patient_name}}
+[Sent via Pramaan Evidence Engine · AI-Generated Draft · Review Before Sending]

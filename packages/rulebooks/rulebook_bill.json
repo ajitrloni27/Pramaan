@@ -1,0 +1,415 @@
+{
+  "metadata": {
+    "act_name": "The Clinical Establishments (Registration and Regulation) Act, 2010",
+    "act_number": "No. 23 of 2010",
+    "date_of_assent": "2010-08-18",
+    "publication_date": "2010-08-19",
+    "gazette_reference": "Extraordinary, Part II, Section 1, No. 311",
+    "ministry": "Ministry of Law and Justice (Legislative Department)",
+    "applicable_states_initial": [
+      "Arunachal Pradesh",
+      "Himachal Pradesh",
+      "Mizoram",
+      "Sikkim",
+      "Union Territories"
+    ],
+    "source_url": "https://www.indiacode.nic.in/handle/123456789/2198"
+  },
+  "definitions": {
+    "authority": "District registering authority set-up under section 10",
+    "certificate": "Certificate of registration issued under section 30",
+    "clinical_establishment": {
+      "description": "A hospital, maternity home, nursing home, dispensary, clinic, sanatorium or an institution offering services requiring diagnosis, treatment or care.",
+      "includes": [
+        "Government owned/controlled",
+        "Trust (public/private)",
+        "Corporation/Society",
+        "Local authority",
+        "Single doctor"
+      ],
+      "excludes": [
+        "Armed Forces establishments"
+      ]
+    },
+    "emergency_medical_condition": "Acute symptoms of sufficient severity where absence of immediate attention could result in serious jeopardy to health, impairment of bodily functions, or dysfunction of any organ.",
+    "recognised_system_of_medicine": [
+      "Allopathy",
+      "Yoga",
+      "Naturopathy",
+      "Ayurveda",
+      "Homoeopathy",
+      "Siddha",
+      "Unani"
+    ],
+    "standards": "Conditions prescribed under section 12 for registration"
+  },
+  "chapters": [
+    {
+      "chapter_number": 1,
+      "title": "PRELIMINARY",
+      "sections": [
+        {
+          "section_number": 1,
+          "title": "Short title, application and commencement",
+          "content": "This Act may be called the Clinical Establishments (Registration and Regulation) Act, 2010. It applies initially to Arunachal Pradesh, Himachal Pradesh, Mizoram, Sikkim and Union territories, and to other States adopting it under Article 252(1)."
+        },
+        {
+          "section_number": 2,
+          "title": "Definitions",
+          "content": "Defines key terms including 'authority', 'certificate', 'clinical establishment', 'emergency medical condition', 'National Council', 'registration', 'rules', 'Schedule', 'standards', 'State Government', and 'stabilise'."
+        }
+      ]
+    },
+    {
+      "chapter_number": 2,
+      "title": "THE NATIONAL COUNCIL FOR CLINICAL ESTABLISHMENTS",
+      "sections": [
+        {
+          "section_number": 3,
+          "title": "Establishment of National Council",
+          "content": "Establishes the National Council for clinical establishments. Composition includes DGHS (Chairperson), representatives from Dental/Medical/Nursing/Pharmacy Councils, Indian Medicine, Homoeopathy, IMA, BIS, Zonal Councils, North-Eastern Council, Paramedical systems, Consumer Groups, and Quality Council of India.",
+          "functions_ref": "Section 5"
+        },
+        {
+          "section_number": 4,
+          "title": "Disqualifications for appointment as member",
+          "content": "Disqualifies persons convicted of moral turpitude, undischarged insolvents, unsound mind, removed from government service, or having conflicting financial interests."
+        },
+        {
+          "section_number": 5,
+          "title": "Functions of National Council",
+          "content": [
+            "Compile and publish National Register within 2 years",
+            "Classify clinical establishments into categories",
+            "Develop minimum standards and periodic review",
+            "Determine first set of standards within 2 years",
+            "Collect statistics",
+            "Perform other functions determined by Central Government"
+          ]
+        },
+        {
+          "section_number": 6,
+          "title": "Power to seek advice or assistance",
+          "content": "Council may associate with any person/body for assistance in carrying out provisions."
+        },
+        {
+          "section_number": 7,
+          "title": "Consultative process",
+          "content": "Council shall follow a consultative process for determining standards and classification."
+        }
+      ]
+    },
+    {
+      "chapter_number": 3,
+      "title": "REGISTRATION AND STANDARDS FOR CLINICAL ESTABLISHMENTS",
+      "sections": [
+        {
+          "section_number": 8,
+          "title": "State Council for clinical establishments",
+          "content": "State Governments shall constitute State Councils. Composition includes Secretary Health (Chairman), Director of Health Services, Directors of Indian Systems of Medicine, representatives from State Medical/Dental/Nursing/Pharmacy Councils, Indian Medicine, IMA, Paramedical systems, and Consumer Groups/NGOs.",
+          "functions_ref": "Section 8(5)"
+        },
+        {
+          "section_number": 9,
+          "title": "Providing information to National Council",
+          "content": "State Council responsible for compiling/updating State Register and sending monthly returns in digital format to National Register."
+        },
+        {
+          "section_number": 10,
+          "title": "Authority for registration",
+          "content": "State Government shall set up district registering authority for each district. Members: District Collector (Chairperson), District Health Officer (Convenor), and 3 prescribed members. For provisional registration, District Health Officer/CMO exercises powers."
+        },
+        {
+          "section_number": 11,
+          "title": "Registration for clinical establishments",
+          "content": "No person shall run a clinical establishment unless duly registered under this Act."
+        },
+        {
+          "section_number": 12,
+          "title": "Condition for registration",
+          "conditions": [
+            "Minimum standards of facilities and services",
+            "Minimum requirement of personnel",
+            "Provisions for maintenance of records and reporting",
+            "Other prescribed conditions",
+            "Undertaking to stabilise emergency medical conditions within available staff/facilities"
+          ]
+        },
+        {
+          "section_number": 13,
+          "title": "Classification of clinical establishments",
+          "content": "Establishments classified into categories prescribed by Central Government. Different standards may be prescribed for different categories, considering local conditions."
+        }
+      ]
+    },
+    {
+      "chapter_number": 4,
+      "title": "PROCEDURE FOR REGISTRATION",
+      "sections": [
+        {
+          "section_number": 14,
+          "title": "Application for provisional certificate of registration",
+          "content": "Application in prescribed proforma with fee to authority. Can be filed in person, post, or online. Existing establishments must apply within 1 year; new establishments within 6 months of establishment."
+        },
+        {
+          "section_number": 15,
+          "title": "Provisional certificate",
+          "content": "Authority shall grant provisional registration certificate within 10 days of receipt of application."
+        },
+        {
+          "section_number": 16,
+          "title": "No inquiry prior to provisional registration",
+          "content": "No inquiry before grant. Particulars of provisionally registered establishment to be published within 45 days."
+        },
+        {
+          "section_number": 17,
+          "title": "Validity of provisional registration",
+          "content": "Valid until last day of 12th month from issue date. Renewable."
+        },
+        {
+          "section_number": 18,
+          "title": "Display of certificate of registration",
+          "content": "Certificate must be affixed in conspicuous place visible to all visitors."
+        },
+        {
+          "section_number": 19,
+          "title": "Duplicate certificate",
+          "content": "Issued on request and payment of fees if lost, destroyed, mutilated or damaged."
+        },
+        {
+          "section_number": 20,
+          "title": "Certificate to be non-transferable",
+          "content": "Non-transferable. Change of ownership/management must be informed. Change of category/location/ceasing function requires surrender and fresh application."
+        },
+        {
+          "section_number": 21,
+          "title": "Publication of expiry of registration",
+          "content": "Authority shall publish names of establishments whose registration has expired."
+        },
+        {
+          "section_number": 22,
+          "title": "Renewal of registration for provisional registration",
+          "content": "Application 30 days before expiry. Late renewal allowed with enhanced fees."
+        },
+        {
+          "section_number": 23,
+          "title": "Time limit for provisional registration after standards notified",
+          "content": "Provisional registration not granted/renewed beyond: (i) 2 years from standards notification for existing establishments, (ii) 2 years for establishments existing before standards but after commencement, (iii) 6 months for establishments coming into existence after standards notified."
+        },
+        {
+          "section_number": 24,
+          "title": "Application for permanent registration",
+          "content": "Application to authority in prescribed form with fees."
+        },
+        {
+          "section_number": 25,
+          "title": "Verification of application",
+          "content": "Establishment shall submit evidence of compliance with prescribed minimum standards."
+        },
+        {
+          "section_number": 26,
+          "title": "Display of information for filing objections",
+          "content": "Evidence of compliance displayed for public information and objections for 30 days before processing permanent registration."
+        },
+        {
+          "section_number": 27,
+          "title": "Communication of objections",
+          "content": "Objections communicated to establishment for response within 45 days."
+        },
+        {
+          "section_number": 28,
+          "title": "Standards for permanent registration",
+          "content": "Permanent registration granted only when establishment fulfils prescribed standards."
+        },
+        {
+          "section_number": 29,
+          "title": "Allowing or disallowing of registration",
+          "content": "Authority shall pass order within 30 days after prescribed period expiry, either allowing or disallowing (with recorded reasons)."
+        },
+        {
+          "section_number": 30,
+          "title": "Certificate of permanent registration",
+          "content": "Issued if allowed. Valid for 5 years. Sections 18-21 apply. Renewal application 6 months before expiry; late renewal with enhanced fees/penalties."
+        },
+        {
+          "section_number": 31,
+          "title": "Fresh application for permanent registration",
+          "content": "Disallowance does not debar fresh application after rectifying deficiencies."
+        },
+        {
+          "section_number": 32,
+          "title": "Cancellation of registration",
+          "content": "If conditions not complied with or management convicted of offence, authority may issue notice to show cause within 3 months. After opportunity, may cancel registration. Order takes effect after appeal period or dismissal. Immediate restraint possible if imminent danger to health/safety."
+        },
+        {
+          "section_number": 33,
+          "title": "Inspection of registered clinical establishments",
+          "content": "Authority/officer may inspect building, labs, equipment, work conducted by multi-member team. Establishment entitled to representation. Views communicated, advice given. Establishment reports action taken. If no satisfactory action, authority may issue binding directions."
+        },
+        {
+          "section_number": 34,
+          "title": "Power to enter",
+          "content": "If reason to suspect unregistered establishment, authority/officer may enter and search at reasonable time with notice. Establishment shall offer facilities and be entitled to representation."
+        },
+        {
+          "section_number": 35,
+          "title": "Levy of fee by State Government",
+          "content": "State Government may charge fees for different categories as prescribed."
+        },
+        {
+          "section_number": 36,
+          "title": "Appeal",
+          "content": "Person aggrieved by refusal/revocation may appeal to State Council within prescribed period (extendable for sufficient cause). Appeal in prescribed form with fee."
+        }
+      ]
+    },
+    {
+      "chapter_number": 5,
+      "title": "REGISTER OF CLINICAL ESTABLISHMENTS",
+      "sections": [
+        {
+          "section_number": 37,
+          "title": "Register of clinical establishments",
+          "content": "Authority shall compile, publish, maintain digital register within 2 years. Enter certificate particulars. Supply digital copy of every entry to State Council to keep State Register updated."
+        },
+        {
+          "section_number": 38,
+          "title": "Maintenance of State Register of clinical establishments",
+          "content": "State Government shall maintain digital State Register. Supply digital copy to Central Government and inform additions/amendments by 15th of following month."
+        },
+        {
+          "section_number": 39,
+          "title": "Maintenance of National Register of clinical establishments",
+          "content": "Central Government shall maintain digital All India Register (National Register) as amalgam of State Registers, published in digital format."
+        }
+      ]
+    },
+    {
+      "chapter_number": 6,
+      "title": "PENALTIES",
+      "sections": [
+        {
+          "section_number": 40,
+          "title": "Penalty",
+          "content": "Contravention of any provision (no penalty elsewhere): 1st offence fine up to ₹10,000; 2nd offence up to ₹50,000; subsequent up to ₹5,00,000."
+        },
+        {
+          "section_number": 41,
+          "title": "Monetary penalty for non-registration",
+          "content": [
+            "Running without registration: 1st contravention up to ₹50,000; 2nd up to ₹2,00,000; subsequent up to ₹5,00,000",
+            "Knowingly serving in unregistered establishment: up to ₹25,000",
+            "Inquiry by authority with opportunity of being heard",
+            "Penalty considers category, size, type, local conditions",
+            "Appeal to State Council within 3 months",
+            "Penalty credited to account specified by State Government"
+          ]
+        },
+        {
+          "section_number": 42,
+          "title": "Disobedience of direction, obstruction and refusal of information",
+          "content": [
+            "Wilful disobedience/obstruction: up to ₹5,00,000",
+            "Wilfully withholding/false information: up to ₹5,00,000",
+            "Inquiry procedure same as Section 41",
+            "Appeal to State Council within 3 months",
+            "Penalty credited to specified account"
+          ]
+        },
+        {
+          "section_number": 43,
+          "title": "Penalty for minor deficiencies",
+          "content": "Contravention resulting in deficiencies not posing imminent danger and rectifiable within reasonable time: fine up to ₹10,000."
+        },
+        {
+          "section_number": 44,
+          "title": "Contravention by companies",
+          "content": "If company contravenes, person in charge/responsible deemed guilty unless proves contravention without knowledge or exercised due diligence. If proved with consent/connivance/neglect of director/manager/secretary/officer, they also deemed guilty. 'Company' includes firm; 'director' includes partner."
+        },
+        {
+          "section_number": 45,
+          "title": "Offences by Government Departments",
+          "content": "If offence by Government Department within 6 months of commencement, Head of Department deemed guilty unless proves without knowledge or exercised due diligence. If proved with consent/connivance/neglect of other officer, they also deemed guilty."
+        },
+        {
+          "section_number": 46,
+          "title": "Recovery of fine",
+          "content": "If fine unpaid, State Council may prepare certificate specifying fine due, send to District Collector where person owns property/resides/carries business. Collector recovers as arrear of land revenue."
+        }
+      ]
+    },
+    {
+      "chapter_number": 7,
+      "title": "MISCELLANEOUS",
+      "sections": [
+        {
+          "section_number": 47,
+          "title": "Protection of action taken in good faith",
+          "content": "No suit/prosecution/legal proceedings against authority/Council member/officer for anything done in good faith under this Act. No suit against State/Central Government for loss/damage caused by good faith actions."
+        },
+        {
+          "section_number": 48,
+          "title": "Furnishing of returns, etc.",
+          "content": "Every clinical establishment shall furnish returns/statistics/information to authority/State Council/National Council within prescribed time/manner."
+        },
+        {
+          "section_number": 49,
+          "title": "Power to give directions",
+          "content": "Authority may issue binding directions including furnishing returns/statistics for proper functioning."
+        },
+        {
+          "section_number": 50,
+          "title": "Employees of the authority, etc., to be public servants",
+          "content": "Every employee of authority/National Council/State Council deemed public servant under Section 21 of Indian Penal Code when acting under this Act."
+        },
+        {
+          "section_number": 51,
+          "title": "Power to remove difficulties",
+          "content": "Central Government may make provisions (not inconsistent with Act) by order for removing difficulties, within 2 years of commencement. Order laid before Parliament."
+        },
+        {
+          "section_number": 52,
+          "title": "Power of Central Government to make rules",
+          "content": "Central Government may make rules for carrying out provisions. Matters include: allowances for National Council members, Secretary appointment, standards determination/classification, authority member qualifications, provisional registration procedure, minimum standards/personnel/records, classification standards, permanent registration standards, register form/particulars.",
+          "laying_procedure": "Every rule laid before each House of Parliament for 30 days; modification/annulment by both Houses agreement."
+        },
+        {
+          "section_number": 54,
+          "title": "Power of State Government to make rules",
+          "content": "State Government may make rules for matters not in Section 52. Matters include: registration proforma/fee, application form/details, provisional certificate particulars, publication manner, duplicate certificate fees, change of ownership info, expiry publication, enhanced renewal fees, permanent registration application/fees, evidence submission manner, display for objections, expiry period, certificate form/particulars, appeal period/manner/fee, register form/maintenance, digital supply manner, inquiry manner, appeal filing, information furnishing, other prescribed matters.",
+          "laying_procedure": "Every rule laid before State Legislature House(s)."
+        },
+        {
+          "section_number": 56,
+          "title": "Savings",
+          "content": "Act does not apply to States where Schedule enactments applicable, unless State adopts this Act under Article 252(1). Central Government may amend Schedule by notification."
+        }
+      ]
+    }
+  ],
+  "schedule": {
+    "title": "Enactments specified in Section 56",
+    "enactments": [
+      "The Andhra Pradesh Private Medical Care Establishments (Registration and Regulation) Act, 2002",
+      "The Bombay Nursing Homes Registration Act, 1949",
+      "The Delhi Nursing Homes Registration Act, 1953",
+      "The Madhya Pradesh Upcharya Griha Tatha Rujopchar Sanbabdu Sthapana (Ragistrikaran Tatha Anugyapan) Adhiniyam, 1973",
+      "The Manipur Homes and Clinics Registration Act, 1992",
+      "The Nagaland Health Care Establishments Act, 1997",
+      "The Orissa Clinical Establishments (Control and Regulation) Act, 1990",
+      "The Punjab State Nursing Home Registration Act, 1991",
+      "The West Bengal Clinical Establishments Act, 1950"
+    ]
+  },
+  "pramaan_integration_notes": {
+    "usage": "This JSON serves as the 'Official Rule' source for the Pramaan Engine when auditing Clinical Establishment Registration documents or verifying compliance claims in hospital bills.",
+    "matching_strategy": {
+      "registration_verification": "Match 'Certificate Number' and 'Validity Date' against Section 17 (12 months provisional) and Section 30 (5 years permanent). Flag if expired per Section 21.",
+      "display_compliance": "Check if bill/invoice mentions 'Registered under Clinical Establishments Act' per Section 18 (conspicuous display).",
+      "emergency_care": "If bill denies emergency care, flag violation of Section 12(2) (stabilisation undertaking).",
+      "penalty_reference": "If dispute arises, cite Section 41 (non-registration penalty up to ₹5L) or Section 40 (general contravention)."
+    },
+    "confidence_floor": 0.95,
+    "anchor_type": "legal_statute"
+  }
+}

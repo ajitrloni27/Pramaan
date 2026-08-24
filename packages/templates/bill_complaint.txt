@@ -1,0 +1,35 @@
+TO: The Billing Manager / Medical Superintendent
+{{hospital_name}}
+{{hospital_address}}
+
+FROM: {{patient_name}}
+DATE: {{current_date}}
+
+SUBJECT: FORMAL DISPUTE OF INVOICE NO. {{invoice_number}} DATED {{bill_date}}
+
+Dear Sir/Madam,
+
+I am writing to formally dispute specific line items in the above-referenced invoice. Upon review using Pramaan's evidence engine, the following charges have been identified as non-compliant with official government rate cards and pricing regulations:
+
+{{#each proof_cards}}
+-----------------------------------------
+ITEM: {{item}}
+YOUR CHARGE: ₹{{your_value}} {{unit}}
+OFFICIAL RATE: ₹{{official_value}} {{unit}} (Source: {{rule_anchor.ref}})
+OVERCHARGE GAP: ₹{{gap}}
+FINDING: {{rule_says_plain}}
+{{/each}}
+
+TOTAL DISPUTED AMOUNT: ₹{{total_gap}}
+
+REQUEST FOR RESOLUTION:
+1. I request an immediate revised invoice reflecting the official rates cited above.
+2. A provisional hold has been placed on the disputed amount of ₹{{total_gap}} pending your response.
+3. If this is not resolved within 7 days, I will be compelled to escalate this matter to the District Registering Authority under the Clinical Establishments Act, 2010 (Section 41) and the Consumer Forum.
+
+Please confirm the rectification in writing.
+
+Sincerely,
+
+{{patient_name}}
+[Sent via Pramaan Evidence Engine · AI-Generated Draft · Review Before Sending]

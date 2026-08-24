@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RuleRow",
+  "oneOf": [
+    {
+      "title": "BillRuleRow",
+      "type": "object",
+      "required": ["rule_id", "domain", "item_category", "match_terms", "procedure_code", "official_value", "official_unit", "official_source", "official_source_url", "rule_says_plain", "severity", "status", "notes"],
+      "properties": {
+        "rule_id":            { "type": "string" },
+        "domain":             { "const": "bill" },
+        "item_category":      { "type": "string" },
+        "match_terms":        { "type": "array", "items": { "type": "string" } },
+        "procedure_code":     { "type": "string" },
+        "official_value":     { "type": "number" },
+        "official_unit":      { "type": "string" },
+        "official_source":    { "type": "string" },
+        "official_source_url":{ "type": "string" },
+        "rule_says_plain":    { "type": "string" },
+        "severity":           { "enum": ["high", "medium"] },
+        "status":             { "enum": ["VERIFIED", "UNVERIFIED"] },
+        "notes":              { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    {
+      "title": "LeaseRuleRow",
+      "type": "object",
+      "required": ["rule_id", "domain", "clause_type", "match_terms", "legal_status", "law_ref", "law_ref_url", "rule_says_plain", "suggested_fix_plain", "status"],
+      "properties": {
+        "rule_id":            { "type": "string" },
+        "domain":             { "const": "lease" },
+        "clause_type":        { "type": "string" },
+        "match_terms":        { "type": "array", "items": { "type": "string" } },
+        "legal_status":       { "enum": ["illegal", "risky", "info"] },
+        "law_ref":            { "type": "string" },
+        "law_ref_url":        { "type": "string" },
+        "rule_says_plain":    { "type": "string" },
+        "suggested_fix_plain":{ "type": "string" },
+        "status":             { "enum": ["VERIFIED", "UNVERIFIED"] }
+      },
+      "additionalProperties": false
+    }
+  ]
+}

@@ -1,0 +1,446 @@
+{
+  "metadata": {
+    "sources": [
+      {
+        "name": "CDSCO NSQ List",
+        "date": "June 2025",
+        "type": "Safety Alert / Recall",
+        "authority": "Central Drugs Standard Control Organisation"
+      },
+      {
+        "name": "NPPA Price List",
+        "date": "30-01-2026",
+        "type": "Price Cap / MRP Regulation",
+        "authority": "National Pharmaceutical Pricing Authority"
+      }
+    ],
+    "usage": "Used by Pramaan Engine to verify medicine safety (batch match) and price compliance (MRP check)."
+  },
+  "safety_alerts": [
+    {
+      "id": "NSQ-045",
+      "drug_name": "Azithromycin Tablets IP 500 mg",
+      "batch_number": "AYC-2407",
+      "manufacturing_date": "01/2024",
+      "expiry_date": "12/2025",
+      "manufacturer": "M/s. Apple Formulations Pvt. Ltd., Plot No.208, Kishanpur, Roorkee- 247667(U.K.)",
+      "defect": "Dissolution of Azithromycin",
+      "testing_lab": "RDTL, Guwahati",
+      "status": "NOT OF STANDARD QUALITY",
+      "action": "DO NOT CONSUME / RETURN TO PHARMACY",
+      "pramaan_flag": "CRITICAL: If batch AYC-2407 detected, flag as 'Unsafe - Dissolution Failure'."
+    },
+    {
+      "id": "NSQ-046",
+      "drug_name": "Colestyramine BP",
+      "batch_number": "SB43/001M/ 24",
+      "manufacturing_date": "07/2024",
+      "expiry_date": "07/2029",
+      "manufacturer": "M/s. Phaex Polymers Private Limited Plot No.: F-10, MIDC, Murbad, Dist- Thane-421401, Maharastra.",
+      "defect": "Loss on drying",
+      "testing_lab": "CDTL-Mumbai",
+      "status": "NOT OF STANDARD QUALITY",
+      "action": "DO NOT CONSUME / RETURN TO PHARMACY",
+      "pramaan_flag": "CRITICAL: If batch SB43/001M/ 24 detected, flag as 'Unsafe - Moisture Content'."
+    },
+    {
+      "id": "NSQ-047",
+      "drug_name": "Cholestyramine Resin USP",
+      "batch_number": "SB45/001M/ 24",
+      "manufacturing_date": "07/2024",
+      "expiry_date": "07/2029",
+      "manufacturer": "M/s. Phaex Polymers Private Limited Plot No.: F-10, MIDC, Murbad, Dist- Thane-421401, Maharastra.",
+      "defect": "Loss on drying",
+      "testing_lab": "CDTL-Mumbai",
+      "status": "NOT OF STANDARD QUALITY",
+      "action": "DO NOT CONSUME / RETURN TO PHARMACY",
+      "pramaan_flag": "CRITICAL: If batch SB45/001M/ 24 detected, flag as 'Unsafe - Moisture Content'."
+    }
+  ],
+  "price_caps": [
+    {
+      "id": "NPPA-2233",
+      "drug_name": "Desvenlafaxine Extended Release",
+      "formulation": "Each uncoated bilayered tablet",
+      "manufacturer": "Eris Lifesciences Limited",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 13.24,
+      "notification": "S.O.193(E)",
+      "notification_date": "11/01/2023",
+      "pramaan_flag": "If billed price > 13.24 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-2965",
+      "drug_name": "Telmisartan, Cilnidipine & Chlorthalidone tablets",
+      "formulation": "Each film coated tablet contains: Telmisartan IP 40mg, Cilnidipine IP 10mg, Chlorthalidone IP 12.5mg",
+      "manufacturer": "M/s Pure& Cure Healthcare Pvt. Ltd./ M/s Abbott Healthcare Pvt. Ltd.",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 14.73,
+      "notification": "S.O. 3867(E)",
+      "notification_date": "10.09.2024",
+      "pramaan_flag": "If billed price > 14.73 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-2966",
+      "drug_name": "Telmisartan, Chlorthalidone & Metoprolol Succinate (ER) Tablets",
+      "formulation": "Each film coated tablet contains: Telmisartan IP 40mg, Chlorthalidone IP 6.25mg, Metoprolol Succinate IP 23.75mg eq. to Metoprolol Tartrate 25mg",
+      "manufacturer": "M/s Mascot Health Series Pvt. Ltd./ M/s.Alembic Pharmaceuticals Ltd",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 10.52,
+      "notification": "S.O.1490(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 10.52 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-1575",
+      "drug_name": "Telmisartan+ Chlorthalidone+ Metoprolol (Extended Release) tablet",
+      "formulation": "Each film coated tablet contains: Telmisartan IP 40mg, Chlorthalidone IP 6.25mg Metoprolol Succinate IP 47.50mg eq. to Metoprolol Tartrate(Extended Release form) 50mg",
+      "manufacturer": "M/s Ajanta Pharma Limited/ M/s Glenmark Pharmaceuticals Ltd.",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 10.81,
+      "notification": "S. O. 1724(E)",
+      "notification_date": "30.04.2021",
+      "pramaan_flag": "If billed price > 10.81 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-1576",
+      "drug_name": "Telmisartan+ Chlorthalidone+ Metoprolol (Extended Release) tablet",
+      "formulation": "Each film coated tablet contains: Telmisartan IP 40mg, Chlorthalidone IP 6.25mg Metoprolol Succinate IP 23.75mg eq. to Metoprolol Tartrate(Extended Release form) 25mg",
+      "manufacturer": "M/s Ajanta Pharma Limited/ M/s Glenmark Pharmaceuticals Ltd.",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 9.86,
+      "notification": "S. O. 1724(E)",
+      "notification_date": "30.04.2021",
+      "pramaan_flag": "If billed price > 9.86 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-139",
+      "drug_name": "Ceftriaxone + Sulbactam Injection (XONE SB 1g)",
+      "formulation": "Each vial contains Ceftriaxone sodium eq. To...",
+      "manufacturer": "M/s Theon Pharmaceuticals Ltd. and M/s IVA Healthcare Pvt. Ltd.",
+      "pack_size": "Per Pack",
+      "mrp_inr": 98.69,
+      "notification": "S.O. 842(E)",
+      "notification_date": "25/3/2015",
+      "pramaan_flag": "If billed price > 98.69 per pack, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-258",
+      "drug_name": "Cyclosporine Injection 50 mg/ml",
+      "formulation": "Injection 50 mg/ml",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 ml",
+      "mrp_inr": 341.64,
+      "notification": "S.O. 1487(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 341.64 per ml, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-259",
+      "drug_name": "Cytosine arabinoside Injection 1000mg/vial",
+      "formulation": "Injection 1000mg/vial",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 Vial",
+      "mrp_inr": 1150.00,
+      "notification": "S.O. 1489(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 1150.00 per vial, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-260",
+      "drug_name": "Cytosine arabinoside Injection 100mg/vial",
+      "formulation": "Injection 100mg/vial",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 Vial",
+      "mrp_inr": 142.02,
+      "notification": "S.O. 1489(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 142.02 per vial, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-261",
+      "drug_name": "Cytosine arabinoside Injection 500mg/vial",
+      "formulation": "Injection 500mg/vial",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 Vial",
+      "mrp_inr": 545.66,
+      "notification": "S.O. 1489(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 545.66 per vial, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-262",
+      "drug_name": "Dabigatran Capsule 110mg",
+      "formulation": "Capsule 110mg",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 Capsule",
+      "mrp_inr": 32.36,
+      "notification": "S.O. 1489(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 32.36 per capsule, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-263",
+      "drug_name": "Dabigatran Capsule 150mg",
+      "formulation": "Capsule 150mg",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 Capsule",
+      "mrp_inr": 36.21,
+      "notification": "S.O. 1489(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 36.21 per capsule, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-264",
+      "drug_name": "Dacarbazine Powder for Injection 200mg",
+      "formulation": "Powder for Injection 200mg",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 Vial",
+      "mrp_inr": 388.39,
+      "notification": "S.O. 1489(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 388.39 per vial, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-265",
+      "drug_name": "Dacarbazine Powder for Injection 500mg",
+      "formulation": "Powder for Injection 500mg",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 Vial",
+      "mrp_inr": 527.86,
+      "notification": "S.O. 1489(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 527.86 per vial, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-692",
+      "drug_name": "Phenytoin Modified Release Tablet 300mg",
+      "formulation": "Modified Release Tablet 300mg",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 6.68,
+      "notification": "S.O. 1489(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 6.68 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-701",
+      "drug_name": "Phytomenadione(Vitamin K1) Injection 10mg/mL",
+      "formulation": "Injection 10mg/mL",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 ML",
+      "mrp_inr": 54.01,
+      "notification": "S.O. 1489(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 54.01 per ml, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-702",
+      "drug_name": "Phytomenadione(Vitamin K1) Tablet 10mg",
+      "formulation": "Tablet 10mg",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 14.79,
+      "notification": "S.O. 1489(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 14.79 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-703",
+      "drug_name": "Pilocarpine Drops 2%",
+      "formulation": "Drops 2%",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 ML",
+      "mrp_inr": 16.53,
+      "notification": "S.O. 1489(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 16.53 per ml, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-704",
+      "drug_name": "Pilocarpine Drops 4%",
+      "formulation": "Drops 4%",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 ml",
+      "mrp_inr": 14.79,
+      "notification": "S.O. 1487(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 14.79 per ml, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-705",
+      "drug_name": "Piperacillin(A) +Tazobactam(B) Powder for Injection 1000mg(A)+125mg(B)",
+      "formulation": "Powder for Injection 1000mg(A)+125mg(B)",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 Vial",
+      "mrp_inr": 101.39,
+      "notification": "S.O. 1489(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 101.39 per vial, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-706",
+      "drug_name": "Piperacillin(A) +Tazobactam(B) Powder for Injection 2000mg(A)+250mg(B)",
+      "formulation": "Powder for Injection 2000mg(A)+250mg(B)",
+      "manufacturer": "Not specified in snippet",
+      "pack_size": "1 Vial",
+      "mrp_inr": 194.88,
+      "notification": "S.O. 1489(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 194.88 per vial, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-3255",
+      "drug_name": "Telmisartan, Chlorthalidone & Metoprolol Succinate (ER) Tablets",
+      "formulation": "Each film coated bilayer tablet contains: Telmisartan IP 40 mg Chlorthalidone IP 6.25 mg Metoprolol Succinate IP 23.75 mg eq. to Metoprolol Tartrate 25 mg(as extended release form)",
+      "manufacturer": "M/s Mascot Health Series Pvt. Ltd./ M/s.Alembic Pharmaceuticals Ltd",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 10.52,
+      "notification": "S.O.1490(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 10.52 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-3256",
+      "drug_name": "Telmisartan, Chlorthalidone & Metoprolol Succinate (ER) Tablets",
+      "formulation": "Each film coated bilayer tablet contains: Telmisartan IP 40 mg Chlorthalidone IP 6.25 mg Metoprolol Succinate IP 47.5 mg eq. to Metoprolol Tartrate 50 mg(as extended release form)",
+      "manufacturer": "M/s Mascot Health Series Pvt. Ltd./ M/s.Alembic Pharmaceuticals Ltd",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 10.73,
+      "notification": "S.O.1490(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 10.73 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-3257",
+      "drug_name": "Telmisartan, Chlorthalidone & Metoprolol Succinate (ER) Tablets",
+      "formulation": "Each film coated bilayer tablet contains: Telmisartan IP 40 mg Chlorthalidone IP12.5 mg Metoprolol Succinate IP 23.75 mg eq. to Metoprolol Tartrate 25 mg(as extended release form)",
+      "manufacturer": "M/s Mascot Health Series Pvt. Ltd./ M/s.Alembic Pharmaceuticals Ltd",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 11.30,
+      "notification": "S.O.1490(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 11.30 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-3258",
+      "drug_name": "Empagliflozin & Metformin Hydrochloride Tablets",
+      "formulation": "Each film coated tablet contains: Empagliflozin 5 mg Metformin Hydrochloride IP 500",
+      "manufacturer": "M/s Skymap Pharmaceuticals Pvt.",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 15.84,
+      "notification": "S.O.1490(E)",
+      "notification_date": "27.03.2025",
+      "pramaan_flag": "If billed price > 15.84 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-1492",
+      "drug_name": "Telmisartan & Metoprolol Succinate(ER) Tablet",
+      "formulation": "Each uncoated bilayered tablet contains: Telmisartan IP 40mg, Metoprolol Succinate IP 23.75mg eq. to Metoprolol Tartrate 25mg (As Extended Release form)",
+      "manufacturer": "M/s Skymap Pharmaceuticals Pvt. Ltd./ M/s Jagsonpal Pharmaceuticals Ltd.",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 11.22,
+      "notification": "S. O. 1208(E)",
+      "notification_date": "15.03.2021",
+      "pramaan_flag": "If billed price > 11.22 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-1495",
+      "drug_name": "Paracetamol, Phenylephrine Hydrochloride, Caffeine & Diphenhydramine Tablet",
+      "formulation": "Each film coated tablet contains: Paracetamol IP 500mg, Phenylephrine Hydrochloride IP 5mg, Caffeine(Anhydrous) IP 30mg Diphenhydramine Hydrochloride IP 25mg",
+      "manufacturer": "M/s Skymap Pharmaceuticals Pvt. Ltd.",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 2.99,
+      "notification": "S. O. 1208(E)",
+      "notification_date": "15.03.2021",
+      "pramaan_flag": "If billed price > 2.99 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-1496",
+      "drug_name": "Telmisartan+ Cilnidipine+ Metoprolol(ER) Tablet",
+      "formulation": "Each film coated Bilayered tablet contains: Telmisartan IP 40mg, Cilnidipine IP 10mg Metoprolol Succinate IP 23.75mg eq. to Metoprolol",
+      "manufacturer": "M/s Ravenbhel Healthcare Pvt. Ltd. / M/s Glenmark",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 10.16,
+      "notification": "S. O. 1208(E)",
+      "notification_date": "15.03.2021",
+      "pramaan_flag": "If billed price > 10.16 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-786",
+      "drug_name": "Telmisartan+ Chlorthalidone tablet (Telmijub CH 40)",
+      "formulation": "Each Uncoated bilayer tablet contains: Telmisartan IP 40mg, Chlorthalidone IP 12.50mg Tablets",
+      "manufacturer": "M/s Hetero Labs Pvt. Ltd. / M/s Jubilant Life Sciences Limited",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 7.92,
+      "notification": "3982(E)",
+      "notification_date": "13.08.2018",
+      "pramaan_flag": "If billed price > 7.92 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-787",
+      "drug_name": "Telmisartan+ Chlorthalidone tablet (Telmijub CH 80)",
+      "formulation": "Each Uncoated bilayer tablet contains: Telmisartan IP 80mg+ Chlorthalidone IP 12.50mg Tablet",
+      "manufacturer": "M/s Hetero Labs Pvt. Ltd. / M/s Jubilant Life Sciences Limited",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 13.82,
+      "notification": "3982(E)",
+      "notification_date": "13.08.2018",
+      "pramaan_flag": "If billed price > 13.82 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-1762",
+      "drug_name": "Dapagliflozin+ Metformin Hydrochloride(As Extended release form) Tablet",
+      "formulation": "Each film-coated tablet contains: Dapagliflozin Propanediol Monohydrate eq. to Dapagliflozin 10mg, Metformin Hydrochloride IP 1000mg(As Extended release form)",
+      "manufacturer": "M/s Unison Pharmaceuticals Pvt. Ltd.",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 11.07,
+      "notification": "S.O. 4976(E)",
+      "notification_date": "03.12.2021",
+      "pramaan_flag": "If billed price > 11.07 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-1763",
+      "drug_name": "Dapagliflozin+ Metformin Hydrochloride(As Extended release form) Tablet",
+      "formulation": "Each film-coated tablet contains: Dapagliflozin Propanediol Monohydrate eq. to Dapagliflozin 10mg, Metformin Hydrochloride IP 500mg(As Extended release form)",
+      "manufacturer": "M/s Unison Pharmaceuticals Pvt. Ltd.",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 9.58,
+      "notification": "S.O. 4976(E)",
+      "notification_date": "03.12.2021",
+      "pramaan_flag": "If billed price > 9.58 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-2737",
+      "drug_name": "Metoprolol Succinate Extended Release, Amlodipine and Telmisartan Tablet",
+      "formulation": "Each film coated bilayered tablet contains: Metoprolol Succinate IP 47.50mg eq. to Metoprolol Tartrate 50mg(As Extended release) Amlodipine Besilate IP eq. to Amlodipine 5mg Telmisartan IP 40mg",
+      "manufacturer": "M/s Ajanta Pharma Limited/ M/s Sun Pharma Laboratories Limited",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 14.60,
+      "notification": "S.O.1558(E)",
+      "notification_date": "26.03.2024",
+      "pramaan_flag": "If billed price > 14.60 per tablet, flag as 'Overcharge - NPPA Violation'."
+    },
+    {
+      "id": "NPPA-2738",
+      "drug_name": "Linagliptin & Metformin Hydrochloride (Extended Release) Tablets",
+      "formulation": "Each film coated bilayered tablet contains: Linagliptin IP 5mg, Metformin Hydrochloride IP 500mg(As Extended release)",
+      "manufacturer": "M/s Mascot Health Series Pvt. Ltd./ M/s Lupin Limited",
+      "pack_size": "1 Tablet",
+      "mrp_inr": 13.03,
+      "notification": "S.O.1558(E)",
+      "notification_date": "26.03.2024",
+      "pramaan_flag": "If billed price > 13.03 per tablet, flag as 'Overcharge - NPPA Violation'."
+    }
+  ],
+  "pramaanintegrationnotes": {
+    "usage": "This JSON serves as the 'Official Rule' source for the Pramaan Engine when auditing Medicine Bills or Pharmacy Invoices.",
+    "matching_strategy": {
+      "safetycheck": "Match 'Batch Number' from bill against 'safetyalerts'. If match found, flag as 'UNSAFE - DO NOT CONSUME' (Red Card).",
+      "pricecheck": "Match 'Drug Name' + 'Formulation' from bill against 'pricecaps'. If billed price > 'mrp_inr', flag as 'OVERCHARGE' (Red Card) with gap calculation.",
+      "unit_normalization": "Ensure bill unit (e.g., 'per strip of 10') is normalized to 'per tablet' before comparing with NPPA MRP.",
+      "confidence_floor": 0.95,
+      "anchortype": "regulatorydatabase"
+    }
+  }
+}

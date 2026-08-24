@@ -1,0 +1,225 @@
+{
+  "regulatory_framework": {
+    "metadata": {
+      "jurisdiction": "India",
+      "regulator": "Insurance Regulatory and Development Authority of India (IRDAI)",
+      "last_updated": "2025-07-25",
+      "source_documents": [
+        "The Insurance Act, 1938",
+        "Master Circular on Protection of Policyholders' Interests, 2024",
+        "Master Circular on Health Insurance Business, 2024",
+        "Master Circular on Rural, Social Sector and Motor Third Party Obligations, 2025",
+        "Insurance Ombudsman Rules, 2017 (amended till 09.11.2023)"
+      ]
+    },
+    "actsandrules": [
+      {
+        "id": "INSACT1938",
+        "title": "The Insurance Act, 1938",
+        "type": "Primary Legislation",
+        "key_provisions": {
+          "registration": "Mandatory for all insurers (Sec 3)",
+          "capital_requirements": {
+            "lifegeneralhealth": "100 Crore INR",
+            "reinsurance": "200 Crore INR"
+          },
+          "investments": "Assets must be invested in approved securities (Govt bonds, etc.) (Sec 27)",
+          "solvency": "Must maintain solvency margin (Sec 64VA)",
+          "rural_obligations": "Mandatory insurance business in rural/social sectors (Sec 32B, 32C)",
+          "motortpobligations": "Mandatory underwriting of motor third party risks (Sec 32D)"
+        }
+      },
+      {
+        "id": "OMBUDSMANRULES2017",
+        "title": "Insurance Ombudsman Rules, 2017",
+        "type": "Rules",
+        "jurisdiction_limit": "50 Lakh INR",
+        "complaint_grounds": [
+          "Delay in settlement of claims",
+          "Repudiation of claims",
+          "Disputes over premium",
+          "Misrepresentation of policy terms",
+          "Policy servicing grievances",
+          "Non-issuance of policy after premium receipt"
+        ],
+        "process": {
+          "prerequisite": "Written representation to insurer must be made first; rejected or no reply within 1 month",
+          "time_limit": "Within 1 year from rejection/dissatisfaction",
+          "award_binding": "Binding on insurer; must be complied with within 30 days",
+          "penaltyfordelay": "5000 INR per day payable to complainant if award not honoured"
+        }
+      }
+    ],
+    "master_circulars": [
+      {
+        "id": "MCPPI2024",
+        "ref": "IRDAI/PP&GR/CIR/MISC/117/9/2024",
+        "title": "Protection of Policyholders' Interests, 2024",
+        "effective_date": "2024-09-05",
+        "obligations": {
+          "rural_sector": {
+            "life_insurers": {
+              "fy202526": { "mingrampanchayats": 25000, "minlivescoverage_pct": 15 },
+              "fy202627": { "mingrampanchayats": 50000, "minlivescoveragepctexisting": 25, "minlivescoveragepctnew": 10 }
+            },
+            "generalinsurers1": {
+              "description": "General Insurers excluding SAHI, AIC, ECGC",
+              "fy202526": { "mingrampanchayats": 25000, "mindwellingsshopspct": 15, "minmotorvehiclespct": 15 },
+              "fy202627": { "mingrampanchayats": 50000, "mindwellingsshopspctexisting": 25, "mindwellingsshopspctnew": 10, "minmotorvehiclespctexisting": 25, "minmotorvehiclespctnew": 10 }
+            },
+            "health_insurers": {
+              "description": "General Insurers including SAHI excluding AIC, ECGC",
+              "fy202526": { "mingrampanchayats": 25000, "minhealthlivespct": 15, "minpalivespct": 15 },
+              "fy202627": { "mingrampanchayats": 50000, "minhealthlivespctexisting": 25, "minhealthlivespctnew": 10, "minpalivespctexisting": 25, "minpalivespctnew": 10 }
+            }
+          },
+          "social_sector": {
+            "all_insurers": {
+              "fy202526": { "minlivescoveragepctof_total": 10 },
+              "fy202627": { "minlivescoveragepctof_total": 12 }
+            }
+          },
+          "motorthirdparty": {
+            "generalinsurers1": {
+              "growthtargetsfy202526": {
+                "marketshareupto_2pct": 12.50,
+                "marketshare2to5pct": 10.00,
+                "marketshare5to10pct": 7.50,
+                "marketshareabove_10pct": 5.00
+              },
+              "growthtargetsfy202627": {
+                "marketshareupto_2pct": 13.75,
+                "marketshare2to5pct": 11.00,
+                "marketshare5to10pct": 8.25,
+                "marketshareabove_10pct": 5.50
+              }
+            }
+          },
+          "grievance_redressal": {
+            "turnaround_time": "14 days for resolution",
+            "escalation": "Insurance Ombudsman if unresolved within 30 days"
+          }
+        }
+      },
+      {
+        "id": "MCHEALTH2024",
+        "ref": "IRDAI/HLT/CIR/PRO/84/5/2024",
+        "title": "Health Insurance Business, 2024",
+        "effective_date": "2024-05-29",
+        "product_guidelines": {
+          "coverage_mandates": [
+            "All ages and medical conditions",
+            "Pre-existing diseases and chronic conditions",
+            "All systems of medicine (Allopathy, AYUSH, etc.)",
+            "Domiciliary, OPD, Day Care, Homecare",
+            "Technological advancements (Robotic surgery, Stem cell, etc.)"
+          ],
+          "legal_compliance": [
+            "Mental Healthcare Act, 2017",
+            "Rights of Persons with Disabilities Act, 2016",
+            "Surrogacy (Regulation) Act, 2021",
+            "Transgender Persons (Protection of Rights) Act, 2019",
+            "HIV and AIDS (Prevention and Control) Act, 2017"
+          ],
+          "policyholder_rights": {
+            "freelookperiod": "30 days from receipt of policy",
+            "cancellation": "7 days notice; refund proportionate premium if no claim",
+            "grace_period": "15 days (monthly), 30 days (quarterly/half-yearly/annual)",
+            "portability": "Allowed between insurers; credits (waiting periods, NCB) must transfer",
+            "moratorium_period": "60 months continuous coverage; policy cannot be contested except for fraud",
+            "cashless_settlement": "Target 100%; decision within 1 hour; final discharge auth within 3 hours"
+          },
+          "claims_process": {
+            "repudiation_approval": "Must be approved by Product Management Committee (PMC) or Claims Review Committee (CRC)",
+            "document_collection": "Insurer/TPA to collect from hospital; policyholder not required to submit",
+            "multiple_policies": "Indemnity: Claim from any one (primary); Benefit: Claim from all"
+          }
+        }
+      }
+    ]
+  },
+  "complianceenginerules": {
+    "rule_categories": [
+      {
+        "category": "Rural_Obligation",
+        "rules": [
+          {
+            "ruleid": "RURALLIFE_FY26",
+            "applicable_to": "Life Insurers",
+            "condition": "Financial Year == 2025-26",
+            "requirement": "Cover >= 15% lives in allocated Gram Panchayats",
+            "verification": "Gram Sachiv Certificate / Self-certification (max 25%)"
+          },
+          {
+            "ruleid": "RURALGENERAL_FY26",
+            "applicable_to": "General Insurers (Type 1)",
+            "condition": "Financial Year == 2025-26",
+            "requirement": "Cover >= 15% dwellings/shops AND >= 15% motor vehicles in allocated Gram Panchayats",
+            "verification": "Gram Sachiv Certificate / IIB Data Cross-check"
+          }
+        ]
+      },
+      {
+        "category": "SocialSectorObligation",
+        "rules": [
+          {
+            "ruleid": "SOCIALALL_FY26",
+            "applicable_to": "All Insurers (excl AIC, ECGC)",
+            "condition": "Financial Year == 2025-26",
+            "requirement": "Cover >= 10% of total lives covered under social sector definition",
+            "verification": "Govt scheme beneficiary list / Self-certification (max 20%)"
+          }
+        ]
+      },
+      {
+        "category": "MotorTPObligation",
+        "rules": [
+          {
+            "ruleid": "MOTORTPGROWTHFY26",
+            "applicable_to": "General Insurers (Type 1)",
+            "condition": "Financial Year == 2025-26 AND Market Share = 12.50%",
+            "verification": "IIB Database cross-verification"
+          }
+        ]
+      },
+      {
+        "category": "HealthProductCompliance",
+        "rules": [
+          {
+            "ruleid": "HEALTHCASHLESS_TAT",
+            "applicable_to": "Health Insurers",
+            "condition": "Cashless Authorization Request",
+            "requirement": "Decision within 1 hour",
+            "penalty": "Shareholder fund bears cost if delay > 3 hours for discharge"
+          },
+          {
+            "ruleid": "HEALTHMORATORIUM",
+            "applicable_to": "Health Insurers",
+            "condition": "Continuous Coverage >= 60 months",
+            "requirement": "Cannot contest policy/claim except for proven fraud",
+            "action": "Auto-approve claim validation logic"
+          }
+        ]
+      },
+      {
+        "category": "Grievance_Redressal",
+        "rules": [
+          {
+            "ruleid": "GRVTAT",
+            "applicable_to": "All Insurers",
+            "condition": "Complaint Received",
+            "requirement": "Resolve within 14 days",
+            "escalation": "Inform policyholder of Ombudsman option if unresolved > 30 days"
+          },
+          {
+            "ruleid": "OMBUDSMANAWARD_COMPLIANCE",
+            "applicable_to": "All Insurers",
+            "condition": "Ombudsman Award Received",
+            "requirement": "Comply within 30 days",
+            "penalty": "5000 INR/day to complainant if delayed"
+          }
+        ]
+      }
+    ]
+  }
+}

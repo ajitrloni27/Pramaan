@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AuditEvent",
+  "type": "object",
+  "required": ["t", "run_id", "ts", "payload"],
+  "properties": {
+    "t": {
+      "enum": ["ocr", "lookup", "compare", "prove", "hold_placed", "hold_staged", "hold_released", "draft", "consent", "error"]
+    },
+    "run_id":  { "type": "string" },
+    "ts":      { "type": "string", "format": "date-time" },
+    "payload": { "type": "object" }
+  },
+  "additionalProperties": false
+}

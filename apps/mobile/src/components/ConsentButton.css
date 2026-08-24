@@ -1,0 +1,51 @@
+.glass-button {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+  transition: transform var(--duration-instant) var(--ease-liquid);
+  display: inline-block;
+  outline: none;
+}
+
+.glass-button.full-width {
+  width: 100%;
+  display: block;
+}
+
+.glass-button:active {
+  transform: scale(0.96);
+}
+
+.glass-button .glass-overlay {
+  background: var(--glass-bg);
+}
+
+.glass-button.primary .glass-overlay {
+  background: rgba(34, 197, 94, 0.25); /* Tint green for primary */
+}
+
+.glass-button.primary .glass-content {
+  color: var(--proof-ok);
+  font-weight: 700;
+}
+
+.button-content {
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.button-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}

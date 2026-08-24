@@ -1,0 +1,31 @@
+TO: Claims Department / Grievance Redressal Officer
+{{insurer_name}}
+{{insurer_address}}
+
+FROM: {{policyholder_name}} (Policy No: {{policy_number}})
+DATE: {{current_date}}
+
+SUBJECT: COUNTER-NOTICE AGAINST CLAIM REPUDIATION REF: {{claim_reference_number}}
+
+Dear Sir/Madam,
+
+I am in receipt of your letter dated {{rejection_date}} repudiating my health insurance claim of ₹{{claim_amount}}. You have cited "{{cited_clause}}" as the reason for rejection.
+
+Upon review using Pramaan's evidence engine against IRDAI Master Circulars, this rejection is invalid.
+
+PRAMAAN FINDING:
+- Policy Inception Date: {{inception_date}}
+- Continuous Coverage Period: {{coverage_months}} months
+- IRDAI Rule: Master Circular on Health Insurance Business, 2024 (Moratorium Period)
+- Finding: {{rule_says_plain}} (e.g., "Continuous coverage exceeds 60 months. Claim cannot be contested except for proven fraud.")
+
+REQUEST FOR RESOLUTION:
+1. I demand the immediate reconsideration and approval of my claim.
+2. If this claim is not settled within 15 days (as per IRDAI Protection of Policyholders' Interests Regulations), I will file a formal complaint with the Insurance Ombudsman under Rule 13 of the Insurance Ombudsman Rules, 2017, seeking the claim amount plus 12% interest and compensation for mental harassment.
+
+Govern yourselves accordingly.
+
+Sincerely,
+
+{{policyholder_name}}
+[Sent via Pramaan Evidence Engine · AI-Generated Draft · Review Before Sending]

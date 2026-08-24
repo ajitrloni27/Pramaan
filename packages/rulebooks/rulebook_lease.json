@@ -1,0 +1,313 @@
+{
+  "metadata": {
+    "act_name": "The Model Tenancy Act, 2021",
+    "bill_number": "Bill No. 346 of 2019 / Act of 2021",
+    "ministry": "Ministry of Housing and Urban Affairs",
+    "purpose": "To establish Rent Authority to regulate renting of premises and to protect the interests of landlords and tenants and to provide speedy adjudication mechanism for resolution of disputes.",
+    "source_url": "https://www.livelaw.in/pdf_upload/model-tenancy-act-394449.pdf"
+  },
+  "definitions": {
+    "landlord": "A person who receives or is entitled to receive rent of any premises on his own account. Includes successor-in-interest, trustee, guardian, or receiver.",
+    "tenant": "A person by whom or on whose account rent is payable. Includes sub-tenant and person continuing in possession after termination (unless eviction order made). Excludes persons against whom eviction decree exists.",
+    "premises": "Any building or part thereof let on rent for residential or commercial use. Includes garden, garage, parking, vacant land, fittings. EXCLUDES hotel, lodging house, dharamshala, inn, industrial use.",
+    "rent_authority": "Officer appointed under Section 30 (Deputy Collector rank).",
+    "rent_court": "Constituted under Section 33 (Additional District Magistrate rank).",
+    "rent_tribunal": "Constituted under Section 34 (District Judge rank).",
+    "property_manager": "Person/entity authorized by landlord to manage premises and represent landlord.",
+    "security_deposit": "Amount paid in advance by tenant, refundable upon vacating."
+  },
+  "exemptions": {
+    "section": 3,
+    "description": "Act does NOT apply to:",
+    "list": [
+      "Premises owned by Central/State Govt, UT Admin, Local Authority, Govt Undertaking, Statutory Body, Cantonment Board",
+      "Premises owned by Company/University/Org given to employees as part of service contract",
+      "Premises owned by Religious/Charitable institutions (specified by notification)",
+      "Premises owned by Auqaf (Waqf Act 1995) or Public Trusts",
+      "Other buildings exempted in public interest by notification"
+    ],
+    "opt_in_clause": "Owner and tenant of exempted premises MAY agree to be regulated under this Act by informing Rent Authority."
+  },
+  "chapters": [
+    {
+      "chapter_number": 1,
+      "title": "PRELIMINARY",
+      "sections": [
+        { "section_number": 1, "title": "Short title, extent and commencement", "content": "Extends to whole State/UT. Commences on date appointed by State Govt/UT Admin." },
+        { "section_number": 2, "title": "Definitions", "content": "Defines Landlord, Tenant, Premises, Rent Authority, Rent Court, Rent Tribunal, Property Manager, etc." },
+        { "section_number": 3, "title": "Act not to apply to certain premises", "content": "Lists exemptions (Govt, Service Quarters, Religious, Waqf, etc.). Opt-in allowed." }
+      ]
+    },
+    {
+      "chapter_number": 2,
+      "title": "TENANCY",
+      "sections": [
+        { 
+          "section_number": 4, 
+          "title": "Tenancy agreement", 
+          "content": "MANDATORY written agreement for all tenancies after commencement. Must be informed to Rent Authority jointly by landlord/tenant within 2 months (or separately within 1 month if joint fails). Rent Authority provides Unique ID and uploads details within 7 working days. Information is conclusive proof of tenancy facts.",
+          "pramaan_flag": "If lease lacks written agreement or Unique ID, flag as 'Non-compliant with Section 4'."
+        },
+        { 
+          "section_number": 5, 
+          "title": "Period of tenancy", 
+          "content": "Valid for period agreed in agreement. Tenant may request renewal. If fixed term ends and tenant fails to vacate, liable for enhanced rent (Section 23). Force majeure extension: Landlord must allow tenant to stay 1 month after disaster ceases on same terms.",
+          "pramaan_flag": "Check for 'Force Majeure' clause compliance."
+        },
+        { 
+          "section_number": 6, 
+          "title": "Rights and obligations of successor in case of death", 
+          "content": "Agreement binding on successors of deceased landlord/tenant for remaining period." 
+        },
+        { 
+          "section_number": 7, 
+          "title": "Restriction on subletting", 
+          "content": "Tenant CANNOT sublet or transfer rights without supplementary agreement with landlord. Sub-tenancy must be informed to Rent Authority within 2 months.",
+          "pramaan_flag": "Flag 'Subletting without consent' clauses as illegal."
+        }
+      ]
+    },
+    {
+      "chapter_number": 3,
+      "title": "RENT",
+      "sections": [
+        { "section_number": 8, "title": "Rent payable", "content": "Rent as agreed in tenancy agreement." },
+        { "section_number": 9, "title": "Revision of rent", "content": "As per agreement. If landlord incurs expenditure for improvement/addition (agreed in writing prior), rent may increase effective 1 month after work completion." },
+        { "section_number": 10, "title": "Rent Authority to determine revised rent in case of dispute", "content": "Rent Authority determines revised rent/charges on application." },
+        { 
+          "section_number": 11, 
+          "title": "Security deposit", 
+          "content": [
+            "Residential: NOT exceed 2 months rent.",
+            "Non-residential: NOT exceed 6 months rent.",
+            "Refund: On date of taking over vacant possession, after deducting tenant liabilities."
+          ],
+          "pramaan_flag": "CRITICAL: Flag any clause demanding >2 months (residential) or >6 months (commercial) deposit as ILLEGAL under Section 11(1). Flag 'Non-refundable deposit' as ILLEGAL under Section 11(2)."
+        }
+      ]
+    },
+    {
+      "chapter_number": 4,
+      "title": "RIGHTS AND OBLIGATIONS OF LANDLORD AND TENANT",
+      "sections": [
+        { "section_number": 12, "title": "Original tenancy agreement to be retained", "content": "Signed in duplicate; one each retained by landlord and tenant." },
+        { "section_number": 13, "title": "Rent payment and receipt", "content": "Tenant pays within agreed period. Landlord/Manager MUST provide signed receipt immediately. Electronic bank acknowledgment is conclusive proof." },
+        { "section_number": 14, "title": "Deposit of rent with Rent Authority", "content": "If landlord refuses rent/receipt, tenant pays via money order for 2 months; if still refused, deposits with Rent Authority. Rent Authority enquires and passes orders." },
+        { 
+          "section_number": 15, 
+          "title": "Repair and maintenance", 
+          "content": [
+            "Landlord/Tenant keep premises in good condition (except normal wear/tear).",
+            "Responsibilities as per Second Schedule or agreement.",
+            "If tenant fails repairs, landlord deducts from security deposit (payable within 1 month of notice).",
+            "If landlord refuses repairs, tenant carries out and deducts from rent (max 50% of monthly rent).",
+            "If uninhabitable without repairs and landlord refuses, tenant may abandon after 15 days notice.",
+            "Force majeure: Landlord cannot charge rent until premises restored to habitable."
+          ],
+          "pramaan_flag": "Flag clauses shifting ALL structural repairs to tenant as potentially void against Section 15(1) and Second Schedule Part A."
+        },
+        { "section_number": 16, "title": "Tenant to look after premises", "content": "Tenant must not damage premises, inform landlord of damage, take reasonable care." },
+        { 
+          "section_number": 17, 
+          "title": "Entry into premises", 
+          "content": [
+            "Landlord/Manager may enter after 24 hours written/electronic notice for: repairs, inspection, other reasonable cause.",
+            "Notice must specify day, time, reason.",
+            "NO entry before sunrise or after sunset.",
+            "Exception: Emergent situations (war, flood, fire, etc.) allow entry without notice."
+          ],
+          "pramaan_flag": "CRITICAL: Flag 'Landlord may enter at any time without notice' as ILLEGAL under Section 17(1). Flag 'Entry after sunset' as ILLEGAL under Section 17(2)."
+        },
+        { "section_number": 18, "title": "Information as to property manager", "content": "Landlord must provide tenant: Manager name, proof of authorization, specific purposes, period, entity details (if legal entity)." },
+        { "section_number": 19, "title": "Duties of property manager", "content": "Collect rent (with receipt), essential repairs, inspect, give notices (maintenance, delay, revision, vacation, renewal), help resolve disputes. Acts only on landlord instructions. Rent Authority can remove manager for violation." },
+        { 
+          "section_number": 20, 
+          "title": "Withholding essential supply or service", 
+          "content": [
+            "Landlord/Manager CANNOT withhold essential supply/service.",
+            "Essential services: Water, electricity, piped gas, lights (passages/lifts/staircase), conservancy, parking, communication links, sanitary services, security fixtures.",
+            "Remedy: Tenant applies to Rent Authority → Interim order for immediate restoration → Enquiry within 1 month → Compensation up to 2 months rent.",
+            "Penalty for frivolous application by tenant: Up to 2x monthly rent."
+          ],
+          "pramaan_flag": "CRITICAL: Flag 'Landlord may disconnect utilities for rent default' as ILLEGAL under Section 20(1)."
+        }
+      ]
+    },
+    {
+      "chapter_number": 5,
+      "title": "EVICTION AND RECOVERY OF POSSESSION",
+      "sections": [
+        { 
+          "section_number": 21, 
+          "title": "Eviction grounds", 
+          "content": [
+            "Tenant not evicted during tenancy unless agreed or under Section 21(2)/22.",
+            "Grounds for Rent Court eviction order:",
+            "(a) Tenant refuses to pay agreed rent",
+            "(b) Arrears of rent/charges for 2 consecutive months + interest not paid within 1 month of demand notice",
+            "(c) Parted with possession without written consent",
+            "(d) Continued misuse after notice (encroachment, nuisance, damage, immoral/illegal use)",
+            "(e) Necessary repair/construction/rebuilding requires vacation (reoccupation only if new agreement submitted)",
+            "(f) Required for repair/change of use due to land use change by competent authority",
+            "(g) Tenant gave notice to vacate and landlord contracted to sell/took steps suffering serious interest loss",
+            "(h) Structural change/permanent structure erected without written consent",
+            "Relief: No eviction for arrears if tenant pays/deposits within 1 month of notice. Relief lost if tenant fails again within same year.",
+            "Partial eviction allowed for ground (e) if landlord agrees."
+          ],
+          "pramaan_flag": "Flag 'Eviction without court order' or 'Eviction for reasons not listed in Section 21(2)' as illegal procedure."
+        },
+        { "section_number": 22, "title": "Eviction in case of death of landlord", "content": "Legal heirs may apply for eviction if bonafide requirement during tenancy period. Rent Court passes order if satisfied." },
+        { 
+          "section_number": 23, 
+          "title": "Enhancement of rent in case of refusal to vacate", 
+          "content": "If tenant fails to vacate on expiry/termination: (a) 2x monthly rent for first 2 months; (b) 4x monthly rent thereafter.",
+          "pramaan_flag": "Verify penalty clauses match Section 23 rates."
+        },
+        { "section_number": 24, "title": "Refund of advance rent", "content": "Landlord must refund advance rent/payment before recovery of possession (deducting dues). Failure → Simple interest at prescribed rate." },
+        { "section_number": 25, "title": "Payment of rent during eviction proceedings", "content": "For grounds other than (a)/(b), if tenant contests, landlord may apply for order directing tenant to pay rent/charges/penalties during proceedings." },
+        { "section_number": 26, "title": "Permission to build additional structures", "content": "Tenant cannot erect permanent structure without consent. If landlord proposes improvement and tenant refuses, landlord applies to Rent Court. Court permits if ready/willing and no undue hardship/deterioration to tenant. Tenant responsible for removing unauthorized structures." },
+        { "section_number": 27, "title": "Special provision regarding vacant land", "content": "If premises includes vacant land permissible for building, and landlord unable to get possession, may apply to Rent Court. Court may sever land, place landlord in possession, determine rent for rest, if no undue hardship." },
+        { "section_number": 28, "title": "Vacant possession to landlord", "content": "Order for recovery binding on all occupants. Vacant possession must be given by all." },
+        { "section_number": 29, "title": "Notice of giving up possession by tenant", "content": "Tenant gives written notice as per agreement. If no stipulation, at least 1 month notice." }
+      ]
+    },
+    {
+      "chapter_number": 6,
+      "title": "RENT AUTHORITIES, POWERS AND APPEALS",
+      "sections": [
+        { "section_number": 30, "title": "Rent Authority", "content": "District Collector/Magistrate appoints officer (not below Deputy Collector rank) as Rent Authority." },
+        { "section_number": 31, "title": "Power and procedure", "content": "Rent Authority has powers of Rent Court for proceedings under Sections 4, 9, 10, 14, 15, 19, 20. Procedure per Sections 35, 36." },
+        { "section_number": 32, "title": "Appeals", "content": "Appeal against Rent Authority order to Rent Court within 30 days." }
+      ]
+    },
+    {
+      "chapter_number": 7,
+      "title": "RENT COURTS AND RENT TRIBUNALS",
+      "sections": [
+        { "section_number": 33, "title": "Rent Court", "content": "District Collector/Magistrate appoints Additional Collector/ADM (equivalent rank) as Rent Court." },
+        { "section_number": 34, "title": "Rent Tribunal", "content": "State Govt/UT Admin appoints District Judge/Additional District Judge as Rent Tribunal." },
+        { 
+          "section_number": 35, 
+          "title": "Procedure", 
+          "content": [
+            "CPC 1908 does not apply (except service of summons). Guided by natural justice.",
+            "Application/Appeal with affidavit/docs → Notice to opposite party → Reply → Rejoinder → Hearing/Summary inquiry.",
+            "Disposal target: 60 days from receipt (reasons recorded if exceeded).",
+            "Evidence by affidavit (witness examination only if necessary for justice).",
+            "Max 3 adjournments per party (costs imposed if reasonable cause).",
+            "Specific timelines: Eviction applications (21(2)(a,b,e,f,g) & 22) decided within 90 days. Applications (21(2)(c,d)) decided within 30 days."
+          ]
+        },
+        { 
+          "section_number": 36, 
+          "title": "Powers", 
+          "content": [
+            "Same powers as Civil Court (CPC 1908): Summoning, discovery, commissions, affidavits, dismissal/ex-parte, execution, review, revision.",
+            "Deemed judicial proceeding (IPC 193, 228, 196). Deemed Civil Court for CrPC 195, Ch XXVI.",
+            "Inspection: 24h notice, enter premises sunrise-sunset.",
+            "Assessors/Valuers may be appointed.",
+            "Clerical errors correctable.",
+            "Fine recovery powers of Judicial Magistrate 1st Class.",
+            "Orders executable as civil court decree.",
+            "Ex-parte orders set aside if notice not served/sufficient cause.",
+            "Orders final subject to appeal (no original suit questioning)."
+          ]
+        },
+        { "section_number": 37, "title": "Appeal to Rent Tribunal", "content": "Appeal against Rent Court order to Rent Tribunal within 30 days. Notice served, hearing within 30 days, disposed within 60 days. Documents allowed once if necessary. Interlocutory orders possible. Confirm/set aside/modify." },
+        { 
+          "section_number": 38, 
+          "title": "Execution of order", 
+          "content": [
+            "Rent Court executes orders (delivery of possession, attach bank accounts, appoint advocate/officer).",
+            "Local Govt/Police help allowed (applicant pays costs).",
+            "Summary manner, disposed within 30 days of notice service."
+          ] 
+        }
+      ]
+    },
+    {
+      "chapter_number": 8,
+      "title": "MISCELLANEOUS",
+      "sections": [
+        { "section_number": 39, "title": "Officers and employees", "content": "State Govt/UT Admin determines/appoints officers for Rent Authority/Court/Tribunal." },
+        { "section_number": 40, "title": "Jurisdiction of civil courts barred", "content": "No civil court suit/proceeding regarding provisions of this Act. Rent Court jurisdiction limited to tenancy agreements submitted (First Schedule); no title/ownership questions." },
+        { "section_number": 41, "title": "Court fees", "content": "Court Fees Act 1870 applies. Recovery application/Appeal memo deemed suit between landlord/tenant. Rent Authority application fee = interlocutory application in civil court." },
+        { "section_number": 42, "title": "Public servants", "content": "Members of Rent Authority/Court/Tribunal deemed public servants (IPC Section 21)." },
+        { "section_number": 43, "title": "Protection of action taken in good faith", "content": "No suit/prosecution against person/Authority/Court/Tribunal for good faith actions under Act." },
+        { "section_number": 44, "title": "Power to make rules", "content": "State Govt/UT Admin makes rules (previous publication). Matters: Digital platform form, rent payment/deposit methods, eviction application forms, interest rate for refund, vacant land application form, Court/Tribunal application forms, execution manner, etc." },
+        { "section_number": 45, "title": "Laying of rules", "content": "Rules laid before State Legislature/UT Legislature." },
+        { "section_number": 46, "title": "Power to remove difficulties", "content": "State Govt/UT Admin may remove difficulties by order (Gazette) within 2 years of commencement. Order laid before Legislature." },
+        { "section_number": 47, "title": "Repeal and savings", "content": "Existing State/UT Rent Control Act repealed. Pending cases continued/disposed under old Act as if it continued." }
+      ]
+    }
+  ],
+  "schedules": {
+    "first_schedule": {
+      "title": "Form for Information of Tenancy (Section 4)",
+      "fields": [
+        "Name/Address of Landlord",
+        "Name/Address of Property Manager (if any)",
+        "Name/Address/Email/Contact of Tenant",
+        "Description of previous tenancy (if any)",
+        "Description of premises (including appurtenant land)",
+        "Date possession given",
+        "Rent payable (Section 8)",
+        "Furniture/Equipment provided",
+        "Other charges (Electricity, Water, Extra furnishing, Other services)",
+        "Attached Rent/Lease/Tenancy Agreement",
+        "Duration of tenancy",
+        "PAN of Landlord",
+        "Aadhaar of Landlord",
+        "Mobile/Email of Landlord",
+        "PAN of Tenant",
+        "Aadhaar of Tenant",
+        "Mobile/Email of Tenant",
+        "PAN of Property Manager (if any)",
+        "Aadhaar of Property Manager (if any)",
+        "Mobile/Email of Property Manager (if any)",
+        "Signature of Landlord",
+        "Signature of Tenant",
+        "Enclosures: Tenancy Agreement, Self-attested PAN/Aadhaar copies, Photographs"
+      ]
+    },
+    "second_schedule": {
+      "title": "Division of Maintenance Responsibility (Section 15)",
+      "part_a_landlord_responsibilities": [
+        "Structural repairs (except tenant-caused damage)",
+        "Whitewashing walls, painting doors/windows",
+        "Changing/plumbing pipes when necessary",
+        "Internal/external electrical wiring and related maintenance when necessary"
+      ],
+      "part_b_tenant_responsibilities": [
+        "Changing tap washers and taps",
+        "Drain cleaning",
+        "Water closet repairs",
+        "Wash Basin repairs",
+        "Bath tub repairs",
+        "Geyser repairs",
+        "Circuit breaker repairs",
+        "Switches and socket repairs",
+        "Repairs/replacement of electrical equipment (except major wiring)",
+        "Kitchen fixtures repairs",
+        "Replacement of knobs/locks (doors, cupboard, windows)",
+        "Replacement of fly-nets",
+        "Replacement of glass panels (windows, doors)",
+        "Maintenance of gardens/open spaces let to/used by tenant"
+      ]
+    }
+  },
+  "pramaan_integration_notes": {
+    "usage": "This JSON serves as the 'Official Rule' source for the Pramaan Engine when auditing Rental Lease Agreements.",
+    "matching_strategy": {
+      "deposit_check": "Match 'Security Deposit' amount against Section 11 limits (2 months residential / 6 months commercial). Flag excess. Flag 'Non-refundable' clauses as illegal per Section 11(2).",
+      "entry_clause_check": "Match 'Landlord Entry' clause against Section 17. Flag 'Any time without notice' or 'After sunset' as illegal.",
+      "utility_cutoff_check": "Match 'Utility Disconnection' clause against Section 20. Flag 'Disconnect for rent default' as illegal.",
+      "lock_in_check": "Match 'Lock-in Period' clause. While not explicitly banned, ensure it doesn't violate Section 5 (period as agreed) or Section 29 (1 month notice to vacate). Flag absolute lock-ins preventing vacancy as risky.",
+      "maintenance_check": "Match 'Repair Responsibility' against Second Schedule. Flag clauses shifting Part A (Structural/Wiring/Pipes) entirely to tenant as void against Section 15(1).",
+      "eviction_check": "Match 'Eviction Grounds' against Section 21(2). Flag grounds not listed (e.g., 'Landlord needs for personal use' without bonafide requirement proof under Section 22) as potentially unenforceable.",
+      "agreement_registration": "Check if agreement mentions 'Informed to Rent Authority' or has Unique ID per Section 4. Flag absence as non-compliant."
+    },
+    "confidence_floor": 0.95,
+    "anchor_type": "legal_statute"
+  }
+}

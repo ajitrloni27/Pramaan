@@ -1,0 +1,1 @@
+import { DETERMINISTIC_TRAP_RESPONSE_SHAPE } from './services/brain/src/seeds/trap.js'; const s = JSON.stringify(DETERMINISTIC_TRAP_RESPONSE_SHAPE); console.log('Length:', s.length); console.log('Hash:', s.split('').reduce((a,c) => ((a << 5) - a + c.charCodeAt(0)) | 0, 0));

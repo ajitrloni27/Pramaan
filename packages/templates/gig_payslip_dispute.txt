@@ -1,0 +1,31 @@
+TO: Grievance Redressal Officer
+{{aggregator_name}} Support Team
+{{aggregator_email}}
+
+FROM: {{driver_name}} (Driver ID: {{driver_id}})
+DATE: {{current_date}}
+
+SUBJECT: DISPUTE REGARDING PAYOUT FOR TRIP ID {{trip_id}} ON {{trip_date}}
+
+Dear Grievance Officer,
+
+I am writing to dispute the payout calculation for the above-referenced trip. Under the Motor Vehicle Aggregator Guidelines, 2025 (Clause 17), the minimum driver share for a driver-owned vehicle is 80% of the total fare.
+
+PRAMAAN FINDING:
+- Total Fare Charged to Passenger: ₹{{total_fare}}
+- Amount Paid to Driver: ₹{{driver_payout}} ({{actual_percentage}}%)
+- Minimum Required Payout (80%): ₹{{required_payout}}
+- Shortfall Gap: ₹{{gap}}
+
+This shortfall violates Clause 17.4 of the MoRTH Guidelines 2025. 
+
+REQUEST FOR RESOLUTION:
+1. I request the immediate credit of the shortfall amount of ₹{{gap}} to my registered bank account.
+2. Please provide a transparent, line-item breakdown of the "Apportioned Fare" retained by the platform for this trip, as mandated by Clause 14.2(e) of the Guidelines.
+
+Failure to rectify this within 3 days will result in escalation to the State Transport Authority.
+
+Sincerely,
+
+{{driver_name}}
+[Sent via Pramaan Evidence Engine · AI-Generated Draft · Review Before Sending]

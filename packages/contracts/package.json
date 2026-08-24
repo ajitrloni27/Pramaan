@@ -1,0 +1,10 @@
+{
+  "name": "@pramaan/contracts",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "types.ts",
+  "exports": {
+    ".": "./types.ts"
+  }
+}

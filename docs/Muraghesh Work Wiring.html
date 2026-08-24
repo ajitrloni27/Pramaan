@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRAMAAN — Individual Wiring Diagram ② · MURGESH (TRUNK)</title>
+<style>
+  :root{
+    --ink:#1c2733; --paper:#f5f6f7; --card:#ffffff; --line:#cfd8e0;
+    --orange:#e67e22; --blue:#2980b9; --violet:#8e44ad; --teal:#16a085;
+    --green:#27ae60; --amber:#f39c12; --red:#c0392b; --gray:#6b7a89;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Segoe UI', system-ui, -apple-system, sans-serif; background:var(--paper); color:var(--ink); padding:24px;}
+  .sheet{max-width:1280px; margin:0 auto;}
+  header{background:var(--card); border:2px solid var(--ink); border-radius:8px; padding:18px 22px; margin-bottom:16px;}
+  header h1{font-size:22px; letter-spacing:.5px;}
+  header .sub{font-size:14px; color:var(--gray); margin-top:4px;}
+  header .meta{font-family:Consolas, monospace; font-size:11px; color:var(--gray); margin-top:8px; border-top:1px dashed var(--line); padding-top:8px;}
+  section{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:18px 22px; margin-bottom:16px;}
+  h2{font-size:15px; text-transform:uppercase; letter-spacing:1px; border-left:6px solid var(--orange); padding-left:10px; margin-bottom:14px;}
+  h2.io{border-color:var(--teal);} h2.step{border-color:var(--violet);} h2.schema{border-color:var(--blue);}
+  h2.time{border-color:var(--amber);} h2.warn{border-color:var(--red);} h2.check{border-color:var(--green);}
+  h2.ibm{border-color:var(--blue);} h2.qa{border-color:var(--gray);}
+  svg{width:100%; height:auto; display:block; border:1px solid var(--line); border-radius:6px; background:#fff;}
+  .legend{display:flex; flex-wrap:wrap; gap:14px; margin-top:12px; font-size:12px;}
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .sw{width:26px; height:4px; border-radius:2px; display:inline-block;}
+  table{width:100%; border-collapse:collapse; font-size:12.5px;}
+  th{background:#eef2f6; text-align:left; padding:8px 10px; border:1px solid var(--line); font-size:11.5px; text-transform:uppercase; letter-spacing:.5px;}
+  td{padding:8px 10px; border:1px solid var(--line); vertical-align:top;}
+  td.mono, .mono{font-family:Consolas, monospace; font-size:12px;}
+  .pill{display:inline-block; font-family:Consolas,monospace; font-size:10.5px; padding:1px 7px; border-radius:9px; color:#fff; white-space:nowrap;}
+  .p-orange{background:var(--orange);} .p-blue{background:var(--blue);} .p-violet{background:var(--violet);}
+  .p-amber{background:var(--amber);} .p-green{background:var(--green);} .p-teal{background:var(--teal);} .p-red{background:var(--red);}
+  .warnbox{border:2px solid var(--red); background:#fdf1f0; border-radius:6px; padding:14px 16px;}
+  .warnbox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  .checkbox{border:2px solid var(--green); background:#f0faf3; border-radius:6px; padding:14px 16px;}
+  .checkbox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  .boundbox{border:2px solid var(--gray); background:#f7f9fa; border-radius:6px; padding:14px 16px;}
+  .boundbox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  .whybox{border:2px solid var(--blue); background:#f0f6fb; border-radius:6px; padding:14px 16px;}
+  .whybox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  pre{background:#101820; color:#d8e2ea; border-radius:6px; padding:16px; font-family:Consolas, monospace; font-size:12.5px; line-height:1.55; overflow-x:auto;}
+  .cm{color:#7f97a8;} .st{color:#9fd68a;} .num{color:#f5c76a;} .key{color:#7ec8ff;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media(max-width:900px){.grid2{grid-template-columns:1fr;}}
+  footer{text-align:center; font-family:Consolas, monospace; font-size:11px; color:var(--gray); padding:10px 0 4px;}
+  .note{font-size:12px; color:var(--gray); margin-top:10px; line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header>
+  <h1>PRAMAAN — INDIVIDUAL WIRING DIAGRAM ② of ④ : MURGESH (TRUNK)</h1>
+  <div class="sub">Technical Co-Lead · The Engine — <b>“The screen makes it visible; you make it correct. You make the verdict TRUE and the action REAL.”</b></div>
+  <div class="meta">DOC: PRM-WD-02 &nbsp;·&nbsp; REV A &nbsp;·&nbsp; HackVerse Track 3 · 36-h Sprint · MAHE 8–10 Aug 2026 &nbsp;·&nbsp; Sole merger: services/brain/** + packages/contracts/**</div>
+</header>
+
+<!-- ================= MAIN WIRING DIAGRAM ================= -->
+<section>
+  <h2>Block &amp; Wiring Overview — The Trunk, Its Tools, and Its Contracts</h2>
+  <svg viewBox="0 0 1240 840" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+    <defs>
+      <marker id="a-orange" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#e67e22"/></marker>
+      <marker id="a-blue"   markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2980b9"/></marker>
+      <marker id="a-violet" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8e44ad"/></marker>
+      <marker id="a-teal"   markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#16a085"/></marker>
+      <marker id="a-green"  markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#27ae60"/></marker>
+      <marker id="a-amber"  markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#f39c12"/></marker>
+      <marker id="a-gray"   markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6b7a89"/></marker>
+      <marker id="a-ink"    markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1c2733"/></marker>
+      <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#e4eaf0"/></pattern>
+    </defs>
+    <rect width="1240" height="840" fill="url(#dots)"/>
+
+    <text x="135" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#6b7a89" letter-spacing="2">WHO FEEDS MURGESH</text>
+    <text x="555" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#6b7a89" letter-spacing="2">services/brain — THE TRUNK · watsonx Orchestrate</text>
+    <text x="1050" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#6b7a89" letter-spacing="2">TOOLS · STATE · CONSUMERS</text>
+
+    <!-- ============ LEFT: INPUT BLOCKS ============ -->
+    <g stroke-width="2" font-size="11">
+      <rect x="20" y="150" width="230" height="56" rx="6" fill="#f7f0fa" stroke="#8e44ad"/>
+      <text x="32" y="172" font-weight="bold">AJIT — OCR OUTPUT CONTRACT</text>
+      <text x="32" y="190" font-size="10" fill="#6b7a89">per-field shape · shared by P1 13:00</text>
+
+      <rect x="20" y="224" width="230" height="56" rx="6" fill="#f7f0fa" stroke="#8e44ad"/>
+      <text x="32" y="246" font-weight="bold">AJIT — 01_read.ts BODY</text>
+      <text x="32" y="264" font-size="10" fill="#6b7a89">real OCR call · plugs into M’s skeleton</text>
+
+      <rect x="20" y="298" width="230" height="56" rx="6" fill="#eefaf8" stroke="#16a085"/>
+      <text x="32" y="320" font-weight="bold">MANAS — rulebook_bill.json</text>
+      <text x="32" y="338" font-size="10" fill="#6b7a89">10–15 cited RuleRows · fuel for compare</text>
+
+      <rect x="20" y="372" width="230" height="56" rx="6" fill="#eefaf8" stroke="#16a085"/>
+      <text x="32" y="394" font-weight="bold">MANAS — rulebook_lease.json</text>
+      <text x="32" y="412" font-size="10" fill="#6b7a89">5 clauses, 3 illegal · same pipeline</text>
+
+      <rect x="20" y="446" width="230" height="56" rx="6" fill="#edf4fa" stroke="#2980b9"/>
+      <text x="32" y="468" font-weight="bold">VRAJESH — SEED SPEC</text>
+      <text x="32" y="486" font-size="10" fill="#6b7a89">planted /run?seed=trap payload</text>
+
+      <rect x="20" y="520" width="230" height="56" rx="6" fill="#f7f9fa" stroke="#6b7a89"/>
+      <text x="32" y="542" font-weight="bold">IBM — watsonx CREDS + AGENT LAB</text>
+      <text x="32" y="560" font-size="10" fill="#6b7a89">hello-world agent must run (P0)</text>
+    </g>
+
+    <!-- left wires -->
+    <g stroke-width="2.5" fill="none">
+      <circle cx="250" cy="178" r="3.5" fill="#8e44ad"/><path d="M250,178 H310 V232 H378" stroke="#8e44ad" marker-end="url(#a-violet)"/>
+      <circle cx="250" cy="252" r="3.5" fill="#8e44ad"/><path d="M250,252 H378" stroke="#8e44ad" marker-end="url(#a-violet)"/>
+      <circle cx="250" cy="326" r="3.5" fill="#16a085"/><path d="M250,326 H378" stroke="#16a085" marker-end="url(#a-teal)"/>
+      <circle cx="250" cy="400" r="3.5" fill="#16a085"/><path d="M250,400 H320 V332 H378" stroke="#16a085" marker-end="url(#a-teal)"/>
+      <circle cx="250" cy="474" r="3.5" fill="#2980b9"/><path d="M250,474 H285 V665 H378" stroke="#2980b9" marker-end="url(#a-blue)"/>
+      <circle cx="250" cy="548" r="3.5" fill="#6b7a89"/><path d="M250,548 H270 V700 H338" stroke="#6b7a89" marker-end="url(#a-gray)"/>
+    </g>
+    <g font-family="Consolas, monospace" font-size="9" fill="#8a97a3" text-anchor="middle">
+      <text x="283" y="170">P1·13:00</text>
+      <text x="283" y="244">P3</text>
+      <text x="283" y="318">P2·16:00</text>
+      <text x="283" y="392">P3·22:00</text>
+      <text x="268" y="466">P7</text>
+      <text x="262" y="540">P0</text>
+    </g>
+
+    <!-- ============ CENTER: THE TRUNK ============ -->
+    <rect x="340" y="60" width="430" height="660" rx="10" fill="#fbfcfd" stroke="#1c2733" stroke-width="2.5"/>
+
+    <g stroke-width="2" font-size="11">
+      <rect x="380" y="94" width="350" height="50" rx="5" fill="#edf4fa" stroke="#2980b9"/>
+      <text x="392" y="113" font-weight="bold">HTTP SURFACE — the boundary Vrajesh touches</text>
+      <text x="392" y="131" font-size="9.5" fill="#6b7a89">POST /run · GET /run?seed=trap · POST /consent → app renders RunResponse VERBATIM</text>
+
+      <rect x="380" y="154" width="350" height="34" rx="5" fill="#fff" stroke="#1c2733" stroke-dasharray="5 3"/>
+      <text x="392" y="175" font-size="10">orchestrator.ts — threads state · AuditEvent after EACH step · error → partial, never crash</text>
+
+      <rect x="380" y="200" width="350" height="56" rx="5" fill="#f7f0fa" stroke="#8e44ad"/>
+      <text x="392" y="221" font-weight="bold">01 READ · 01_read.ts <tspan fill="#8e44ad" font-size="9.5">body: AJIT — wired by M</tspan></text>
+      <text x="392" y="240" font-size="9.5" fill="#6b7a89">(image | seed) → ExtractedField[] · orchestrator never knows stub vs model</text>
+
+      <rect x="380" y="284" width="350" height="60" rx="5" fill="#fdf3e9" stroke="#e67e22"/>
+      <text x="392" y="306" font-weight="bold">02 LOOKUP · 02_lookup.ts</text>
+      <text x="392" y="324" font-size="9.5" fill="#6b7a89">MCP lookup_rule → field→rule map</text>
+      <text x="392" y="337" font-size="9.5" fill="#6b7a89">no match = silence, no card (never a false alarm)</text>
+
+      <rect x="380" y="358" width="350" height="60" rx="5" fill="#fdf1f0" stroke="#c0392b" stroke-width="2.5"/>
+      <text x="392" y="380" font-weight="bold" fill="#c0392b">03 COMPARE · 03_compare.ts ⚠ NO LLM</text>
+      <text x="392" y="398" font-size="9.5" fill="#6b7a89">gap = your_value − official_value, unit-normalized</text>
+      <text x="392" y="411" font-size="9.5" fill="#6b7a89">arithmetic over cited numbers — THE hallucination defense</text>
+
+      <rect x="380" y="432" width="350" height="56" rx="5" fill="#fdf3e9" stroke="#e67e22"/>
+      <text x="392" y="453" font-weight="bold">04 PROVE · 04_prove.ts</text>
+      <text x="392" y="472" font-size="9.5" fill="#6b7a89">3 anchors: source + rule + compute expression · no anchor → “unverified”</text>
+
+      <rect x="380" y="502" width="350" height="60" rx="5" fill="#fdf3e9" stroke="#e67e22"/>
+      <text x="392" y="524" font-weight="bold">05 ACT · 05_act.ts <tspan fill="#e67e22" font-size="9.5">the agentic step</tspan></text>
+      <text x="392" y="542" font-size="9.5" fill="#6b7a89">conf ≥ 0.90 → MCP place_hold · else STAGE</text>
+      <text x="392" y="555" font-size="9.5" fill="#6b7a89">a bad read can NEVER freeze a real invoice</text>
+
+      <rect x="380" y="576" width="350" height="56" rx="5" fill="#f7f0fa" stroke="#8e44ad"/>
+      <text x="392" y="597" font-weight="bold">06 DRAFT · 06_draft.ts <tspan fill="#8e44ad" font-size="9.5">body: AJIT — wired by M</tspan></text>
+      <text x="392" y="616" font-size="9.5" fill="#6b7a89">(cards, hold, template) → Draft · Granite wording only + fallback</text>
+
+      <rect x="380" y="646" width="350" height="50" rx="5" fill="#fff8ec" stroke="#f39c12"/>
+      <text x="392" y="665" font-weight="bold" fill="#b9770e">seeds/trap.ts — PATH B (deterministic demo)</text>
+      <text x="392" y="683" font-size="9.5" fill="#6b7a89">short-circuits 01 · fixed hold + draft · no timestamps → byte-identical</text>
+    </g>
+    <g stroke="#1c2733" stroke-width="1.8">
+      <line x1="555" y1="144" x2="555" y2="152" marker-end="url(#a-ink)"/>
+      <line x1="555" y1="188" x2="555" y2="198" marker-end="url(#a-ink)"/>
+      <line x1="555" y1="256" x2="555" y2="282" marker-end="url(#a-ink)"/>
+      <line x1="555" y1="344" x2="555" y2="356" marker-end="url(#a-ink)"/>
+      <line x1="555" y1="418" x2="555" y2="430" marker-end="url(#a-ink)"/>
+      <line x1="555" y1="488" x2="555" y2="500" marker-end="url(#a-ink)"/>
+      <line x1="555" y1="562" x2="555" y2="574" marker-end="url(#a-ink)"/>
+    </g>
+
+    <!-- ============ RIGHT: TOOLS / STATE / CONSUMERS ============ -->
+    <g stroke-width="2" font-size="11">
+      <rect x="880" y="94" width="340" height="170" rx="6" fill="#fdf3e9" stroke="#e67e22"/>
+      <text x="892" y="116" font-weight="bold">MCP SERVER — mcp/server.ts</text>
+      <text x="892" y="132" font-size="9.5" fill="#6b7a89">watsonx.data managed · 2026 tool-discovery standard</text>
+      <text x="892" y="156" font-family="Consolas, monospace" font-size="10">lookup_rule(domain, text) → RuleRow[]</text>
+      <text x="892" y="176" font-family="Consolas, monospace" font-size="10">place_hold(invoice_id, amount, pack_id)</text>
+      <text x="892" y="196" font-family="Consolas, monospace" font-size="10">get_hold_status(hold_id)</text>
+      <text x="892" y="216" font-family="Consolas, monospace" font-size="10">release_hold(hold_id, reason)</text>
+      <text x="892" y="244" font-size="9.5" fill="#b9770e">rulebook served HERE — server-authoritative, citation gate intact</text>
+
+      <rect x="880" y="294" width="340" height="110" rx="6" fill="#fff" stroke="#e67e22"/>
+      <text x="892" y="316" font-weight="bold">MOCK BILLING GATEWAY</text>
+      <text x="892" y="334" font-size="9.5" fill="#6b7a89">holds: Map&lt;hold_id, HoldEvent&gt; · placeHold IDEMPOTENT</text>
+      <text x="892" y="350" font-size="9.5" fill="#6b7a89">tick(now) simulates the 72h auto-release</text>
+      <text x="892" y="372" font-size="9.5" fill="#b9770e">the mock IS the system — real APIs are post-hackathon</text>
+      <text x="892" y="388" font-size="9.5" fill="#b9770e">state mutation here = what makes us AGENTIC, not mail-merge</text>
+
+      <rect x="880" y="470" width="340" height="90" rx="6" fill="#f7f9fa" stroke="#6b7a89"/>
+      <text x="892" y="492" font-weight="bold">AUDIT LOG — audit_log.ts · AgentOps</text>
+      <text x="892" y="510" font-size="9.5" fill="#6b7a89">append(event) — append-only · NEVER update/delete</text>
+      <text x="892" y="526" font-size="9.5" fill="#6b7a89">every step + /consent appends · release/confirm = NEW event</text>
+      <text x="892" y="546" font-size="9.5" fill="#6b7a89">the answer to “did the agent act on its own?”</text>
+
+      <rect x="880" y="560" width="340" height="56" rx="6" fill="#edf4fa" stroke="#2980b9"/>
+      <text x="892" y="582" font-weight="bold">→ VRAJESH (BARK)</text>
+      <text x="892" y="600" font-size="9.5" fill="#6b7a89">/run + RunResponse + frozen schemas · renders verbatim, never recomputes</text>
+
+      <rect x="880" y="634" width="340" height="56" rx="6" fill="#f7f0fa" stroke="#8e44ad"/>
+      <text x="892" y="656" font-weight="bold">→ AJIT (SAP)</text>
+      <text x="892" y="674" font-size="9.5" fill="#6b7a89">orchestrator slots for 01/06 + audit/hold events for QA &amp; P9</text>
+    </g>
+
+    <!-- right wires -->
+    <g stroke-width="2.5" fill="none">
+      <circle cx="730" cy="314" r="3.5" fill="#e67e22"/><path d="M730,314 H800 V150 H878" stroke="#e67e22" marker-end="url(#a-orange)"/>
+      <circle cx="730" cy="532" r="3.5" fill="#e67e22"/><path d="M730,532 H830 V190 H878" stroke="#e67e22" marker-end="url(#a-orange)"/>
+      <circle cx="1050" cy="264" r="3.5" fill="#e67e22"/><path d="M1050,264 V292" stroke="#e67e22" marker-end="url(#a-orange)"/>
+      <circle cx="1050" cy="404" r="3.5" fill="#6b7a89"/><path d="M1050,404 V468" stroke="#6b7a89" marker-end="url(#a-gray)"/>
+      <circle cx="770" cy="545" r="3.5" fill="#6b7a89"/><path d="M770,545 H878" stroke="#6b7a89" stroke-dasharray="6 3" marker-end="url(#a-gray)"/>
+      <circle cx="730" cy="119" r="3.5" fill="#2980b9"/><path d="M730,119 H855 V540 H1050 V558" stroke="#2980b9" marker-end="url(#a-blue)"/>
+      <circle cx="770" cy="604" r="3.5" fill="#8e44ad"/><path d="M770,604 H862 V662 H878" stroke="#8e44ad" marker-end="url(#a-violet)"/>
+    </g>
+    <g font-family="Consolas, monospace" font-size="9" fill="#8a97a3">
+      <text x="742" y="308">lookup_rule</text>
+      <text x="742" y="526">place_hold</text>
+      <text x="1062" y="282">state</text>
+      <text x="1062" y="440">hold events</text>
+      <text x="782" y="539">every step appends</text>
+      <text x="866" y="330">RunResponse + schemas</text>
+      <text x="782" y="598">01/06 slots + events</text>
+    </g>
+
+    <!-- ============ COMMON CONTRACT BUS ============ -->
+    <line x1="555" y1="720" x2="555" y2="758" stroke="#27ae60" stroke-width="3"/>
+    <circle cx="555" cy="720" r="4" fill="#27ae60"/>
+    <line x1="135" y1="576" x2="135" y2="758" stroke="#27ae60" stroke-width="3"/>
+    <circle cx="135" cy="576" r="4" fill="#27ae60"/>
+    <rect x="20" y="758" width="1200" height="46" rx="6" fill="#f0faf3" stroke="#27ae60" stroke-width="2.5"/>
+    <text x="620" y="778" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e8449">★ COMMON CONTRACT BUS — packages/contracts: ExtractedField · RuleRow · ProofCard · HoldEvent · AuditEvent · RunResponse — FROZEN P1</text>
+    <text x="620" y="795" text-anchor="middle" font-size="10" fill="#1e8449">engine + app both import generated TS types from here. If you ever feel like inlining a type — STOP. Add it here and import it. A schema change after P1 needs a 2-min V–M sync, never a surprise.</text>
+  </svg>
+
+  <div class="legend">
+    <span><i class="sw" style="background:#8e44ad"></i> Violet — Ajit’s wires (contract + 01/06 bodies)</span>
+    <span><i class="sw" style="background:#16a085"></i> Teal — Manas’s rulebooks (fuel for compare)</span>
+    <span><i class="sw" style="background:#2980b9"></i> Blue — Vrajesh’s wires (seed spec in / RunResponse out)</span>
+    <span><i class="sw" style="background:#e67e22"></i> Orange — MCP tool calls + gateway state</span>
+    <span><i class="sw" style="background:#6b7a89"></i> Gray (dashed) — audit events (append-only rail)</span>
+    <span><i class="sw" style="background:#f39c12"></i> Amber — seeded deterministic path</span>
+    <span><i class="sw" style="background:#27ae60"></i> Green — common contract bus (packages/contracts)</span>
+  </div>
+</section>
+
+<!-- ================= HOLD STATE MACHINE ================= -->
+<section>
+  <h2>The Hold State Machine — the only way hold.status changes</h2>
+  <svg viewBox="0 0 1240 340" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+    <rect width="1240" height="340" fill="#ffffff"/>
+    <defs>
+      <marker id="h-ink" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1c2733"/></marker>
+    </defs>
+
+    <g stroke-width="2" font-size="11">
+      <rect x="40" y="140" width="180" height="64" rx="8" fill="#f7f9fa" stroke="#6b7a89"/>
+      <text x="130" y="166" text-anchor="middle" font-weight="bold">hold = null</text>
+      <text x="130" y="184" text-anchor="middle" font-size="9.5" fill="#6b7a89">no disputed ₹ found</text>
+
+      <rect x="360" y="46" width="220" height="64" rx="8" fill="#fff8ec" stroke="#f39c12"/>
+      <text x="470" y="72" text-anchor="middle" font-weight="bold" fill="#b9770e">STAGED</text>
+      <text x="470" y="90" text-anchor="middle" font-size="9.5" fill="#6b7a89">computed, NOT frozen · conf &lt; 0.90</text>
+
+      <rect x="360" y="230" width="220" height="64" rx="8" fill="#f0faf3" stroke="#27ae60"/>
+      <text x="470" y="256" text-anchor="middle" font-weight="bold" fill="#1e8449">PLACED</text>
+      <text x="470" y="274" text-anchor="middle" font-size="9.5" fill="#6b7a89">provisional · reversible · expires +72h</text>
+
+      <rect x="760" y="46" width="240" height="64" rx="8" fill="#edf4fa" stroke="#2980b9"/>
+      <text x="880" y="72" text-anchor="middle" font-weight="bold" fill="#21618c">PLACED · confirmed</text>
+      <text x="880" y="90" text-anchor="middle" font-size="9.5" fill="#6b7a89">permanent-ish · explicit logged tap</text>
+
+      <rect x="760" y="230" width="240" height="64" rx="8" fill="#f7f9fa" stroke="#6b7a89"/>
+      <text x="880" y="256" text-anchor="middle" font-weight="bold">RELEASED</text>
+      <text x="880" y="274" text-anchor="middle" font-size="9.5" fill="#6b7a89">auto_expiry | user_withdraw | resolved</text>
+    </g>
+
+    <g stroke="#1c2733" stroke-width="2" fill="none">
+      <path d="M220,164 H290 V78 H358" marker-end="url(#h-ink)"/>
+      <path d="M220,180 H290 V262 H358" marker-end="url(#h-ink)"/>
+      <path d="M580,78 H758" marker-end="url(#h-ink)"/>
+      <path d="M500,230 V150 H820 V112" marker-end="url(#h-ink)"/>
+      <path d="M580,262 H758" marker-end="url(#h-ink)"/>
+    </g>
+    <g font-size="9.5" fill="#1c2733">
+      <text x="300" y="70" text-anchor="middle">gap + conf &lt; 0.90 (auto)</text>
+      <text x="300" y="286" text-anchor="middle">gap + conf ≥ 0.90 → MCP place_hold (auto)</text>
+      <text x="668" y="70" text-anchor="middle">human tap · POST /consent confirm</text>
+      <text x="660" y="144" text-anchor="middle">tap confirm</text>
+      <text x="668" y="254" text-anchor="middle">72h no confirm (auto_expiry)</text>
+      <text x="668" y="280" text-anchor="middle">tap withdraw · release_hold</text>
+    </g>
+    <text x="620" y="322" text-anchor="middle" font-size="10.5" fill="#6b7a89" font-style="italic">Every transition writes an AuditEvent · the mock gateway holds the state · get_hold_status reads it · confFloor = min OCR confidence across gap cards · seeded demo returns a pre-baked PLACED hold so the chip animates deterministically</text>
+  </svg>
+</section>
+
+<!-- ================= INPUTS TABLE ================= -->
+<section>
+  <h2 class="io">Who Feeds Murgesh — input wiring (and the fallback if late)</h2>
+  <table>
+    <tr><th>From</th><th>Phase</th><th>Artifact</th><th>Powers</th><th>If late → fallback (Murgesh never sits idle)</th></tr>
+    <tr><td><span class="pill p-teal">MANAS</span></td><td class="mono">P2 · 16:00</td><td class="mono">rulebook_bill.json</td><td>compare (03) + lookup_rule (02)</td><td>Build against a <b>hardcoded 3-row rulebook</b>, swap his in later. Never rebuild his work.</td></tr>
+    <tr><td><span class="pill p-teal">MANAS</span></td><td class="mono">P3 · 22:00</td><td class="mono">rulebook_lease.json</td><td>Lease path on same pipeline (P5)</td><td>Lease stub is the <b>first thing cut</b> — prove the tree with words + one deck screenshot.</td></tr>
+    <tr><td><span class="pill p-violet">AJIT</span></td><td class="mono">P1 · 13:00</td><td>OCR output contract</td><td>ExtractedField shape + step-01 wiring</td><td>Wire against the frozen schema; Ajit conforms to it.</td></tr>
+    <tr><td><span class="pill p-violet">AJIT</span></td><td class="mono">P3</td><td class="mono">01_read.ts body</td><td>Live READ step</td><td>The stub already returns fixed fields — pipeline runs without him until P3.</td></tr>
+    <tr><td><span class="pill p-violet">AJIT</span></td><td class="mono">P6</td><td class="mono">06_draft.ts body</td><td>Live DRAFT step</td><td>Fallback template fill (Ajit builds it P4) — demo never depends on a live model.</td></tr>
+    <tr><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P7</td><td>Seed spec</td><td class="mono">/run?seed=trap</td><td>Murgesh stubs the seed from the trap JSON; Vrajesh finalizes.</td></tr>
+    <tr><td><span class="pill" style="background:#6b7a89">IBM</span></td><td class="mono">P0</td><td>watsonx creds + Agent Lab</td><td>Everything — hello-world agent must run</td><td>Pre-sprint check. Credential issues are the classic Day-1 time sink — confirm BEFORE 8 Aug.</td></tr>
+  </table>
+</section>
+
+<!-- ================= OUTPUTS TABLE ================= -->
+<section>
+  <h2 class="io">Who Murgesh Feeds — output wiring (keep the contract stable after P1)</h2>
+  <table>
+    <tr><th>To</th><th>Phase</th><th>Artifact</th><th>The contract</th></tr>
+    <tr><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P1 · 10:30</td><td>3 frozen schemas + RunResponse</td><td>He builds the screen against a MOCK from this moment. Frontend never blocks on backend. <b>The single most important scheduling decision of the sprint.</b></td></tr>
+    <tr><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P3 · 18:00</td><td class="mono">/run endpoint</td><td>He flips <span class="mono">dataSource: mock → live</span> with one env var. Blocks his P3/P4.</td></tr>
+    <tr><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P4</td><td>Hold + audit events</td><td>Hold chip (3 states) + audit-log viewer render from these.</td></tr>
+    <tr><td><span class="pill p-amber">VRAJESH</span></td><td class="mono">P7</td><td class="mono">/run?seed=trap</td><td>Byte-identical across runs — the 90-second stage flow never gambles.</td></tr>
+    <tr><td><span class="pill p-violet">AJIT</span></td><td class="mono">P3 / P6</td><td>Orchestrator slots (01, 06)</td><td>Ajit replaces stub bodies only. He never edits the orchestrator; Murgesh never edits the model calls. They never touch the same lines.</td></tr>
+    <tr><td><span class="pill p-violet">AJIT</span></td><td class="mono">P9</td><td>Stable /run</td><td>Ajit’s break-phase targets it. Fix only what he logs; do NOT refactor.</td></tr>
+    <tr><td><span class="pill p-teal">MANAS</span></td><td>—</td><td>Nothing directly</td><td>His rulebook only matters because the engine reads it — via lookup_rule, server-authoritative.</td></tr>
+  </table>
+  <p class="note"><b>The anti-wait rule:</b> if a handoff TO Murgesh is late → work the NEXT independent task, never sit idle, never rebuild the missing piece. If Murgesh is late → Vrajesh stays on mock, Ajit stays on stubs. The wire bends; the sprint doesn’t stop.</p>
+</section>
+
+<!-- ================= SIX STEPS TABLE ================= -->
+<section>
+  <h2 class="step">The Six Steps — implement vs wire</h2>
+  <table>
+    <tr><th>Step</th><th>File</th><th>Body owner</th><th>Murgesh’s job</th><th>The one rule</th></tr>
+    <tr><td class="mono">01 READ</td><td class="mono">01_read.ts</td><td><span class="pill p-violet">AJIT</span></td><td>Define I/O <span class="mono">(image|seed) → ExtractedField[]</span>, write skeleton, wire into orchestrator</td><td>The orchestrator never knows or cares whether the body is a stub or a model.</td></tr>
+    <tr><td class="mono">02 LOOKUP</td><td class="mono">02_lookup.ts</td><td><span class="pill p-orange">MURGESH</span></td><td>MCP <span class="mono">lookup_rule</span> → field→rule map</td><td>A field with no match is NOT an error — no card. Silence over a false alarm.</td></tr>
+    <tr><td class="mono">03 COMPARE</td><td class="mono">03_compare.ts</td><td><span class="pill p-red">MURGESH ⚠</span></td><td>Deterministic subtract, unit-normalized via <span class="mono">official_unit</span></td><td><b>NO LANGUAGE MODEL CALL.</b> If anyone suggests “let the LLM decide the gap” — the answer is no.</td></tr>
+    <tr><td class="mono">04 PROVE</td><td class="mono">04_prove.ts</td><td><span class="pill p-orange">MURGESH</span></td><td>Assemble 3-anchor proof cards + Manas’s <span class="mono">rule_says_plain</span></td><td>Missing rule_anchor → card is “unverified”, NEVER “gap”. No anchor → no accusation.</td></tr>
+    <tr><td class="mono">05 ACT</td><td class="mono">05_act.ts</td><td><span class="pill p-orange">MURGESH</span></td><td>Two-tier: <span class="mono">place_hold</span> if conf ≥ 0.90, else stage</td><td>Provisional + reversible + high-confidence only. Do not weaken for “cool factor”.</td></tr>
+    <tr><td class="mono">06 DRAFT</td><td class="mono">06_draft.ts</td><td><span class="pill p-violet">AJIT</span></td><td>Define I/O <span class="mono">(cards, hold, template) → Draft</span>, wire into orchestrator</td><td>Granite touches wording only — the numbers come from the deterministic proof cards.</td></tr>
+  </table>
+</section>
+
+<!-- ================= CONTRACTS ================= -->
+<section>
+  <h2 class="schema">The Contracts Murgesh Publishes (packages/contracts — freeze P1)</h2>
+  <table>
+    <tr><th>Shape</th><th>Produced by</th><th>Key fields</th></tr>
+    <tr><td class="mono">ExtractedField</td><td>step 01 (Ajit)</td><td class="mono">text, value, unit, bbox[x,y,w,h], confidence(0..1), low_conf</td></tr>
+    <tr><td class="mono">RuleRow (bill)</td><td>Manas → step 02</td><td class="mono">rule_id, item_category, match_terms[], procedure_code, official_value, official_unit, official_source(+url), rule_says_plain, severity, status</td></tr>
+    <tr><td class="mono">RuleRow (lease)</td><td>Manas → step 02</td><td class="mono">rule_id, clause_type, match_terms[], legal_status, law_ref(+url), rule_says_plain, suggested_fix_plain, status</td></tr>
+    <tr><td class="mono">ProofCard</td><td>step 04 — the moat</td><td class="mono">item, your_value, official_value, gap, status, source_anchor{ref,bbox,ocr_confidence}, rule_anchor{ref,url}, compute_anchor ("45000 − 18000"), rule_says_plain</td></tr>
+    <tr><td class="mono">HoldEvent</td><td>step 05</td><td class="mono">hold_id, invoice_id, amount, status(staged|placed|released), reversible, expires_at, placed_by(auto|user), confidence_floor</td></tr>
+    <tr><td class="mono">AuditEvent</td><td>every step + /consent</td><td class="mono">t (ocr|lookup|compare|prove|hold_placed|hold_staged|hold_released|draft|consent|error), run_id, ts, payload</td></tr>
+    <tr><td class="mono">RunResponse</td><td>THE boundary</td><td class="mono">run_id, domain, extracted_fields[], proof_cards[], hold, draft{text,banner}, audit[]</td></tr>
+  </table>
+  <pre><span class="cm">// HTTP surface — services/brain/src/index.ts</span>
+<span class="key">POST</span> /run            req: { image, domain: <span class="st">"bill"</span> | <span class="st">"lease"</span> }        res: RunResponse   <span class="cm">// PATH A — live</span>
+<span class="key">GET</span>  /run?seed=trap  res: RunResponse                                <span class="cm">// PATH B — byte-identical every call</span>
+<span class="key">POST</span> /consent        req: { run_id, action: <span class="st">"confirm_hold"</span> | <span class="st">"withdraw_hold"</span> | <span class="st">"send_letter"</span> }  res: { audit: AuditEvent }
+
+<span class="cm">// orchestrator — pipeline/orchestrator.ts</span>
+state.fields = <span class="key">await</span> read(req)                       <span class="cm">// 01 — Ajit’s body</span>
+state.rules  = <span class="key">await</span> lookup(state.fields, domain)    <span class="cm">// 02 — MCP lookup_rule</span>
+state.gaps   = compare(state.fields, state.rules)    <span class="cm">// 03 — PURE, no model</span>
+state.cards  = prove(state.gaps, state.fields, state.rules)  <span class="cm">// 04</span>
+state.hold   = <span class="key">await</span> act(state.cards)                <span class="cm">// 05 — two-tier</span>
+state.draft  = <span class="key">await</span> draft(state.cards, state.hold, template) <span class="cm">// 06 — Ajit’s body</span>
+<span class="cm">// append AuditEvent after EACH step · on error: append “error”, mark cards “unverified”, return PARTIAL — never crash</span></pre>
+</section>
+
+<!-- ================= TIMELINE ================= -->
+<section>
+  <h2 class="time">Murgesh Phase Timeline (wall-clock · blocks / blocked-by)</h2>
+  <table>
+    <tr><th>Phase</th><th>Time</th><th>Task</th><th>Done when…</th><th>Dep</th></tr>
+    <tr><td class="mono">P0</td><td class="mono">D1 09:00–10:30</td><td>Repo + envs + IBM/watsonx creds on venue wifi; Agent Lab access; hello-world agent runs</td><td>Hello-world agent runs</td><td class="mono">BLOCKS V, A</td></tr>
+    <tr><td class="mono">P1</td><td class="mono">D1 10:30–11:30</td><td>PUBLISH + FREEZE the 3 schemas; notify Vrajesh</td><td>Schema files committed; V notified</td><td class="mono">BLOCKS V P1</td></tr>
+    <tr><td class="mono">P1</td><td class="mono">D1 11:30–13:00</td><td>Stand up mock Billing Gateway API</td><td>curl returns 200 + hold_id</td><td>—</td></tr>
+    <tr><td class="mono">P2</td><td class="mono">D1 13:45–16:00</td><td>Build COMPARE engine — load rulebook, subtract like-for-like, emit gaps</td><td>Bill JSON + rulebook → proof-card-ready gaps</td><td class="mono">blocked-by N rulebook</td></tr>
+    <tr><td class="mono">P2</td><td class="mono">D1 16:00–18:00</td><td>Wrap gateway as MCP tools (×4)</td><td>An agent can call the tools via MCP</td><td>—</td></tr>
+    <tr><td class="mono">P3</td><td class="mono">D1 18:00–20:30</td><td>Orchestration pipeline on watsonx Orchestrate; syncs 18:00 + 20:30</td><td>Pipeline returns proof cards + triggers hold</td><td class="mono">blocked-by A OCR (use stub)</td></tr>
+    <tr><td class="mono">P3</td><td class="mono">D1 20:30–22:00</td><td>Provisional hold logic: auto-place ≥ threshold; 72h timer; low-conf stages</td><td>Hold auto-places + shows expiry</td><td>—</td></tr>
+    <tr><td class="mono">P4</td><td class="mono">D1 22:00–23:30</td><td>Audit-log writer: append every event</td><td>Audit API returns ordered trail</td><td>—</td></tr>
+    <tr><td class="mono">P4</td><td class="mono">D1 23:30–24:00</td><td>Expose /run for the full flow; all-hands; sleep 00:30</td><td>/run returns full RunResponse</td><td class="mono">BLOCKS V P4</td></tr>
+    <tr><td class="mono">P5</td><td class="mono">D2 07:00–10:00</td><td>Make ACT REAL: hold mutates gateway state; release works; sync 07:30</td><td>Status flips placed → released correctly</td><td>—</td></tr>
+    <tr><td class="mono">P5</td><td class="mono">D2 10:00–12:00</td><td>LEASE path on SAME pipeline — rulebook swap, no engine copy</td><td>/run domain=lease returns clause cards</td><td class="mono">blocked-by N lease JSON</td></tr>
+    <tr><td class="mono">P6</td><td class="mono">D2 12:45–16:30</td><td>Map every component to IBM stack in code comments + one-page arch note</td><td>Arch note lists each mapping</td><td>—</td></tr>
+    <tr><td class="mono">P6</td><td class="mono">D2 16:30–18:00</td><td>Stability pass: timeouts, error shapes; sync 16:30</td><td>10 /run calls, zero 500s</td><td>—</td></tr>
+    <tr><td class="mono">P7</td><td class="mono">D2 18:00–22:00</td><td>/run?seed=trap returns the planted result</td><td>Seeded mode byte-identical across runs</td><td class="mono">blocked-by V seed spec</td></tr>
+    <tr><td class="mono">P8</td><td class="mono">D2 22:00–24:00</td><td>FREEZE the engine; write “how the verdict is grounded” paragraph; all-hands 23:45; sleep</td><td>Freeze tag exists; Q&A paragraph ready</td><td>—</td></tr>
+    <tr><td class="mono">P9</td><td class="mono">D3 06:30–09:00</td><td>Fix ONLY engine bugs Ajit finds. Do NOT refactor. Keep /run stable.</td><td>Logged engine bugs closed</td><td class="mono">blocked-by A bug list</td></tr>
+    <tr><td class="mono">P10</td><td class="mono">D3 09:00→jury</td><td>Standby for engine Q&amp;A. DO NOT TOUCH CODE during rehearsal.</td><td>Engine untouched; answers sharp</td><td>—</td></tr>
+  </table>
+</section>
+
+<!-- ================= WARNINGS ================= -->
+<section>
+  <h2 class="warn">⚠ CRITICAL — NEVER DO THIS</h2>
+  <div class="warnbox">
+    <ul>
+      <li><b>NEVER put a model in the compare path (step 03).</b> The verdict is arithmetic over cited numbers — that is the structural hallucination defense. “Let the LLM decide the gap” → the answer is no, every time.</li>
+      <li><b>NEVER weaken the two-tier hold</b> (placed vs staged) for speed or “cool factor”. A misread must at worst stage a hold or place a 72h hold that self-heals. Permanent consequences need the tap. This is the trust model in code.</li>
+      <li><b>NEVER change a schema after P1 without a 2-min V–M sync.</b> A schema change is a contract change — the #1 merge risk. If drift is found late, the UI bends to the engine, never the reverse.</li>
+      <li><b>NEVER copy the pipeline for the lease.</b> Lease = rulebook swap through the SAME trunk. Copy-pasting the engine is amputating the tree (rule #10). Stop anyone who tries.</li>
+      <li><b>NEVER let anyone else merge into <span class="mono">services/brain</span></b> — and a PR touching <span class="mono">packages/contracts</span> needs you AND whoever consumes the changed field.</li>
+      <li><b>NEVER crash on a step error.</b> Append an “error” audit event, mark affected cards “unverified”, return a partial RunResponse.</li>
+      <li><b>NEVER put timestamps in the seeded payload.</b> Byte-identical or the demo gamble returns — the stage flow must never depend on live OCR/LLM/network.</li>
+      <li><b>NEVER inline a type.</b> If the app or the brain wants a shape, it lives in packages/contracts and gets imported.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="grid2">
+  <section>
+    <h2 class="check">✔ Murgesh Pre-Sprint Checks</h2>
+    <div class="checkbox">
+      <ul>
+        <li><b>C1:</b> IBM GLE course “Future Forward: AI for Innovation” — certificate done, goes in the PPT.</li>
+        <li><b>C7:</b> Monorepo scaffolded with Vrajesh — workspaces, tsconfig.base, .env.example (RUN_MODE, IBM creds, THRESHOLD). Both can push.</li>
+        <li><b>C5:</b> 3 schemas + RunResponse + RuleRow DRAFTED in packages/contracts — so P1 is “freeze”, not “invent from scratch”.</li>
+        <li><b>IBM/watsonx creds + Agent Lab access confirmed</b> — hello-world agent runs. Classic Day-1 time sink, killed early.</li>
+        <li><b>match_terms convention agreed with Manas</b> — his lever for lookup matching.</li>
+        <li><b>By 7 Aug:</b> mentally walk the six steps against the seeded trap bill, so P2/P3 are execution, not design.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="check" style="border-color:#6b7a89">Boundaries + the Co-Lead Contract</h2>
+    <div class="boundbox">
+      <ul>
+        <li><b>Does NOT own:</b> screens/components/deck/pitch (Vrajesh) · OCR + Granite model calls (Ajit implements) · rulebook content + wording (Manas).</li>
+        <li><b>MAY</b> tell Manas a row is malformed or match_terms too thin — a contract issue, not content ownership.</li>
+        <li><b>MUST push back:</b> Vrajesh holds the final call on direction; Murgesh owns the HOW and is expected to say “why?” on engine, schemas, and MCP decisions. That is the technical safety net, not insubordination.</li>
+        <li><b>Once aligned, the team commits.</b> No re-litigating after the decision. Two 10-min syncs per day are for alignment, not negotiation.</li>
+        <li><b>MAY propose</b> a faster way to keep compare deterministic — but it must stay model-free.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<div class="grid2">
+  <section>
+    <h2 class="whybox-h" style="border-color:var(--blue); border-left:6px solid var(--blue); padding-left:10px; font-size:15px; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px;">The WHY Behind the Key Decisions</h2>
+    <div class="whybox">
+      <ul>
+        <li><b>Compare is deterministic:</b> arithmetic over cited numbers can’t hallucinate; a model in the verdict path could “think” a gap that isn’t there.</li>
+        <li><b>Hold is two-tier:</b> an autonomous action must be safe — worst case is a staged hold or a 72h hold that self-heals.</li>
+        <li><b>MCP, not direct calls:</b> 2026 tool-discovery standard; watsonx.data ships a managed server (judge bait); keeps the rulebook server-authoritative.</li>
+        <li><b>Freeze schemas P1:</b> frontend builds against a mock and never blocks on backend — the most important scheduling decision in the sprint.</li>
+        <li><b>Seeded mode:</b> the demo is a rehearsed script, never a gamble on live OCR/LLM/network in 90 seconds.</li>
+        <li><b>Mock gateway:</b> real APIs would eat the sprint; the mock makes ACT real (state mutation) and demoable, honestly — narrate real integrations as the production path.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="ibm">IBM Stack Mapping (Murgesh owns — P6 arch note)</h2>
+    <table>
+      <tr><th>Pramaan component</th><th>IBM component</th><th>Where</th></tr>
+      <tr><td>6-step agent flow</td><td>watsonx Orchestrate / Agent Lab</td><td class="mono">pipeline/orchestrator.ts</td></tr>
+      <tr><td>Tool calls (rulebook, hold)</td><td>MCP (watsonx.data managed server)</td><td class="mono">mcp/server.ts</td></tr>
+      <tr><td>Consent + audit + governance</td><td>AgentOps</td><td class="mono">audit/audit_log.ts + /consent</td></tr>
+      <tr><td>Plain-language + draft</td><td>IBM Granite</td><td class="mono">steps/06_draft.ts (Ajit’s call; M wires)</td></tr>
+    </table>
+    <p class="note">Template answer — “if using RAG or Agentic, IBM or AWS?” → <b>IBM for both</b>. RAG = retrieval over the rule corpus via MCP lookup_rule; Agentic = watsonx Orchestrate + MCP tools. Mention all four by name in code comments (P6).</p>
+  </section>
+</div>
+
+<!-- ================= Q&A ================= -->
+<section>
+  <h2 class="qa">Murgesh On-Stage Q&amp;A — under 20 seconds each</h2>
+  <table>
+    <tr><th>Question</th><th>One-line answer</th></tr>
+    <tr><td>“Walk us through the architecture.”</td><td>“A thin Ionic client captures the bill and renders the verdict; the brain runs a six-step trunk — read, lookup, compare, prove, act, draft — on watsonx Orchestrate, with the compare done by deterministic code, not a model.”</td></tr>
+    <tr><td>“How is the verdict grounded? Why won’t it hallucinate?”</td><td>“The verdict is arithmetic over two cited numbers — your bill and the official rule — computed by code with no model in the path. Every card carries three anchors: your source, the official source, and the exact subtraction. Anyone can re-run it.”</td></tr>
+    <tr><td>“How does the hold work? Does the agent act on its own?”</td><td>“It places a provisional, reversible hold via an MCP tool, only on high-confidence gaps, and it auto-releases in 72 hours if unconfirmed. Nothing permanent happens without a logged user tap. The audit trail shows exactly what was auto versus tapped.”</td></tr>
+    <tr><td>“Is this a real integration or a mock?”</td><td>“The billing gateway is a mock for the sprint — real hospital APIs are out of scope for 36 hours. But the action is real: the agent mutates external state through MCP, which is the production pattern.”</td></tr>
+  </table>
+</section>
+
+<footer>
+  PRAMAAN · Individual Wiring Diagram ② of ④ · MURGESH (TRUNK) · Next: ③ AJIT (SAP) · “You are not the backend guy. You are the person who makes the verdict true and the action real. Build the trunk.”
+</footer>
+
+</div>
+</body>
+</html>

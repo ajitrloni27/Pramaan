@@ -1,0 +1,99 @@
+.hold-chip {
+  position: relative;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-liquid);
+  width: 100%;
+}
+
+.hold-chip:active {
+  transform: scale(0.95);
+}
+
+.chip-glass {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow-lg);
+  background: transparent;
+}
+
+.chip-indicator {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--hold-staged);
+  animation: pulse-orange 2s ease-in-out infinite;
+  z-index: 5;
+}
+
+@keyframes pulse-orange {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.6);
+    transform: translateY(-50%) scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 0 8px rgba(251, 146, 60, 0);
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+
+.chip-text {
+  padding: 20px 20px 20px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chip-amount {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.chip-status {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* PLACED state (after user taps) */
+.hold-chip[data-status="placed"] .chip-indicator {
+  background: var(--hold-placed);
+  animation: none;
+}
+
+.hold-chip[data-status="placed"] .chip-status {
+  font-weight: 600;
+  color: var(--hold-placed);
+}
+
+/* The amber→green transition animation */
+.hold-chip.transitioning .chip-glass {
+  animation: freeze-moment 1s var(--ease-liquid);
+}
+
+@keyframes freeze-moment {
+  0% {
+    transform: scale(1);
+    box-shadow: var(--glass-shadow-lg);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: var(--glass-shadow-lg);
+  }
+}
+
+.hold-chip.transitioning .chip-indicator {
+  animation: color-shift 1s ease-out;
+}
+
+@keyframes color-shift {
+  0% { background: var(--hold-staged); }
+  100% { background: var(--hold-placed); }
+}

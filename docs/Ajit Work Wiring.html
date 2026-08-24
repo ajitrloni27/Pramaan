@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRAMAAN — Individual Wiring Diagram ③ · AJIT (SAP)</title>
+<style>
+  :root{
+    --ink:#1c2733; --paper:#f5f6f7; --card:#ffffff; --line:#cfd8e0;
+    --orange:#e67e22; --blue:#2980b9; --violet:#8e44ad; --teal:#16a085;
+    --green:#27ae60; --amber:#f39c12; --red:#c0392b; --gray:#6b7a89;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Segoe UI', system-ui, -apple-system, sans-serif; background:var(--paper); color:var(--ink); padding:24px;}
+  .sheet{max-width:1280px; margin:0 auto;}
+  header{background:var(--card); border:2px solid var(--ink); border-radius:8px; padding:18px 22px; margin-bottom:16px;}
+  header h1{font-size:22px; letter-spacing:.5px;}
+  header .sub{font-size:14px; color:var(--gray); margin-top:4px;}
+  header .meta{font-family:Consolas, monospace; font-size:11px; color:var(--gray); margin-top:8px; border-top:1px dashed var(--line); padding-top:8px;}
+  section{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:18px 22px; margin-bottom:16px;}
+  h2{font-size:15px; text-transform:uppercase; letter-spacing:1px; border-left:6px solid var(--violet); padding-left:10px; margin-bottom:14px;}
+  h2.io{border-color:var(--teal);} h2.gate{border-color:var(--amber);} h2.break{border-color:var(--red);}
+  h2.time{border-color:var(--blue);} h2.warn{border-color:var(--red);} h2.check{border-color:var(--green);} h2.qa{border-color:var(--gray);}
+  svg{width:100%; height:auto; display:block; border:1px solid var(--line); border-radius:6px; background:#fff;}
+  .legend{display:flex; flex-wrap:wrap; gap:14px; margin-top:12px; font-size:12px;}
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .sw{width:26px; height:4px; border-radius:2px; display:inline-block;}
+  table{width:100%; border-collapse:collapse; font-size:12.5px;}
+  th{background:#eef2f6; text-align:left; padding:8px 10px; border:1px solid var(--line); font-size:11.5px; text-transform:uppercase; letter-spacing:.5px;}
+  td{padding:8px 10px; border:1px solid var(--line); vertical-align:top;}
+  td.mono, .mono{font-family:Consolas, monospace; font-size:12px;}
+  .pill{display:inline-block; font-family:Consolas,monospace; font-size:10.5px; padding:1px 7px; border-radius:9px; color:#fff; white-space:nowrap;}
+  .p-orange{background:var(--orange);} .p-blue{background:var(--blue);} .p-violet{background:var(--violet);}
+  .p-amber{background:var(--amber);} .p-green{background:var(--green);} .p-teal{background:var(--teal);} .p-red{background:var(--red);} .p-gray{background:var(--gray);}
+  .warnbox{border:2px solid var(--red); background:#fdf1f0; border-radius:6px; padding:14px 16px;}
+  .warnbox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  .checkbox{border:2px solid var(--green); background:#f0faf3; border-radius:6px; padding:14px 16px;}
+  .checkbox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  .boundbox{border:2px solid var(--gray); background:#f7f9fa; border-radius:6px; padding:14px 16px;}
+  .boundbox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  pre{background:#101820; color:#d8e2ea; border-radius:6px; padding:16px; font-family:Consolas, monospace; font-size:12.5px; line-height:1.55; overflow-x:auto;}
+  .cm{color:#7f97a8;} .st{color:#9fd68a;} .num{color:#f5c76a;} .key{color:#7ec8ff;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media(max-width:900px){.grid2{grid-template-columns:1fr;}}
+  footer{text-align:center; font-family:Consolas, monospace; font-size:11px; color:var(--gray); padding:10px 0 4px;}
+  .note{font-size:12px; color:var(--gray); margin-top:10px; line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header>
+  <h1>PRAMAAN — INDIVIDUAL WIRING DIAGRAM ③ of ④ : AJIT (SAP)</h1>
+  <div class="sub">Reliability · Capture + Ingestion + the Safety Valve + the Demo-Breaker — <b>“You own the eyes, the voice, and the safety valve — and the habit of breaking it before the judge does.”</b></div>
+  <div class="meta">DOC: PRM-WD-03 &nbsp;·&nbsp; REV A &nbsp;·&nbsp; HackVerse Track 3 · 36-h Sprint · MAHE 8–10 Aug 2026 &nbsp;·&nbsp; The only two MODEL CALLS in the whole trunk live in his files: 01_read.ts + 06_draft.ts</div>
+</header>
+
+<!-- ================= MAIN WIRING DIAGRAM ================= -->
+<section>
+  <h2>Block &amp; Wiring Overview — The Eyes, the Voice, the Safety Valve, the Breaker</h2>
+  <svg viewBox="0 0 1240 920" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+    <defs>
+      <marker id="a-orange" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#e67e22"/></marker>
+      <marker id="a-blue"   markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2980b9"/></marker>
+      <marker id="a-teal"   markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#16a085"/></marker>
+      <marker id="a-green"  markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#27ae60"/></marker>
+      <marker id="a-gray"   markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6b7a89"/></marker>
+      <marker id="a-red"    markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#c0392b"/></marker>
+      <marker id="a-ink"    markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1c2733"/></marker>
+      <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#e4eaf0"/></pattern>
+    </defs>
+    <rect width="1240" height="920" fill="url(#dots)"/>
+
+    <text x="135" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#6b7a89" letter-spacing="2">WHAT AJIT CONSUMES</text>
+    <text x="555" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#6b7a89" letter-spacing="2">AJIT — SAP · THE FOUR WORKSHOPS</text>
+    <text x="1050" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#6b7a89" letter-spacing="2">WHO AJIT FEEDS</text>
+
+    <!-- ============ LEFT: INPUT BLOCKS ============ -->
+    <g stroke-width="2" font-size="11">
+      <rect x="20" y="120" width="230" height="56" rx="6" fill="#edf4fa" stroke="#2980b9"/>
+      <text x="32" y="142" font-weight="bold">VRAJESH — OCR HANDOFF</text>
+      <text x="32" y="160" font-size="10" fill="#6b7a89">existing OCR code + 1 sample bill (C6)</text>
+
+      <rect x="20" y="194" width="230" height="56" rx="6" fill="#f0faf3" stroke="#27ae60"/>
+      <text x="32" y="216" font-weight="bold">MURGESH — packages/contracts</text>
+      <text x="32" y="234" font-size="10" fill="#6b7a89">ExtractedField + Draft shapes · frozen P1</text>
+
+      <rect x="20" y="268" width="230" height="56" rx="6" fill="#fdf3e9" stroke="#e67e22"/>
+      <text x="32" y="290" font-weight="bold">MURGESH — 01_read.ts SKELETON</text>
+      <text x="32" y="308" font-size="10" fill="#6b7a89">signature + types + stub · M wires, A fills</text>
+
+      <rect x="20" y="342" width="230" height="56" rx="6" fill="#fdf3e9" stroke="#e67e22"/>
+      <text x="32" y="364" font-weight="bold">MURGESH — 06_draft.ts SKELETON</text>
+      <text x="32" y="382" font-size="10" fill="#6b7a89">+ orchestrator slot · audit/hold events for QA</text>
+
+      <rect x="20" y="416" width="230" height="56" rx="6" fill="#eefaf8" stroke="#16a085"/>
+      <text x="32" y="438" font-weight="bold">MANAS — complaint TEMPLATE</text>
+      <text x="32" y="456" font-size="10" fill="#6b7a89">words + blanks · Granite fills, never writes</text>
+
+      <rect x="20" y="490" width="230" height="56" rx="6" fill="#f7f9fa" stroke="#6b7a89"/>
+      <text x="32" y="512" font-weight="bold">IBM — GRANITE ACCESS</text>
+      <text x="32" y="530" font-size="10" fill="#6b7a89">watsonx.ai + Ollama local fallback (resilience)</text>
+
+      <rect x="20" y="564" width="230" height="56" rx="6" fill="#eefaf8" stroke="#16a085"/>
+      <text x="32" y="586" font-weight="bold">MANAS — CONTROL BILL JSON</text>
+      <text x="32" y="604" font-size="10" fill="#6b7a89">6–8 correct items · the all-green restraint beat</text>
+    </g>
+
+    <!-- left wires -->
+    <g stroke-width="2.5" fill="none">
+      <circle cx="250" cy="148" r="3.5" fill="#2980b9"/><path d="M250,148 H310 V196 H378" stroke="#2980b9" marker-end="url(#a-blue)"/>
+      <circle cx="250" cy="222" r="3.5" fill="#27ae60"/><path d="M250,222 H378" stroke="#27ae60" marker-end="url(#a-green)"/>
+      <circle cx="250" cy="296" r="3.5" fill="#e67e22"/><path d="M250,296 H320 V256 H378" stroke="#e67e22" marker-end="url(#a-orange)"/>
+      <circle cx="250" cy="370" r="3.5" fill="#e67e22"/><path d="M250,370 H310 V446 H378" stroke="#e67e22" marker-end="url(#a-orange)"/>
+      <circle cx="250" cy="444" r="3.5" fill="#16a085"/><path d="M250,444 H300 V476 H378" stroke="#16a085" marker-end="url(#a-teal)"/>
+      <circle cx="250" cy="518" r="3.5" fill="#6b7a89"/><path d="M250,518 H320 V506 H378" stroke="#6b7a89" marker-end="url(#a-gray)"/>
+      <circle cx="250" cy="592" r="3.5" fill="#16a085"/><path d="M250,592 H300 V580 H378" stroke="#16a085" marker-end="url(#a-teal)"/>
+    </g>
+    <g font-family="Consolas, monospace" font-size="9" fill="#8a97a3" text-anchor="middle">
+      <text x="283" y="140">P0</text>
+      <text x="283" y="214">frozen P1</text>
+      <text x="283" y="288">P3</text>
+      <text x="283" y="362">P6</text>
+      <text x="283" y="436">P2·18:00</text>
+      <text x="283" y="510">pre-sprint</text>
+      <text x="283" y="584">P3</text>
+    </g>
+
+    <!-- ============ CENTER: THE FOUR WORKSHOPS ============ -->
+    <rect x="340" y="60" width="430" height="740" rx="10" fill="#fbfcfd" stroke="#1c2733" stroke-width="2.5"/>
+    <text x="555" y="86" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c2733">AJIT — SAP</text>
+    <text x="555" y="103" text-anchor="middle" font-size="10.5" fill="#6b7a89">the eyes · the voice · the safety valve — and the one who breaks it first</text>
+
+    <g stroke-width="2" font-size="11">
+      <rect x="380" y="116" width="350" height="44" rx="5" fill="#f7f9fa" stroke="#6b7a89" stroke-dasharray="5 3"/>
+      <text x="392" y="134" font-weight="bold" fill="#6b7a89" font-size="10.5">THE REAL, MESSY WORLD</text>
+      <text x="392" y="150" font-size="9.5" fill="#6b7a89">crumpled bills · tilted scans · blur · weird tables · mixed language</text>
+
+      <rect x="380" y="174" width="350" height="104" rx="5" fill="#fff" stroke="#8e44ad" stroke-width="2.2"/>
+      <text x="392" y="195" font-weight="bold" fill="#6c3483">JOB 1 — THE EYES · 01_read.ts (body: AJIT)</text>
+      <text x="392" y="214" font-size="9.5" fill="#6b7a89">camera capture → OCR → per-field extraction</text>
+      <text x="392" y="230" font-size="9.5" fill="#6b7a89">returns { text, value, unit, bbox, confidence }</text>
+      <text x="392" y="246" font-size="9.5" fill="#6b7a89">the bbox is what draws the rectangles on V’s screen</text>
+      <text x="392" y="266" font-size="9.5" font-style="italic" fill="#c0392b">rule: report exactly what you read — never “fix” a shaky read</text>
+
+      <rect x="380" y="292" width="350" height="104" rx="5" fill="#fff8ec" stroke="#f39c12" stroke-width="2.5"/>
+      <text x="392" y="313" font-weight="bold" fill="#b9770e">JOB 2 — THE SAFETY VALVE · confidence gate ⭐</text>
+      <text x="392" y="332" font-size="9.5" fill="#6b7a89" font-family="Consolas, monospace">confidence &lt; 0.90 → low_conf = true</text>
+      <text x="392" y="348" font-size="9.5" fill="#6b7a89">screen paints YELLOW “tap to confirm”</text>
+      <text x="392" y="364" font-size="9.5" fill="#6b7a89">step 05 can only STAGE it — never auto-place</text>
+      <text x="392" y="384" font-size="9.5" font-style="italic" fill="#b9770e">rule: when unsure, downgrade — never assert. Silence over false alarm</text>
+
+      <rect x="380" y="420" width="350" height="104" rx="5" fill="#fff" stroke="#8e44ad" stroke-width="2.2"/>
+      <text x="392" y="441" font-weight="bold" fill="#6c3483">JOB 3 — THE VOICE · 06_draft.ts (body: AJIT)</text>
+      <text x="392" y="460" font-size="9.5" fill="#6b7a89">Granite fills Manas’s template, then the banner:</text>
+      <text x="392" y="476" font-size="9.5" fill="#6b7a89">“AI-generated — review before sending”</text>
+      <text x="392" y="492" font-size="9.5" fill="#6b7a89">FALLBACK: same template, same data, NO model call</text>
+      <text x="392" y="512" font-size="9.5" font-style="italic" fill="#c0392b">rule: Granite touches WORDING only — numbers come from proof cards</text>
+
+      <rect x="380" y="538" width="350" height="104" rx="5" fill="#fdf1f0" stroke="#c0392b" stroke-width="2.2"/>
+      <text x="392" y="559" font-weight="bold" fill="#c0392b">JOB 4 — THE BREAKER · camera UI + P9</text>
+      <text x="392" y="578" font-size="9.5" fill="#6b7a89">Capacitor camera + permissions · ReadScreen bbox overlay</text>
+      <text x="392" y="594" font-size="9.5" fill="#6b7a89">P9: 5 adversarial bills (tilt / blur / blank / weird table / mixed)</text>
+      <text x="392" y="610" font-size="9.5" fill="#6b7a89">log every break → M/V fix → retest until green or cut</text>
+      <text x="392" y="630" font-size="9.5" font-style="italic" fill="#c0392b">rule: P9 is HIS phase — no new features. Flawless 80% beats glitchy 100%</text>
+
+      <rect x="380" y="656" width="350" height="56" rx="5" fill="#f0faf3" stroke="#27ae60" stroke-width="2.2"/>
+      <text x="392" y="678" font-weight="bold" fill="#1e8449">★ THE TWO TRUST SIGNALS AJIT OWNS</text>
+      <text x="392" y="697" font-size="9.5" fill="#6b7a89">yellow “tap to confirm” (admitting uncertainty) · “AI-generated” banner</text>
+    </g>
+
+    <g stroke="#1c2733" stroke-width="1.8">
+      <line x1="555" y1="160" x2="555" y2="172" marker-end="url(#a-ink)"/>
+      <line x1="555" y1="278" x2="555" y2="290" marker-end="url(#a-ink)"/>
+      <line x1="555" y1="396" x2="555" y2="418" marker-end="url(#a-ink)"/>
+    </g>
+    <text x="545" y="411" text-anchor="end" font-size="8.5" font-style="italic" fill="#8a97a3">fields flow through Murgesh’s trunk (02–05); cards + hold return for 06</text>
+    <text x="555" y="732" text-anchor="middle" font-size="9.5" font-style="italic" fill="#8a97a3">consumes packages/contracts + packages/templates + the orchestrator — never rebuilds, never reshapes</text>
+    <text x="555" y="748" text-anchor="middle" font-size="9.5" font-style="italic" fill="#8a97a3">Murgesh never edits his model calls; he never edits the orchestrator — they never touch the same lines</text>
+
+    <!-- ============ RIGHT: OUTPUT BLOCKS ============ -->
+    <g stroke-width="2" font-size="11">
+      <rect x="880" y="100" width="340" height="56" rx="6" fill="#edf4fa" stroke="#2980b9"/>
+      <text x="892" y="122" font-weight="bold">→ VRAJESH: OCR OUTPUT CONTRACT</text>
+      <text x="892" y="140" font-size="9.5" fill="#6b7a89">per-field shape doc · unblocks his WHOLE left box</text>
+
+      <rect x="880" y="172" width="340" height="56" rx="6" fill="#fdf3e9" stroke="#e67e22"/>
+      <text x="892" y="194" font-weight="bold">→ MURGESH: 01_read.ts BODY</text>
+      <text x="892" y="212" font-size="9.5" fill="#6b7a89">real OCR call → ExtractedField[] · plugs into the skeleton</text>
+
+      <rect x="880" y="244" width="340" height="56" rx="6" fill="#edf4fa" stroke="#2980b9"/>
+      <text x="892" y="266" font-weight="bold">→ VRAJESH: bbox + confidence</text>
+      <text x="892" y="284" font-size="9.5" fill="#6b7a89">ReadScreen rectangles + the yellow tap-to-confirm gate</text>
+
+      <rect x="880" y="316" width="340" height="56" rx="6" fill="#fdf3e9" stroke="#e67e22"/>
+      <text x="892" y="338" font-weight="bold">→ MURGESH: 06_draft.ts BODY</text>
+      <text x="892" y="356" font-size="9.5" fill="#6b7a89">Granite call + fallback → Draft + banner string</text>
+
+      <rect x="880" y="388" width="340" height="56" rx="6" fill="#edf4fa" stroke="#2980b9"/>
+      <text x="892" y="410" font-weight="bold">→ VRAJESH: DRAFT + BANNER PATH</text>
+      <text x="892" y="428" font-size="9.5" fill="#6b7a89">letter renders in right box · template fallback intact</text>
+
+      <rect x="880" y="484" width="340" height="56" rx="6" fill="#fdf1f0" stroke="#c0392b"/>
+      <text x="892" y="506" font-weight="bold">→ ALL: 5 ADVERSARIAL BILLS + BUG LIST</text>
+      <text x="892" y="524" font-size="9.5" fill="#6b7a89">tilt · blur · blank · weird table · mixed language — P9 fuel</text>
+
+      <rect x="880" y="556" width="340" height="56" rx="6" fill="#edf4fa" stroke="#2980b9"/>
+      <text x="892" y="578" font-weight="bold">→ VRAJESH: CONTROL-BILL PATH</text>
+      <text x="892" y="596" font-size="9.5" fill="#6b7a89">all-correct bill → all-green cards, deterministically (P7)</text>
+    </g>
+
+    <!-- right wires -->
+    <g stroke-width="2.5" fill="none">
+      <circle cx="730" cy="200" r="3.5" fill="#2980b9"/><path d="M730,200 H820 V128 H878" stroke="#2980b9" marker-end="url(#a-blue)"/>
+      <circle cx="730" cy="240" r="3.5" fill="#e67e22"/><path d="M730,240 H840 V200 H878" stroke="#e67e22" marker-end="url(#a-orange)"/>
+      <circle cx="730" cy="340" r="3.5" fill="#2980b9"/><path d="M730,340 H800 V272 H878" stroke="#2980b9" marker-end="url(#a-blue)"/>
+      <circle cx="730" cy="450" r="3.5" fill="#e67e22"/><path d="M730,450 H850 V344 H878" stroke="#e67e22" marker-end="url(#a-orange)"/>
+      <circle cx="730" cy="500" r="3.5" fill="#2980b9"/><path d="M730,500 H860 V416 H878" stroke="#2980b9" marker-end="url(#a-blue)"/>
+      <circle cx="730" cy="566" r="3.5" fill="#c0392b"/><path d="M730,566 H820 V512 H878" stroke="#c0392b" marker-end="url(#a-red)"/>
+      <circle cx="730" cy="616" r="3.5" fill="#2980b9"/><path d="M730,616 H840 V584 H878" stroke="#2980b9" marker-end="url(#a-blue)"/>
+    </g>
+    <g font-family="Consolas, monospace" font-size="9" fill="#8a97a3">
+      <text x="742" y="194">P1·13:00</text>
+      <text x="742" y="234">P3</text>
+      <text x="742" y="334">P2→P6</text>
+      <text x="742" y="444">P6</text>
+      <text x="742" y="494">P6·14:00</text>
+      <text x="742" y="560">P9</text>
+      <text x="742" y="610">P7</text>
+    </g>
+
+    <!-- ============ COMMON CONTRACT BUS ============ -->
+    <line x1="555" y1="800" x2="555" y2="836" stroke="#27ae60" stroke-width="3"/>
+    <circle cx="555" cy="800" r="4" fill="#27ae60"/>
+    <line x1="135" y1="620" x2="135" y2="836" stroke="#27ae60" stroke-width="3"/>
+    <circle cx="135" cy="620" r="4" fill="#27ae60"/>
+    <rect x="20" y="836" width="1200" height="48" rx="6" fill="#f0faf3" stroke="#27ae60" stroke-width="2.5"/>
+    <text x="620" y="856" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e8449">★ COMMON CONTRACT BUS — packages/contracts (ExtractedField + Draft shapes · FROZEN P1) + packages/templates (Manas’s words)</text>
+    <text x="620" y="874" text-anchor="middle" font-size="10" fill="#1e8449">Ajit imports both and fills them. He fills shapes — he never reshapes them. A shape problem is a 2-minute call to Murgesh, never a silent edit.</text>
+  </svg>
+
+  <div class="legend">
+    <span><i class="sw" style="background:#2980b9"></i> Blue — Vrajesh wires (handoff in / contract, bbox, draft, control out)</span>
+    <span><i class="sw" style="background:#e67e22"></i> Orange — Murgesh wires (skeletons in / 01+06 bodies out)</span>
+    <span><i class="sw" style="background:#16a085"></i> Teal — Manas wires (template + control bill)</span>
+    <span><i class="sw" style="background:#27ae60"></i> Green — common contract bus</span>
+    <span><i class="sw" style="background:#6b7a89"></i> Gray — IBM / real-world inputs</span>
+    <span><i class="sw" style="background:#c0392b"></i> Red — the breaker output (adversarial bills + bug list)</span>
+  </div>
+</section>
+
+<!-- ================= CONFIDENCE GATE DETAIL ================= -->
+<section>
+  <h2 class="gate">The Confidence Gate — one flag, two outcomes (his signature feature)</h2>
+  <svg viewBox="0 0 1240 330" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+    <rect width="1240" height="330" fill="#ffffff"/>
+    <defs>
+      <marker id="g-amber" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#f39c12"/></marker>
+      <marker id="g-green" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#27ae60"/></marker>
+    </defs>
+
+    <!-- LANE A : shaky read -->
+    <rect x="30" y="30" width="380" height="118" rx="6" fill="#fffdf6" stroke="#f39c12" stroke-width="2" font-family="Consolas, monospace" font-size="11">
+    </rect>
+    <text x="46" y="54" font-family="Consolas, monospace" font-size="11" fill="#1c2733">{ "text": "Paracetamol 500 x30",</text>
+    <text x="46" y="72" font-family="Consolas, monospace" font-size="11" fill="#1c2733">  "value": 45, "unit": "per tablet",</text>
+    <text x="46" y="90" font-family="Consolas, monospace" font-size="11" fill="#1c2733">  "bbox": [312, 884, 410, 906],  <tspan fill="#8a97a3">// draws the rectangle</tspan></text>
+    <text x="46" y="108" font-family="Consolas, monospace" font-size="11" fill="#b9770e">  "confidence": 0.81,          <tspan fill="#8a97a3">// &lt; 0.90 ...</tspan></text>
+    <text x="46" y="126" font-family="Consolas, monospace" font-size="11" font-weight="bold" fill="#b9770e">  "low_conf": true }            <tspan fill="#8a97a3">// ... so this is true</tspan></text>
+    <text x="220" y="24" text-anchor="middle" font-size="11" font-weight="bold" fill="#b9770e">LANE A — SHAKY READ (0.81)</text>
+
+    <line x1="410" y1="89" x2="528" y2="89" stroke="#f39c12" stroke-width="2.5" marker-end="url(#g-amber)"/>
+    <rect x="530" y="30" width="680" height="118" rx="6" fill="#fff8ec" stroke="#f39c12" stroke-width="2"/>
+    <text x="546" y="56" font-size="12" font-weight="bold" fill="#b9770e">low_conf = true → three consequences:</text>
+    <text x="546" y="80" font-size="11" fill="#1c2733">① ReadScreen paints the rectangle YELLOW + “tap to confirm: 45”</text>
+    <text x="546" y="100" font-size="11" fill="#1c2733">② Step 05 sees low_conf and STAGES the hold — it can NEVER auto-place</text>
+    <text x="546" y="120" font-size="11" fill="#1c2733">③ Only after the human taps confirm does the field become eligible</text>
+    <text x="546" y="140" font-size="10" font-style="italic" fill="#8a97a3">A bad read downgrades to a question — never to a wrong verdict, never to a frozen invoice.</text>
+
+    <!-- LANE B : confident read -->
+    <rect x="30" y="182" width="380" height="118" rx="6" fill="#f6fdf8" stroke="#27ae60" stroke-width="2"></rect>
+    <text x="46" y="206" font-family="Consolas, monospace" font-size="11" fill="#1c2733">{ "text": "Room rent — private",</text>
+    <text x="46" y="224" font-family="Consolas, monospace" font-size="11" fill="#1c2733">  "value": 8000, "unit": "per day",</text>
+    <text x="46" y="242" font-family="Consolas, monospace" font-size="11" fill="#1c2733">  "bbox": [96, 402, 388, 424],</text>
+    <text x="46" y="260" font-family="Consolas, monospace" font-size="11" fill="#1e8449">  "confidence": 0.97,</text>
+    <text x="46" y="278" font-family="Consolas, monospace" font-size="11" font-weight="bold" fill="#1e8449">  "low_conf": false }</text>
+    <text x="220" y="176" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e8449">LANE B — CONFIDENT READ (0.97)</text>
+
+    <line x1="410" y1="241" x2="528" y2="241" stroke="#27ae60" stroke-width="2.5" marker-end="url(#g-green)"/>
+    <rect x="530" y="182" width="680" height="118" rx="6" fill="#f0faf3" stroke="#27ae60" stroke-width="2"/>
+    <text x="546" y="208" font-size="12" font-weight="bold" fill="#1e8449">low_conf = false → normal path:</text>
+    <text x="546" y="232" font-size="11" fill="#1c2733">① Rectangle stays normal on the screen</text>
+    <text x="546" y="252" font-size="11" fill="#1c2733">② Its gap CAN drive an auto-hold (conf floor ≥ 0.90 across gap cards)</text>
+    <text x="546" y="272" font-size="10" font-style="italic" fill="#8a97a3">Yellow when unsure, normal when sure — that contrast IS the safety story, and Ajit built it.</text>
+  </svg>
+</section>
+
+<!-- ================= P9 BREAKER CYCLE ================= -->
+<section>
+  <h2 class="break">The P9 Breaker Cycle — Day 3 belongs to Ajit</h2>
+  <svg viewBox="0 0 1240 240" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+    <rect width="1240" height="240" fill="#ffffff"/>
+    <defs>
+      <marker id="b-red" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#c0392b"/></marker>
+    </defs>
+    <g stroke-width="2" font-size="11">
+      <rect x="30" y="88" width="210" height="64" rx="6" fill="#fdf1f0" stroke="#c0392b"/>
+      <text x="135" y="114" text-anchor="middle" font-weight="bold">5 ADVERSARIAL BILLS</text>
+      <text x="135" y="132" text-anchor="middle" font-size="9.5" fill="#6b7a89">tilt · blur · blank · weird table · mixed</text>
+
+      <rect x="280" y="88" width="210" height="64" rx="6" fill="#fff" stroke="#1c2733"/>
+      <text x="385" y="114" text-anchor="middle" font-weight="bold">RUN through live flow</text>
+      <text x="385" y="132" text-anchor="middle" font-size="9.5" fill="#6b7a89">camera → OCR → gate → cards → hold</text>
+
+      <rect x="530" y="88" width="210" height="64" rx="6" fill="#fff" stroke="#1c2733"/>
+      <text x="635" y="114" text-anchor="middle" font-weight="bold">LOG every break</text>
+      <text x="635" y="132" text-anchor="middle" font-size="9.5" fill="#6b7a89">the bug list is the deliverable</text>
+
+      <rect x="780" y="88" width="210" height="64" rx="6" fill="#fff" stroke="#1c2733"/>
+      <text x="885" y="114" text-anchor="middle" font-weight="bold">M / V fix ONLY logged bugs</text>
+      <text x="885" y="132" text-anchor="middle" font-size="9.5" fill="#6b7a89">no refactors · no new features</text>
+
+      <rect x="1030" y="88" width="180" height="64" rx="6" fill="#f0faf3" stroke="#27ae60"/>
+      <text x="1120" y="114" text-anchor="middle" font-weight="bold" fill="#1e8449">RE-TEST</text>
+      <text x="1120" y="132" text-anchor="middle" font-size="9.5" fill="#6b7a89">happy path stays green</text>
+    </g>
+    <g stroke="#1c2733" stroke-width="2" fill="none">
+      <line x1="240" y1="120" x2="278" y2="120" marker-end="url(#b-red)"/>
+      <line x1="490" y1="120" x2="528" y2="120" marker-end="url(#b-red)"/>
+      <line x1="740" y1="120" x2="778" y2="120" marker-end="url(#b-red)"/>
+      <line x1="990" y1="120" x2="1028" y2="120" marker-end="url(#b-red)"/>
+      <path d="M1120,88 V44 H385 V86" stroke="#c0392b" stroke-dasharray="6 3" marker-end="url(#b-red)"/>
+    </g>
+    <text x="752" y="36" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#c0392b">repeat until the bug list is empty — or honestly cut (narrate around it)</text>
+    <text x="620" y="196" text-anchor="middle" font-size="11" fill="#6b7a89" font-style="italic">Rule #7: Last 4 hours = Ajit. A flawless demo of 80% beats 100% that glitches. Murgesh responds, he doesn’t initiate changes.</text>
+  </svg>
+</section>
+
+<!-- ================= INPUTS TABLE ================= -->
+<section>
+  <h2 class="io">Who Feeds Ajit — input wiring (and the fallback if late)</h2>
+  <table>
+    <tr><th>From</th><th>Phase</th><th>Artifact</th><th>Powers</th><th>If late → fallback (Ajit never sits idle)</th></tr>
+    <tr><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P0 (pre-sprint C6)</td><td>OCR handoff — existing code + 1 sample</td><td>His entire lane</td><td>Pre-sprint item — must run on 1 sample <b>before 8 Aug</b>. If red at 09:00, P0 becomes catch-up.</td></tr>
+    <tr><td><span class="pill p-green">MURGESH</span></td><td class="mono">P1 (frozen)</td><td class="mono">packages/contracts shapes</td><td>What 01/06 must return</td><td>Drafted pre-sprint (C5); P1 is “freeze”, not “invent”.</td></tr>
+    <tr><td><span class="pill p-orange">MURGESH</span></td><td class="mono">P3 / P6</td><td>01/06 skeletons + orchestrator slot</td><td>Where his bodies plug in</td><td>Stubs already return fixed values — Ajit can develop his bodies standalone against the signature.</td></tr>
+    <tr><td><span class="pill p-teal">MANAS</span></td><td class="mono">P2 · 18:00</td><td>Complaint template (words + blanks)</td><td>Granite fill + fallback</td><td>Ajit writes a minimal placeholder template; Manas replaces wording later.</td></tr>
+    <tr><td><span class="pill p-teal">MANAS</span></td><td class="mono">P3</td><td>Control-bill JSON (6–8 correct items)</td><td>P7 all-green restraint beat</td><td>Cut the restraint beat (cut list: end-P5).</td></tr>
+    <tr><td><span class="pill p-gray">IBM</span></td><td class="mono">pre-sprint</td><td>Granite access (watsonx.ai) + Ollama local model</td><td>Step 06 draft</td><td>Ollama + local Granite pull = venue-wifi insurance. One call must work before arrival.</td></tr>
+  </table>
+</section>
+
+<!-- ================= OUTPUTS TABLE ================= -->
+<section>
+  <h2 class="io">Who Ajit Feeds — output wiring</h2>
+  <table>
+    <tr><th>To</th><th>Phase</th><th>Artifact</th><th>The contract</th></tr>
+    <tr><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P1 · by 13:00</td><td>OCR output contract (per-field shape)</td><td>V builds the entire left box to it. <b>Ajit blocks Vrajesh’s P2 until this is shared.</b></td></tr>
+    <tr><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P2 → P6</td><td>bbox + confidence + low_conf</td><td>Rectangles overlay + yellow tap-to-confirm gate render from it.</td></tr>
+    <tr><td><span class="pill p-orange">MURGESH</span></td><td class="mono">P3</td><td class="mono">01_read.ts body</td><td>Replaces the stub; the pipeline ingests his OCR without manual mapping (field names aligned).</td></tr>
+    <tr><td><span class="pill p-orange">MURGESH</span></td><td class="mono">P6</td><td class="mono">06_draft.ts body</td><td>Granite call + fallback → Draft; banner string always attached.</td></tr>
+    <tr><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P6 · by 14:00</td><td>Draft + banner render path</td><td>Letter in the right box; template fallback renders with the same banner if Granite is slow/down.</td></tr>
+    <tr><td><span class="pill p-red">ALL</span></td><td class="mono">P9</td><td>5 adversarial bills + bug list</td><td>Murgesh/Vrajesh fix ONLY what he logs; he re-tests. Blocks V and M on Day 3 (that’s the point).</td></tr>
+    <tr><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P7</td><td>Control-bill path</td><td>All-correct bill → all-green cards, deterministically — the restraint beat.</td></tr>
+  </table>
+  <p class="note"><b>The anti-wait rule:</b> if a handoff TO Ajit is late → work the NEXT independent task, never sit idle, never rebuild the missing piece. If Ajit is late → Vrajesh builds the left box against the frozen schema, Murgesh keeps the stubs. The wire bends; the sprint doesn’t stop.</p>
+</section>
+
+<!-- ================= FOUR JOBS ================= -->
+<section>
+  <h2>The Four Jobs — what / done-when / the one rule</h2>
+  <table>
+    <tr><th>Job</th><th>What</th><th>Done when…</th><th>The one rule</th></tr>
+    <tr><td><b>1 · THE EYES</b><br><span class="mono">01_read.ts</span></td><td>Read the bill image; return <span class="mono">extracted_fields[] = { text, value, unit, bbox, confidence }</span>. The bbox draws the rectangles.</td><td>3 sample bills extract with confidence PER field, and the rectangles line up on ReadScreen.</td><td>Report the number you read, <b>exactly</b>. Never “fix” a shaky read here — the gate decides.</td></tr>
+    <tr><td><b>2 · THE SAFETY VALVE</b><br><span class="mono">confidence gate ⭐</span></td><td><span class="mono">low_conf = true</span> for any field under 0.90. Screen paints YELLOW “tap to confirm”. Step 05 can only STAGE such fields.</td><td>A low-confidence field shows yellow on screen AND cannot trigger an auto-hold in a test.</td><td>When unsure, <b>downgrade</b> (yellow / staged), never assert. Silence over a false alarm.</td></tr>
+    <tr><td><b>3 · THE VOICE</b><br><span class="mono">06_draft.ts</span></td><td>Fill Manas’s template with Granite; attach the banner. Fallback fills the same template from the same data with NO model.</td><td>The letter renders with the banner; AND if Granite is slow/down, the fallback still renders, banner intact.</td><td>Granite touches <b>WORDING only</b>, never numbers. Numbers come from the deterministic proof cards.</td></tr>
+    <tr><td><b>4 · THE BREAKER</b><br><span class="mono">camera + P9</span></td><td>Capacitor camera + permissions; bbox/confidence into ReadScreen. Then P9: 5 adversarial bills, log every break, retest.</td><td>Camera captures on a device; overlay animates from returned coordinates; Day-3 bug list empty or cut.</td><td>P9 is <b>HIS phase</b>. No new features — only break and fix.</td></tr>
+  </table>
+</section>
+
+<!-- ================= THE SPLIT WITH MURGESH ================= -->
+<section>
+  <h2 class="io">The Split With Murgesh — the cleanest contract in the repo</h2>
+  <pre><span class="cm">// services/brain/pipeline/steps/01_read.ts — Murgesh writes the SKELETON:</span>
+<span class="key">export async function</span> read(req: RunRequest): <span class="key">Promise</span>&lt;ExtractedField[]&gt; {
+  <span class="cm">// TODO(ajit): replace stub body with the real OCR/vision call</span>
+  <span class="key">return</span> FIXED_SAMPLE_FIELDS;   <span class="cm">// stub — orchestrator already wired around it</span>
+}
+
+<span class="cm">// Ajit replaces ONLY the body. Signature + types + wiring stay Murgesh’s.</span>
+<span class="cm">// Same pattern for:  draft(cards, hold, template): Promise&lt;Draft&gt;  in 06_draft.ts</span>
+
+<span class="cm">// Result: Ajit never edits the orchestrator. Murgesh never edits the model calls.</span>
+<span class="cm">// They never touch the same lines — that’s the whole point.</span></pre>
+  <p class="note">Files Ajit touches: <span class="mono">apps/mobile/src/lib/camera.ts</span> · <span class="mono">apps/mobile/src/screens/ReadScreen.tsx</span> · <span class="mono">services/brain/pipeline/steps/01_read.ts</span> (body) · <span class="mono">services/brain/pipeline/steps/06_draft.ts</span> (body) · <span class="mono">data/samples/adversarial/</span>. He CONSUMES (never rebuilds): packages/contracts, packages/templates, the orchestrator.</p>
+</section>
+
+<!-- ================= TIMELINE ================= -->
+<section>
+  <h2 class="time">Ajit Phase Timeline (wall-clock · blocks / blocked-by)</h2>
+  <table>
+    <tr><th>Phase</th><th>Time</th><th>Task</th><th>Done when…</th><th>Dep</th></tr>
+    <tr><td class="mono">P0</td><td class="mono">D1 09:00–10:30</td><td>Take OCR handoff from V; run on 1 sample; set up Granite access</td><td>OCR returns text+bbox+conf on 1 image</td><td class="mono">blocked-by V handoff</td></tr>
+    <tr><td class="mono">P1</td><td class="mono">D1 10:30–13:00</td><td>Define OCR output contract (per field: text, value, bbox, confidence); share with V</td><td>Contract doc shared; V builds left box to it</td><td class="mono">BLOCKS V P2</td></tr>
+    <tr><td class="mono">P2</td><td class="mono">D1 13:45–16:00</td><td>Harden OCR: table handling, tilted-image test, per-field confidence scoring</td><td>3 sample bills extract with per-field conf</td><td>—</td></tr>
+    <tr><td class="mono">P2</td><td class="mono">D1 16:00–18:00</td><td>Confidence-gate logic: emit low-conf flag below threshold for V’s yellow UI</td><td>Low-conf fields flagged in output</td><td>—</td></tr>
+    <tr><td class="mono">P3</td><td class="mono">D1 18:00–20:00</td><td>Feed OCR output into M’s pipeline; align field names</td><td>Pipeline ingests your OCR without manual mapping</td><td class="mono">blocked-by M pipeline</td></tr>
+    <tr><td class="mono">P3</td><td class="mono">D1 20:00–22:00</td><td>Granite integration: summary + draft via N’s templates; add the banner string</td><td>Granite fills template; banner present</td><td class="mono">blocked-by N templates</td></tr>
+    <tr><td class="mono">P4</td><td class="mono">D1 22:00–23:30</td><td>Granite fallback: if model fails / latency high, return filled template (no model)</td><td>Demo path never depends on a live model call</td><td>—</td></tr>
+    <tr><td class="mono">P4</td><td class="mono">D1 23:30–24:00</td><td>All-hands; prepare 5 ADVERSARIAL test bills for P9; sleep 00:30</td><td>5 nasty bills ready</td><td>—</td></tr>
+    <tr><td class="mono">P5</td><td class="mono">D2 07:00–12:00</td><td>Make OCR + Granite production-clean; handle empty/garbled fields gracefully</td><td>No crash on a blank photo; returns “unverified”</td><td>—</td></tr>
+    <tr><td class="mono">P6</td><td class="mono">D2 12:45–18:00</td><td>Wire OCR + Granite into the live /run flow end-to-end with V</td><td>Screen shows your bbox + your draft live</td><td class="mono">blocked-by V screen</td></tr>
+    <tr><td class="mono">P7</td><td class="mono">D2 18:00–22:00</td><td>Build the demo’s “clean control bill” path with N (all green = restraint beat)</td><td>Control bill renders all-green deterministically</td><td class="mono">blocked-by N control JSON</td></tr>
+    <tr><td class="mono">P8</td><td class="mono">D2 22:00–24:00</td><td>Light QA pass on the happy path; log anything odd; sleep 00:30</td><td>Oddities logged</td><td>—</td></tr>
+    <tr><td class="mono">P9</td><td class="mono">D3 06:30–09:00</td><td><b>HIS PHASE:</b> run the 5 adversarial bills + tilt/blur/blank; log every break; retest after fixes</td><td>Bug list empty or cut; happy path still green</td><td class="mono">BLOCKS V, M (they fix)</td></tr>
+    <tr><td class="mono">P10</td><td class="mono">D3 09:00→jury</td><td>Own the OCR/Granite/hallucination Q&amp;A; final sanity run of ingestion</td><td>Answers sharp; ingestion clean</td><td>—</td></tr>
+  </table>
+</section>
+
+<!-- ================= WARNINGS ================= -->
+<section>
+  <h2 class="warn">⚠ CRITICAL — NEVER DO THIS</h2>
+  <div class="warnbox">
+    <ul>
+      <li><b>NEVER “fix” a shaky read in the OCR.</b> Report it exactly; let the gate handle it. A confident wrong number is worse than an honest yellow box.</li>
+      <li><b>NEVER let a low_conf field auto-place a hold.</b> It can only STAGE. A bad read must never freeze a real invoice — that is the trust model, and it’s half yours.</li>
+      <li><b>NEVER let Granite touch the numbers.</b> Wording only. Every number in the letter comes from Murgesh’s deterministic proof cards.</li>
+      <li><b>NEVER ship a letter without the banner</b> — “AI-generated — review before sending”. The agent prepares; the person decides.</li>
+      <li><b>NEVER let the demo path depend on a live model call.</b> The fallback must render the same template with the same banner — if Granite is down onsite, nobody in the audience notices.</li>
+      <li><b>NEVER edit the orchestrator or the schemas.</b> A shape problem is a contract issue → 2-minute call to Murgesh, never a silent edit.</li>
+      <li><b>NEVER add features in P9.</b> Only break and fix. A flawless demo of 80% beats 100% that glitches.</li>
+      <li><b>NEVER crash on a blank or garbled photo.</b> Return “unverified”. Silence over a false alarm, every time.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="grid2">
+  <section>
+    <h2 class="check">✔ Ajit Pre-Sprint Checks</h2>
+    <div class="checkbox">
+      <ul>
+        <li><b>C6:</b> OCR handoff taken from Vrajesh — his existing pipeline runs on 1 sample bill. <i>(Long pole — do it this week.)</i></li>
+        <li><b>One Granite call works</b> (watsonx.ai creds confirmed).</li>
+        <li><b>Tesseract.js (or chosen OCR) + @capacitor/camera installed</b> and importing.</li>
+        <li><b>(Resilience) Ollama installed + a Granite model pulled locally</b> — so a slow venue wifi can’t kill the draft.</li>
+        <li><b>IBM GLE course</b> “Future Forward: AI for Innovation” — certificate done, goes in the PPT.</li>
+        <li><b>OCR output contract DRAFTED</b> (the per-field shape) — so P1 is “share”, not “invent”.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="check" style="border-color:#6b7a89">Boundaries — What Ajit does NOT do</h2>
+    <div class="boundbox">
+      <ul>
+        <li><b>The verdict / compare / hold logic / schemas / orchestrator — Murgesh.</b> Ajit wires his two steps into the orchestrator; he doesn’t change it.</li>
+        <li><b>The screens’ layout, the demo flow, the pitch — Vrajesh.</b> Ajit feeds ReadScreen the bbox + confidence; he doesn’t design the screen.</li>
+        <li><b>The rulebook content + template wording — Manas.</b> Ajit FILLS his template with Granite; he doesn’t write the wording.</li>
+        <li><b>He OWNS on stage:</b> OCR failure / low confidence / “why no hallucination” Q&amp;A — one voice per question (rule #9).</li>
+        <li><b>Kill-switches he pre-agreed:</b> OCR flaky → demo the bill as pre-extracted JSON and narrate OCR as the production path · Granite down → drop it live, demo the template path.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- ================= Q&A ================= -->
+<section>
+  <h2 class="qa">Ajit On-Stage Q&amp;A — under 20 seconds each</h2>
+  <table>
+    <tr><th>Question</th><th>One-line answer</th></tr>
+    <tr><td>“What if the OCR misreads a number?”</td><td>“Every field carries a confidence; below 90% we show a yellow ‘tap to confirm’ and that field can’t auto-freeze anything. A bad read downgrades to a question, never to a wrong verdict.”</td></tr>
+    <tr><td>“Why won’t it hallucinate?”</td><td>“The verdict is subtraction over two cited numbers — no model in that path. The model only writes the letter’s wording, and if it’s down we fall back to a filled template. The numbers never come from the LLM.”</td></tr>
+    <tr><td>“What’s the banner for?”</td><td>“The letter is AI-drafted, so we label it and require a human review before it sends. The agent prepares; the person decides.”</td></tr>
+  </table>
+</section>
+
+<footer>
+  PRAMAAN · Individual Wiring Diagram ③ of ④ · AJIT (SAP) · Next: ④ VRAJESH (BARK), then the FULL CONNECTED BRAIN DIAGRAM · “You own the eyes, the voice, and the safety valve — and the habit of breaking it before the judge does. That’s a load-bearing seat.”
+</footer>
+
+</div>
+</body>
+</html>

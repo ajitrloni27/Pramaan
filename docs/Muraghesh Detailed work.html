@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRAMAAN — MURGESH (TRUNK) · The Complete Build Document</title>
+<style>
+  :root{
+    --ink:#1c2733; --paper:#f5f6f7; --card:#ffffff; --line:#cfd8e0;
+    --orange:#e67e22; --blue:#2980b9; --violet:#8e44ad; --teal:#16a085;
+    --green:#27ae60; --amber:#f39c12; --red:#c0392b; --gray:#6b7a89;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Segoe UI', system-ui, -apple-system, sans-serif; background:var(--paper); color:var(--ink); padding:24px;}
+  .sheet{max-width:1280px; margin:0 auto;}
+  header{background:var(--card); border:2px solid var(--ink); border-radius:8px; padding:18px 22px; margin-bottom:16px;}
+  header h1{font-size:22px; letter-spacing:.5px;}
+  header .sub{font-size:14px; color:var(--gray); margin-top:4px;}
+  header .meta{font-family:Consolas, monospace; font-size:11px; color:var(--gray); margin-top:8px; border-top:1px dashed var(--line); padding-top:8px;}
+  section{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:18px 22px; margin-bottom:16px;}
+  h2{font-size:15px; text-transform:uppercase; letter-spacing:1px; border-left:6px solid var(--orange); padding-left:10px; margin-bottom:14px;}
+  h2.org{border-color:var(--blue);} h2.pipe{border-color:var(--violet);} h2.cont{border-color:var(--green);}
+  h2.mcp{border-color:var(--teal);} h2.time{border-color:var(--amber);} h2.io{border-color:var(--gray);}
+  h2.qa{border-color:var(--ink);} h2.warn{border-color:var(--red);} h2.ibm{border-color:var(--blue);}
+  svg{width:100%; height:auto; display:block; border:1px solid var(--line); border-radius:6px; background:#fff;}
+  table{width:100%; border-collapse:collapse; font-size:12.5px;}
+  th{background:#eef2f6; text-align:left; padding:8px 10px; border:1px solid var(--line); font-size:11.5px; text-transform:uppercase; letter-spacing:.5px;}
+  td{padding:8px 10px; border:1px solid var(--line); vertical-align:top;}
+  td.mono, .mono{font-family:Consolas, monospace; font-size:12px;}
+  .pill{display:inline-block; font-family:Consolas,monospace; font-size:10.5px; padding:1px 7px; border-radius:9px; color:#fff; white-space:nowrap;}
+  .p-orange{background:var(--orange);} .p-blue{background:var(--blue);} .p-violet{background:var(--violet);}
+  .p-amber{background:var(--amber);} .p-green{background:var(--green);} .p-teal{background:var(--teal);} .p-red{background:var(--red);} .p-gray{background:var(--gray);}
+  pre{background:#101820; color:#d8e2ea; border-radius:6px; padding:16px; font-family:Consolas, monospace; font-size:12.5px; line-height:1.55; overflow-x:auto;}
+  .cm{color:#7f97a8;} .st{color:#9fd68a;} .num{color:#f5c76a;} .key{color:#7ec8ff;}
+  .warnbox{border:2px solid var(--red); background:#fdf1f0; border-radius:6px; padding:14px 16px;}
+  .warnbox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  .checkbox{border:2px solid var(--green); background:#f0faf3; border-radius:6px; padding:14px 16px;}
+  .checkbox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  .note{font-size:12px; color:var(--gray); margin-top:10px; line-height:1.5;}
+  footer{text-align:center; font-family:Consolas, monospace; font-size:11px; color:var(--gray); padding:10px 0 4px;}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header>
+  <h1>PRAMAAN — MURGESH (TRUNK) · THE COMPLETE BUILD DOCUMENT</h1>
+  <div class="sub">Technical Co-Lead · The Engine — <b>“The screen makes it visible. You make it CORRECT. You build the trunk that makes the verdict true and the action real.”</b></div>
+  <div class="meta">DOC: PRM-WD-06 &nbsp;·&nbsp; REV A &nbsp;·&nbsp; The dedicated TRUNK brief &nbsp;·&nbsp; HackVerse Track 3 · 36-h Sprint · MAHE 8–10 Aug 2026 &nbsp;·&nbsp; Sole merger: services/brain/** + packages/contracts/**</div>
+</header>
+
+<!-- ============ 0. WHY LOAD-BEARING ============ -->
+<section>
+  <h2>0 · Read this first — why your seat is load-bearing</h2>
+  <p style="font-size:13.5px; line-height:1.7;">
+  The jury will ask two fatal questions: <i>“How do you know it isn’t hallucinating?”</i> and <i>“Is this just a mail-merge script, or is it actually an agent?”</i> 
+  The answers to both live entirely in your code:
+  </p>
+  <ul style="margin:10px 0 0 20px; font-size:13px; line-height:1.7;">
+    <li><b>The hallucination defense</b> is Step 03 (COMPARE). It must be pure arithmetic over cited numbers. If you let an LLM anywhere near the subtraction, the product is a toy.</li>
+    <li><b>The agentic proof</b> is Step 05 (ACT) and the Mock Gateway. An agent mutates external state. If the hold doesn't actually change state (even in a mock), it's just generating text.</li>
+    <li><b>The merge defense</b> is the Schema Freeze at P1 10:30. If the contracts drift, Vrajesh’s UI breaks silently, and the sprint burns.</li>
+  </ul>
+  <p style="font-size:13.5px; margin-top:10px;">You are not “the backend guy.” You are the architect of the product's integrity. You own the HOW, and you are expected to push back on Vrajesh when the technical reality demands it.</p>
+</section>
+
+<!-- ============ 1. CO-LEAD CONTRACT ============ -->
+<section>
+  <h2 class="org">1 · The co-lead contract — your side of it</h2>
+  <ul style="margin:0 0 0 20px; font-size:13px; line-height:1.8;">
+    <li><b>Vrajesh holds the FINAL CALL</b> on direction, product, screen, and pitch. You own the engine implementation — the HOW.</li>
+    <li><b>You MUST push back.</b> Before you build something Vrajesh specced, if you think the technical call is wrong, you say so. On technical-implementation disagreements, your view carries real weight. That is the team's safety net.</li>
+    <li><b>Demand the WHY.</b> You execute faster and better when you understand the reasoning. If Vrajesh delegates without the WHY, ask for it.</li>
+    <li><b>Once aligned, the team commits.</b> No re-litigating after the decision.</li>
+    <li><b>Two daily V–M syncs</b> (phase start + mid, 10 min each). Keep engine + screen in lockstep. Do not let them become hour-long design debates.</li>
+    <li><b>Schema-first (rule #1):</b> You freeze the 3 schemas at P1 10:30. Vrajesh builds against a mock from that moment. If you need to change a shape later, it requires a 2-min V-M sync. <b>If drift is found late, the UI bends to the engine.</b></li>
+    <li><b>You are the sole merger of services/brain.</b> Vrajesh is the sole merger of the app; packages/contracts needs both of you.</li>
+  </ul>
+</section>
+
+<!-- ============ 2. OWNERSHIP ============ -->
+<section>
+  <h2 class="org">2 · What you own — the complete list</h2>
+  <table>
+    <tr><th>Artifact</th><th>What it is</th><th>Built in</th></tr>
+    <tr><td class="mono">packages/contracts/**</td><td>The 6 core types (ExtractedField, RuleRow, ProofCard, HoldEvent, AuditEvent, RunResponse). <b>FROZEN P1 10:30.</b></td><td>P0 (draft), P1 (freeze)</td></tr>
+    <tr><td class="mono">services/brain/pipeline/**</td><td>The 6-step orchestrator. You write skeletons for 01/06; you fully own 02, 03, 04, 05.</td><td>P2–P4</td></tr>
+    <tr><td class="mono">services/brain/mcp/**</td><td>The MCP Server (watsonx.data managed). 4 tools: lookup, place, get, release.</td><td>P2–P3</td></tr>
+    <tr><td class="mono">services/brain/gateway/**</td><td>The Mock Billing Gateway. Holds the state Map. Simulates the 72h auto-release.</td><td>P1–P3</td></tr>
+    <tr><td class="mono">services/brain/audit/**</td><td>The append-only audit log writer (AgentOps integration).</td><td>P4</td></tr>
+    <tr><td class="mono">seeds/trap.ts</td><td>The deterministic path: <span class="mono">GET /run?seed=trap</span> short-circuits OCR and returns byte-identical proof.</td><td>P7</td></tr>
+    <tr><td>Architecture Note</td><td>One-page mapping of every component to the IBM stack (for slide 6 and jury Q&A).</td><td>P6</td></tr>
+  </table>
+  <p class="note"><b>You do NOT own:</b> UI/screens (Vrajesh) · OCR vision models or Granite text generation (Ajit implements the bodies of 01/06) · rulebook content, citations, or wording (Manas).</p>
+</section>
+
+<!-- ============ 3. THE 6-STEP PIPELINE ============ -->
+<section>
+  <h2 class="pipe">3 · The 6-Step Pipeline — implementation spec</h2>
+  <table>
+    <tr><th>Step</th><th>File</th><th>Body Owner</th><th>Your Job (Murgesh)</th><th>The One Rule</th></tr>
+    <tr><td class="mono">01 READ</td><td class="mono">01_read.ts</td><td><span class="pill p-violet">AJIT</span></td><td>Define I/O <span class="mono">(image|seed) → ExtractedField[]</span>. Write skeleton + stub. Wire into orchestrator.</td><td>The orchestrator never knows if the body is a stub or a model.</td></tr>
+    <tr><td class="mono">02 LOOKUP</td><td class="mono">02_lookup.ts</td><td><span class="pill p-orange">YOU</span></td><td>Call MCP <span class="mono">lookup_rule</span>. Map fields to rules using Manas's <span class="mono">match_terms[]</span>.</td><td>No match = silence. No card. Never invent a rule.</td></tr>
+    <tr><td class="mono">03 COMPARE</td><td class="mono">03_compare.ts</td><td><span class="pill p-red">YOU ⚠</span></td><td>Deterministic subtract. Normalize units via <span class="mono">official_unit</span>. Emit gaps.</td><td><b>NO LANGUAGE MODEL CALL.</b> Pure arithmetic. This is the moat.</td></tr>
+    <tr><td class="mono">04 PROVE</td><td class="mono">04_prove.ts</td><td><span class="pill p-orange">YOU</span></td><td>Assemble 3-anchor proof cards. Inject Manas's <span class="mono">rule_says_plain</span>.</td><td>Missing rule_anchor → card is “unverified”. No anchor = no accusation.</td></tr>
+    <tr><td class="mono">05 ACT</td><td class="mono">05_act.ts</td><td><span class="pill p-orange">YOU</span></td><td>Two-tier logic: conf ≥ 0.90 → <span class="mono">place_hold</span>. Else → stage. Write AuditEvent.</td><td>Provisional + reversible. Do not weaken for "cool factor".</td></tr>
+    <tr><td class="mono">06 DRAFT</td><td class="mono">06_draft.ts</td><td><span class="pill p-violet">AJIT</span></td><td>Define I/O <span class="mono">(cards, hold, template) → Draft</span>. Write skeleton + stub. Wire.</td><td>Granite touches wording only. Numbers come from your proof cards.</td></tr>
+  </table>
+  <pre style="margin-top:14px;"><span class="cm">// pipeline/orchestrator.ts — your main loop</span>
+state.fields = <span class="key">await</span> read(req)                       <span class="cm">// 01 — Ajit’s body</span>
+state.rules  = <span class="key">await</span> lookup(state.fields, domain)    <span class="cm">// 02 — MCP</span>
+state.gaps   = compare(state.fields, state.rules)    <span class="cm">// 03 — PURE, no model</span>
+state.cards  = prove(state.gaps, state.fields, state.rules)  <span class="cm">// 04</span>
+state.hold   = <span class="key">await</span> act(state.cards)                <span class="cm">// 05 — two-tier</span>
+state.draft  = <span class="key">await</span> draft(state.cards, state.hold, template) <span class="cm">// 06 — Ajit’s body</span>
+
+<span class="cm">// append AuditEvent after EACH step. </span>
+<span class="cm">// on error: append "error", mark cards "unverified", return PARTIAL RunResponse. NEVER crash.</span></pre>
+</section>
+
+<!-- ============ 4. CONTRACTS ============ -->
+<section>
+  <h2 class="cont">4 · The Contracts (packages/contracts — freeze P1 10:30)</h2>
+  <p style="font-size:13px; margin-bottom:10px;">These are the generated TS types that both the brain and the app import. <b>If you feel like inlining a type, STOP. Add it here.</b></p>
+  <table>
+    <tr><th>Shape</th><th>Produced by</th><th>Key fields you must enforce</th></tr>
+    <tr><td class="mono">ExtractedField</td><td>step 01 (Ajit)</td><td class="mono">text, value, unit, bbox[x,y,w,h], confidence(0..1), low_conf</td></tr>
+    <tr><td class="mono">RuleRow (bill)</td><td>Manas → step 02</td><td class="mono">rule_id, item_category, match_terms[], official_value, official_unit, official_source(+url), rule_says_plain, severity, status</td></tr>
+    <tr><td class="mono">RuleRow (lease)</td><td>Manas → step 02</td><td class="mono">rule_id, clause_type, match_terms[], legal_status, law_ref(+url), rule_says_plain, suggested_fix_plain, status</td></tr>
+    <tr><td class="mono">ProofCard</td><td>step 04 (You)</td><td class="mono">item, your_value, official_value, gap, status, source_anchor{ref,bbox,ocr_confidence}, rule_anchor{ref,url}, compute_anchor ("45000 − 18000"), rule_says_plain</td></tr>
+    <tr><td class="mono">HoldEvent</td><td>step 05 (You)</td><td class="mono">hold_id, invoice_id, amount, status(staged|placed|released), reversible, expires_at, placed_by(auto|user), confidence_floor</td></tr>
+    <tr><td class="mono">AuditEvent</td><td>every step</td><td class="mono">t (ocr|lookup|compare|prove|hold_placed|hold_staged|hold_released|draft|consent|error), run_id, ts, payload</td></tr>
+    <tr><td class="mono">RunResponse</td><td>THE boundary</td><td class="mono">run_id, domain, extracted_fields[], proof_cards[], hold, draft{text,banner}, audit[]</td></tr>
+  </table>
+</section>
+
+<!-- ============ 5. MCP & GATEWAY ============ -->
+<section>
+  <h2 class="mcp">5 · The MCP Layer & Mock Gateway (The Agentic Proof)</h2>
+  <p style="font-size:13px; margin-bottom:10px;">The jury will ask: <i>"Is this a real integration or a mock?"</i> Your answer relies on the MCP layer and the stateful gateway.</p>
+  
+  <h3 style="font-size:14px; margin-top:14px; color:var(--teal);">The 4 MCP Tools (watsonx.data managed server)</h3>
+  <table>
+    <tr><th>Tool</th><th>Input</th><th>Output</th><th>Agentic purpose</th></tr>
+    <tr><td class="mono">lookup_rule</td><td class="mono">domain, text[]</td><td class="mono">RuleRow[]</td><td>RAG retrieval. Keeps rulebook server-authoritative (Citation Gate).</td></tr>
+    <tr><td class="mono">place_hold</td><td class="mono">invoice_id, amount, pack_id</td><td class="mono">HoldEvent</td><td>Mutates external state. <b>Must be idempotent.</b></td></tr>
+    <tr><td class="mono">get_hold_status</td><td class="mono">hold_id</td><td class="mono">HoldEvent</td><td>Reads state for the UI chip.</td></tr>
+    <tr><td class="mono">release_hold</td><td class="mono">hold_id, reason</td><td class="mono">HoldEvent</td><td>Reverses state (auto_expiry or user_withdraw).</td></tr>
+  </table>
+
+  <h3 style="font-size:14px; margin-top:14px; color:var(--orange);">The Mock Billing Gateway</h3>
+  <pre><span class="cm">// services/brain/gateway/mock.ts</span>
+<span class="key">const</span> holds = <span class="key">new</span> Map&lt;string, HoldEvent&gt;();
+
+<span class="key">export function</span> placeHold(invoice_id, amount, pack_id): HoldEvent {
+  <span class="cm">// Idempotent: if hold_id exists, return it. Do not duplicate.</span>
+  <span class="cm">// Set expires_at = now + 72h.</span>
+  <span class="cm">// Status = "placed".</span>
+}
+
+<span class="key">export function</span> tick(now) {
+  <span class="cm">// Iterate map. If now > expires_at AND status == "placed" → status = "released" (reason: auto_expiry).</span>
+  <span class="cm">// This simulates the 72h auto-release for the demo.</span>
+}</pre>
+  <p class="note">The mock IS the system for the sprint. Real hospital APIs are out of scope. But because the agent mutates this Map via MCP, the action is REAL. This is what makes it an agent, not a script.</p>
+</section>
+
+<!-- ============ 6. SEEDED DETERMINISM ============ -->
+<section>
+  <h2 class="pipe">6 · Seeded Determinism (Rule #6) — The Stage Flow</h2>
+  <p style="font-size:13px; margin-bottom:10px;">The 90-second demo cannot gamble on live OCR, LLM latency, or venue wifi. At P7, you implement <span class="mono">GET /run?seed=trap</span>.</p>
+  <pre><span class="cm">// services/brain/src/index.ts</span>
+app.get(<span class="st">"/run"</span>, (req, res) => {
+  <span class="key">if</span> (req.query.seed === <span class="st">"trap"</span>) {
+    <span class="cm">// PATH B: The deterministic demo</span>
+    <span class="cm">// 1. Short-circuit step 01 (return pre-baked ExtractedFields from seeds/trap.ts)</span>
+    <span class="cm">// 2. Run 02-05 normally (proves the engine logic works on the seeded data)</span>
+    <span class="cm">// 3. Return a pre-baked PLACED hold so the chip animates instantly</span>
+    <span class="cm">// 4. CRITICAL: Strip all timestamps (ts) from AuditEvents so the JSON is byte-identical every run.</span>
+    <span class="key">return</span> res.json(DETERMINISTIC_TRAP_RESPONSE);
+  }
+  <span class="cm">// PATH A: The live flow (used in build, never on stage)</span>
+  <span class="key">return</span> orchestrator.run(req.body);
+});</pre>
+  <p class="note">Vrajesh will hand you the exact seed spec at P7. Your job is to make the engine return it flawlessly without crashing.</p>
+</section>
+
+<!-- ============ 7. IBM STACK MAPPING ============ -->
+<section>
+  <h2 class="ibm">7 · IBM Stack Mapping (For Slide 6 and Jury Q&A)</h2>
+  <p style="font-size:13px; margin-bottom:10px;">The PPT requires explicit mapping to IBM products. Memorize this table.</p>
+  <table>
+    <tr><th>Pramaan component</th><th>IBM component</th><th>Where it lives in your code</th></tr>
+    <tr><td>Curated rulebook + seeded samples</td><td><b>Data Prep Kit</b></td><td class="mono">data/ (Manas's JSONs)</td></tr>
+    <tr><td>Plain-language summary + draft</td><td><b>IBM Granite</b></td><td class="mono">steps/06_draft.ts (Ajit's call)</td></tr>
+    <tr><td>Retrieval over rule corpus</td><td><b>RAG</b> (via MCP)</td><td class="mono">mcp/server.ts (lookup_rule)</td></tr>
+    <tr><td>6-step agent flow</td><td><b>watsonx Orchestrate / Agent Lab</b></td><td class="mono">pipeline/orchestrator.ts</td></tr>
+    <tr><td>Tool calls (rulebook, hold)</td><td><b>MCP</b> (watsonx.data managed)</td><td class="mono">mcp/server.ts</td></tr>
+    <tr><td>Consent + audit + governance</td><td><b>AgentOps</b></td><td class="mono">audit/audit_log.ts</td></tr>
+  </table>
+  <p class="note"><b>Jury Question:</b> "If using RAG or Agentic, IBM or AWS?" <br><b>Your Answer:</b> "IBM for both. RAG is retrieval over the rule corpus via MCP lookup_rule; Agentic is watsonx Orchestrate executing the 6-step flow and calling MCP tools to mutate state."</p>
+</section>
+
+<!-- ============ 8. TIMELINE ============ -->
+<section>
+  <h2 class="time">8 · Your phase timeline — hour by hour</h2>
+  <table>
+    <tr><th>Phase</th><th>Time</th><th>Task</th><th>Done when…</th><th>Dep</th></tr>
+    <tr><td class="mono">P0</td><td class="mono">D1 09:00–10:30</td><td>Repo + envs + IBM/watsonx creds on venue wifi; Agent Lab access; hello-world agent runs</td><td>Hello-world agent runs</td><td class="mono">BLOCKS V, A</td></tr>
+    <tr><td class="mono">P1</td><td class="mono">D1 10:30–11:30</td><td><b>PUBLISH + FREEZE</b> the 6 schemas in packages/contracts; notify Vrajesh</td><td>Schema files committed; V notified</td><td class="mono">BLOCKS V P1</td></tr>
+    <tr><td class="mono">P1</td><td class="mono">D1 11:30–13:00</td><td>Stand up mock Billing Gateway API (Map + place/release)</td><td>curl returns 200 + hold_id</td><td>—</td></tr>
+    <tr><td class="mono">P2</td><td class="mono">D1 13:45–16:00</td><td>Build COMPARE engine (03) — load rulebook, subtract like-for-like, emit gaps</td><td>Bill JSON + rulebook → proof-card-ready gaps</td><td class="mono">blocked-by N rulebook (use 3-row stub)</td></tr>
+    <tr><td class="mono">P2</td><td class="mono">D1 16:00–18:00</td><td>Wrap gateway as MCP tools (×4)</td><td>An agent can call the tools via MCP</td><td>—</td></tr>
+    <tr><td class="mono">P3</td><td class="mono">D1 18:00–20:30</td><td>Orchestration pipeline on watsonx Orchestrate; syncs 18:00 + 20:30</td><td>Pipeline returns proof cards + triggers hold</td><td class="mono">blocked-by A OCR (use stub)</td></tr>
+    <tr><td class="mono">P3</td><td class="mono">D1 20:30–22:00</td><td>Provisional hold logic (05): auto-place ≥ threshold; 72h timer; low-conf stages</td><td>Hold auto-places + shows expiry</td><td>—</td></tr>
+    <tr><td class="mono">P4</td><td class="mono">D1 22:00–23:30</td><td>Audit-log writer: append every event (AgentOps)</td><td>Audit API returns ordered trail</td><td>—</td></tr>
+    <tr><td class="mono">P4</td><td class="mono">D1 23:30–24:00</td><td>Expose /run for the full flow; all-hands; sleep 00:30</td><td>/run returns full RunResponse</td><td class="mono">BLOCKS V P4</td></tr>
+    <tr><td class="mono">P5</td><td class="mono">D2 07:00–10:00</td><td>Make ACT REAL: hold mutates gateway state; release works; sync 07:30</td><td>Status flips placed → released correctly</td><td>—</td></tr>
+    <tr><td class="mono">P5</td><td class="mono">D2 10:00–12:00</td><td>LEASE path on SAME pipeline — rulebook swap, no engine copy</td><td>/run domain=lease returns clause cards</td><td class="mono">blocked-by N lease JSON</td></tr>
+    <tr><td class="mono">P6</td><td class="mono">D2 12:45–16:30</td><td>Map every component to IBM stack in code comments + one-page arch note</td><td>Arch note lists each mapping</td><td>—</td></tr>
+    <tr><td class="mono">P6</td><td class="mono">D2 16:30–18:00</td><td>Stability pass: timeouts, error shapes; sync 16:30</td><td>10 /run calls, zero 500s</td><td>—</td></tr>
+    <tr><td class="mono">P7</td><td class="mono">D2 18:00–22:00</td><td>/run?seed=trap returns the planted result (strip timestamps)</td><td>Seeded mode byte-identical across runs</td><td class="mono">blocked-by V seed spec</td></tr>
+    <tr><td class="mono">P8</td><td class="mono">D2 22:00–24:00</td><td><b>FREEZE the engine</b>; write “how the verdict is grounded” paragraph; sleep</td><td>Freeze tag exists; Q&A paragraph ready</td><td>—</td></tr>
+    <tr><td class="mono">P9</td><td class="mono">D3 06:30–09:00</td><td>Fix ONLY engine bugs Ajit finds. <b>Do NOT refactor.</b> Keep /run stable.</td><td>Logged engine bugs closed</td><td class="mono">blocked-by A bug list</td></tr>
+    <tr><td class="mono">P10</td><td class="mono">D3 09:00→jury</td><td>Standby for engine Q&A. <b>DO NOT TOUCH CODE</b> during rehearsal.</td><td>Engine untouched; answers sharp</td><td>—</td></tr>
+  </table>
+</section>
+
+<!-- ============ 9. HANDOFFS ============ -->
+<section>
+  <h2 class="io">9 · Handoffs — who feeds you, who you feed</h2>
+  <table>
+    <tr><th>Direction</th><th>Wire</th><th>Phase</th><th>Artifact</th><th>If late → fallback (You never sit idle)</th></tr>
+    <tr><td rowspan="6"><b>IN</b></td><td><span class="pill p-teal">MANAS</span></td><td class="mono">P2 · 16:00</td><td class="mono">rulebook_bill.json</td><td>Build against a <b>hardcoded 3-row rulebook</b>, swap his in later.</td></tr>
+    <tr><td><span class="pill p-teal">MANAS</span></td><td class="mono">P3 · 22:00</td><td class="mono">rulebook_lease.json</td><td>Lease stub is the <b>first thing cut</b>.</td></tr>
+    <tr><td><span class="pill p-violet">AJIT</span></td><td class="mono">P1 · 13:00</td><td>OCR output contract</td><td>Wire against the frozen schema; Ajit conforms to it.</td></tr>
+    <tr><td><span class="pill p-violet">AJIT</span></td><td class="mono">P3 / P6</td><td class="mono">01/06 bodies</td><td>The stubs already return fixed fields — pipeline runs without him.</td></tr>
+    <tr><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P7</td><td>Seed spec</td><td>You stub the seed from the trap JSON; Vrajesh finalizes.</td></tr>
+    <tr><td><span class="pill p-gray">IBM</span></td><td class="mono">P0</td><td>watsonx creds</td><td>Pre-sprint check. Credential issues kill Day 1.</td></tr>
+    
+    <tr><td rowspan="5"><b>OUT</b></td><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P1 · 10:30</td><td>6 frozen schemas</td><td>He builds against a mock. Frontend never blocks on backend.</td></tr>
+    <tr><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P3 · 18:00</td><td class="mono">/run endpoint</td><td>He flips dataSource mock → live.</td></tr>
+    <tr><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P7</td><td class="mono">/run?seed=trap</td><td>Byte-identical stage flow.</td></tr>
+    <tr><td><span class="pill p-violet">AJIT</span></td><td class="mono">P3 / P6</td><td>Orchestrator slots</td><td>He replaces stub bodies only. You never touch the same lines.</td></tr>
+    <tr><td><span class="pill p-violet">AJIT</span></td><td class="mono">P9</td><td>Stable /run</td><td>He breaks it; you fix ONLY what he logs.</td></tr>
+  </table>
+</section>
+
+<!-- ============ 10. Q&A ============ -->
+<section>
+  <h2 class="qa">10 · Q&A — the families you own</h2>
+  <table>
+    <tr><th>Question</th><th>Your one-line answer</th></tr>
+    <tr><td>“Walk us through the architecture.”</td><td>“A thin Ionic client captures the bill and renders the verdict; the brain runs a six-step trunk — read, lookup, compare, prove, act, draft — on watsonx Orchestrate, with the compare done by deterministic code, not a model.”</td></tr>
+    <tr><td>“How is the verdict grounded? Why won’t it hallucinate?”</td><td>“The verdict is arithmetic over two cited numbers — your bill and the official rule — computed by code with no model in the path. Every card carries three anchors: your source, the official source, and the exact subtraction. Anyone can re-run it.”</td></tr>
+    <tr><td>“How does the hold work? Does the agent act on its own?”</td><td>“It places a provisional, reversible hold via an MCP tool, only on high-confidence gaps, and it auto-releases in 72 hours if unconfirmed. Nothing permanent happens without a logged user tap. The audit trail shows exactly what was auto versus tapped.”</td></tr>
+    <tr><td>“Is this a real integration or a mock?”</td><td>“The billing gateway is a mock for the sprint — real hospital APIs are out of scope for 36 hours. But the action is real: the agent mutates external state through MCP, which is the production pattern.”</td></tr>
+  </table>
+  <p class="note"><b>Full map (one voice per question):</b> architecture/grounding/hold → <b>YOU</b> · innovation/moat/business/liability → Vrajesh · OCR/low-confidence/hallucination → Ajit · sources/curation/scale → Manas.</p>
+</section>
+
+<!-- ============ 11. WARNINGS ============ -->
+<section>
+  <h2 class="warn">11 · ⚠ The Non-Negotiables — your technical hills to die on</h2>
+  <div class="warnbox">
+    <ul>
+      <li><b>NEVER put a model in the compare path (step 03).</b> The verdict is arithmetic over cited numbers. If anyone suggests “let the LLM decide the gap” — the answer is no.</li>
+      <li><b>NEVER weaken the two-tier hold</b> (placed vs staged) for speed. A misread must at worst stage a hold or place a 72h hold that self-heals. Permanent consequences need the tap.</li>
+      <li><b>NEVER change a schema after P1 without a 2-min V–M sync.</b> If drift is found late, the UI bends to the engine, never the reverse.</li>
+      <li><b>NEVER copy the pipeline for the lease.</b> Lease = rulebook swap through the SAME trunk. Copy-pasting the engine is amputating the tree (rule #10).</li>
+      <li><b>NEVER let anyone else merge into <span class="mono">services/brain</span></b> — and a PR touching <span class="mono">packages/contracts</span> needs you AND Vrajesh.</li>
+      <li><b>NEVER crash on a step error.</b> Append an “error” audit event, mark affected cards “unverified”, return a partial RunResponse.</li>
+      <li><b>NEVER put timestamps in the seeded payload.</b> Byte-identical or the demo gamble returns.</li>
+      <li><b>NEVER inline a type.</b> If the app or the brain wants a shape, it lives in packages/contracts.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 12. CHECKLIST ============ -->
+<section>
+  <h2 class="cont">12 · Pre-sprint checklist — your technical prep</h2>
+  <div class="checkbox">
+    <ul>
+      <li><b>C1:</b> IBM GLE course “Future Forward: AI for Innovation” — certificate done, goes in the PPT.</li>
+      <li><b>C7:</b> Monorepo scaffolded with Vrajesh — workspaces, tsconfig.base, .env.example (RUN_MODE, IBM creds, THRESHOLD). Both can push.</li>
+      <li><b>C5:</b> 6 schemas DRAFTED in packages/contracts — so P1 is “freeze”, not “invent from scratch”.</li>
+      <li><b>IBM/watsonx creds + Agent Lab access confirmed</b> — hello-world agent runs. Classic Day-1 time sink, killed early.</li>
+      <li><b>match_terms convention agreed with Manas</b> — his lever for lookup matching.</li>
+      <li><b>By 7 Aug:</b> mentally walk the six steps against the seeded trap bill, so P2/P3 are execution, not design.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  PRAMAAN · PRM-WD-06 · MURGESH (TRUNK) — THE COMPLETE BUILD DOCUMENT · Series: ① ROOTS · ② TRUNK wiring · ③ SAP · ④ BARK wiring · ⑤ BARK brief · ⑥ TRUNK brief · Next: THE FULL CONNECTED BRAIN DIAGRAM
+</footer>
+
+</div>
+</body>
+</html>

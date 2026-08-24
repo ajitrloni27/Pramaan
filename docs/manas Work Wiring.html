@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRAMAAN — Individual Wiring Diagram ① · MANAS (ROOTS)</title>
+<style>
+  :root{
+    --ink:#1c2733; --paper:#f5f6f7; --card:#ffffff; --line:#cfd8e0;
+    --orange:#e67e22; --blue:#2980b9; --violet:#8e44ad; --teal:#16a085;
+    --green:#27ae60; --amber:#f39c12; --red:#c0392b; --gray:#6b7a89;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Segoe UI', system-ui, -apple-system, sans-serif; background:var(--paper); color:var(--ink); padding:24px;}
+  .sheet{max-width:1280px; margin:0 auto;}
+  header{background:var(--card); border:2px solid var(--ink); border-radius:8px; padding:18px 22px; margin-bottom:16px;}
+  header h1{font-size:22px; letter-spacing:.5px;}
+  header .sub{font-size:14px; color:var(--gray); margin-top:4px;}
+  header .meta{font-family:Consolas, monospace; font-size:11px; color:var(--gray); margin-top:8px; border-top:1px dashed var(--line); padding-top:8px;}
+  section{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:18px 22px; margin-bottom:16px;}
+  h2{font-size:15px; text-transform:uppercase; letter-spacing:1px; border-left:6px solid var(--green); padding-left:10px; margin-bottom:14px;}
+  h2.out{border-color:var(--orange);} h2.map{border-color:var(--blue);} h2.time{border-color:var(--violet);}
+  h2.warn{border-color:var(--red);} h2.check{border-color:var(--green);} h2.ex{border-color:var(--amber);}
+  svg{width:100%; height:auto; display:block; border:1px solid var(--line); border-radius:6px; background:#fff;}
+  .legend{display:flex; flex-wrap:wrap; gap:14px; margin-top:12px; font-size:12px;}
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .sw{width:26px; height:4px; border-radius:2px; display:inline-block;}
+  table{width:100%; border-collapse:collapse; font-size:12.5px;}
+  th{background:#eef2f6; text-align:left; padding:8px 10px; border:1px solid var(--line); font-size:11.5px; text-transform:uppercase; letter-spacing:.5px;}
+  td{padding:8px 10px; border:1px solid var(--line); vertical-align:top;}
+  td.mono, .mono{font-family:Consolas, monospace; font-size:12px;}
+  .pill{display:inline-block; font-family:Consolas,monospace; font-size:10.5px; padding:1px 7px; border-radius:9px; color:#fff; white-space:nowrap;}
+  .p-orange{background:var(--orange);} .p-blue{background:var(--blue);} .p-violet{background:var(--violet);}
+  .p-amber{background:var(--amber);} .p-green{background:var(--green);}
+  .warnbox{border:2px solid var(--red); background:#fdf1f0; border-radius:6px; padding:14px 16px;}
+  .warnbox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  .checkbox{border:2px solid var(--green); background:#f0faf3; border-radius:6px; padding:14px 16px;}
+  .checkbox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  .boundbox{border:2px solid var(--gray); background:#f7f9fa; border-radius:6px; padding:14px 16px;}
+  .boundbox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  pre{background:#101820; color:#d8e2ea; border-radius:6px; padding:16px; font-family:Consolas, monospace; font-size:12.5px; line-height:1.55; overflow-x:auto;}
+  .cm{color:#7f97a8;} .st{color:#9fd68a;} .num{color:#f5c76a;} .key{color:#7ec8ff;}
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media(max-width:900px){.grid2{grid-template-columns:1fr;}}
+  footer{text-align:center; font-family:Consolas, monospace; font-size:11px; color:var(--gray); padding:10px 0 4px;}
+  .note{font-size:12px; color:var(--gray); margin-top:10px; line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header>
+  <h1>PRAMAAN — INDIVIDUAL WIRING DIAGRAM ① of ④ : MANAS (ROOTS)</h1>
+  <div class="sub">The Curation Engine — <b>“The list IS the product. Without Manas’s list, the computer subtracts from nothing.”</b></div>
+  <div class="meta">DOC: PRM-WD-01 &nbsp;·&nbsp; REV A &nbsp;·&nbsp; HackVerse Track 3 · 36-h Sprint · MAHE 8–10 Aug 2026 &nbsp;·&nbsp; Team: Vrajesh(BARK) · Murgesh(TRUNK) · Ajit(SAP) · Manas(ROOTS)</div>
+</header>
+
+<!-- ================= MAIN WIRING DIAGRAM ================= -->
+<section>
+  <h2>Block &amp; Wiring Overview — Inputs → Pipeline → Outputs</h2>
+  <svg viewBox="0 0 1240 880" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+    <defs>
+      <marker id="a-orange" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#e67e22"/></marker>
+      <marker id="a-blue"   markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2980b9"/></marker>
+      <marker id="a-violet" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8e44ad"/></marker>
+      <marker id="a-teal"   markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#16a085"/></marker>
+      <marker id="a-green"  markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#27ae60"/></marker>
+      <marker id="a-amber"  markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#f39c12"/></marker>
+      <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.2" fill="#e4eaf0"/></pattern>
+    </defs>
+    <rect width="1240" height="880" fill="url(#dots)"/>
+
+    <!-- column headers -->
+    <text x="140" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#6b7a89" letter-spacing="2">INPUTS — WHAT MANAS CONSUMES</text>
+    <text x="600" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#6b7a89" letter-spacing="2">THE CURATION PIPELINE</text>
+    <text x="1075" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#6b7a89" letter-spacing="2">OUTPUTS — WHO MANAS FEEDS</text>
+
+    <!-- ============ LEFT: INPUT BLOCKS ============ -->
+    <g stroke-width="2" font-size="11">
+      <rect x="20" y="70"  width="240" height="62" rx="6" fill="#f0faf3" stroke="#27ae60"/>
+      <text x="32" y="94"  font-weight="bold" fill="#1c2733">RuleRow SCHEMA</text>
+      <text x="32" y="112" font-size="10" fill="#6b7a89">packages/contracts · from Murgesh</text>
+
+      <rect x="20" y="152" width="240" height="62" rx="6" fill="#f0faf3" stroke="#27ae60"/>
+      <text x="32" y="176" font-weight="bold" fill="#1c2733">match_terms CONVENTION</text>
+      <text x="32" y="194" font-size="10" fill="#6b7a89">agreed w/ Murgesh — lookup’s lever</text>
+
+      <rect x="20" y="234" width="240" height="62" rx="6" fill="#eefaf8" stroke="#16a085"/>
+      <text x="32" y="258" font-weight="bold" fill="#1c2733">CGHS Rate Card 2024 (PDF)</text>
+      <text x="32" y="276" font-size="10" fill="#6b7a89">procedure prices · entry no. = citation</text>
+
+      <rect x="20" y="316" width="240" height="62" rx="6" fill="#eefaf8" stroke="#16a085"/>
+      <text x="32" y="340" font-weight="bold" fill="#1c2733">DPCO 2013 / NPPA + MRP strip</text>
+      <text x="32" y="358" font-size="10" fill="#6b7a89">medicine prices · MRP = legal max</text>
+
+      <rect x="20" y="398" width="240" height="62" rx="6" fill="#eefaf8" stroke="#16a085"/>
+      <text x="32" y="422" font-weight="bold" fill="#1c2733">Model Tenancy Act 2021 (PDF)</text>
+      <text x="32" y="440" font-size="10" fill="#6b7a89">§10 entry · §11 deposit · §12 lock-in · §15 rent</text>
+
+      <rect x="20" y="480" width="240" height="62" rx="6" fill="#fff8ec" stroke="#f39c12"/>
+      <text x="32" y="504" font-weight="bold" fill="#1c2733">TRAP SIGN-OFF (C4)</text>
+      <text x="32" y="522" font-size="10" fill="#6b7a89">planted line + official ₹2 · w/ Vrajesh</text>
+    </g>
+
+    <!-- left wires -->
+    <g stroke-width="2.5">
+      <circle cx="260" cy="101" r="3.5" fill="#27ae60"/><line x1="260" y1="101" x2="388" y2="101" stroke="#27ae60" marker-end="url(#a-green)"/>
+      <circle cx="260" cy="183" r="3.5" fill="#27ae60"/><line x1="260" y1="183" x2="388" y2="183" stroke="#27ae60" marker-end="url(#a-green)"/>
+      <circle cx="260" cy="265" r="3.5" fill="#16a085"/><line x1="260" y1="265" x2="388" y2="265" stroke="#16a085" marker-end="url(#a-teal)"/>
+      <circle cx="260" cy="347" r="3.5" fill="#16a085"/><line x1="260" y1="347" x2="388" y2="347" stroke="#16a085" marker-end="url(#a-teal)"/>
+      <circle cx="260" cy="429" r="3.5" fill="#16a085"/><line x1="260" y1="429" x2="388" y2="429" stroke="#16a085" marker-end="url(#a-teal)"/>
+      <circle cx="260" cy="511" r="3.5" fill="#f39c12"/><line x1="260" y1="511" x2="388" y2="511" stroke="#f39c12" marker-end="url(#a-amber)"/>
+    </g>
+    <g font-size="9" font-style="italic" fill="#8a97a3" text-anchor="middle">
+      <text x="325" y="115">the shape to fill</text>
+      <text x="325" y="197">lookup lever</text>
+      <text x="325" y="279">official source</text>
+      <text x="325" y="361">official source</text>
+      <text x="325" y="443">official source</text>
+      <text x="325" y="525">byte-exact</text>
+    </g>
+
+    <!-- ============ CENTER: MANAS PIPELINE ============ -->
+    <rect x="390" y="50" width="420" height="600" rx="10" fill="#fbfcfd" stroke="#1c2733" stroke-width="2.5"/>
+    <text x="600" y="80" text-anchor="middle" font-size="16" font-weight="bold" fill="#1c2733">MANAS — ROOTS</text>
+    <text x="600" y="99" text-anchor="middle" font-size="10.5" fill="#6b7a89">5 minutes per row · one rule at a time · zero guesses</text>
+
+    <g font-size="11" stroke-width="1.8">
+      <rect x="420" y="118" width="360" height="58" rx="5" fill="#fff" stroke="#16a085"/>
+      <text x="432" y="141" font-weight="bold">① PICK ITEM</text>
+      <text x="432" y="159" font-size="10" fill="#6b7a89">exactly as it is named on the bill / lease</text>
+
+      <rect x="420" y="186" width="360" height="58" rx="5" fill="#fff" stroke="#16a085"/>
+      <text x="432" y="209" font-weight="bold">② FIND OFFICIAL SOURCE</text>
+      <text x="432" y="227" font-size="10" fill="#6b7a89">open the PDF / strip · locate the exact entry</text>
+
+      <rect x="420" y="254" width="360" height="58" rx="5" fill="#fff" stroke="#16a085"/>
+      <text x="432" y="277" font-weight="bold">③ WRITE THE NUMBER</text>
+      <text x="432" y="295" font-size="10" fill="#6b7a89">exact official value + unit (per-tablet vs per-tablet)</text>
+
+      <rect x="420" y="322" width="360" height="58" rx="5" fill="#fff" stroke="#16a085"/>
+      <text x="432" y="345" font-weight="bold">④ WRITE THE SOURCE</text>
+      <text x="432" y="363" font-size="10" fill="#6b7a89">document · page / section / entry · year</text>
+
+      <rect x="420" y="390" width="360" height="58" rx="5" fill="#fff" stroke="#16a085"/>
+      <text x="432" y="413" font-weight="bold">⑤ WRITE SIMPLE SENTENCE</text>
+      <text x="432" y="431" font-size="10" fill="#6b7a89">one human line → rule_says_plain</text>
+
+      <rect x="420" y="470" width="360" height="76" rx="5" fill="#fff8ec" stroke="#f39c12" stroke-width="2.2"/>
+      <text x="432" y="492" font-weight="bold" fill="#b9770e">⚠ GOLDEN-RULE GATE</text>
+      <text x="432" y="509" font-size="10" fill="#6b7a89">clean source found? → status = VERIFIED</text>
+      <text x="432" y="524" font-size="10" fill="#6b7a89">NOT found? → “SOURCE NOT FOUND” → UNVERIFIED</text>
+      <text x="432" y="539" font-size="10" fill="#6b7a89">card says “check with a person” — never a guess</text>
+    </g>
+    <g stroke="#1c2733" stroke-width="1.8" marker-end="url(#a-orange)">
+      <line x1="600" y1="176" x2="600" y2="184" stroke="#1c2733"/>
+      <line x1="600" y1="244" x2="600" y2="252" stroke="#1c2733"/>
+      <line x1="600" y1="312" x2="600" y2="320" stroke="#1c2733"/>
+      <line x1="600" y1="380" x2="600" y2="388" stroke="#1c2733"/>
+      <line x1="600" y1="448" x2="600" y2="468" stroke="#1c2733"/>
+    </g>
+    <text x="600" y="572" text-anchor="middle" font-size="10.5" fill="#1c2733" font-weight="bold">15 ROWS TOTAL — the full sprint list</text>
+    <text x="600" y="589" text-anchor="middle" font-size="10" fill="#6b7a89">10 hospital (5 procedures + 5 medicines) + 5 lease clauses (3 illegal)</text>
+    <text x="600" y="620" text-anchor="middle" font-size="10" font-style="italic" fill="#8a97a3">exposed to the engine ONLY through MCP lookup_rule — server-authoritative</text>
+
+    <!-- ============ RIGHT: OUTPUT BLOCKS ============ -->
+    <g stroke-width="2" font-size="11">
+      <rect x="930" y="62"  width="290" height="60" rx="6" fill="#fff8ec" stroke="#f39c12"/>
+      <text x="942" y="85"  font-weight="bold">TRAP JSON → VRAJESH</text>
+      <text x="942" y="103" font-size="10" fill="#6b7a89">planted line · official ₹2 · expected gap</text>
+
+      <rect x="930" y="140" width="290" height="60" rx="6" fill="#fdf3e9" stroke="#e67e22"/>
+      <text x="942" y="163" font-weight="bold">BILL RULEBOOK JSON → MURGESH</text>
+      <text x="942" y="181" font-size="10" fill="#6b7a89">10–15 cited RuleRows · fuel for compare</text>
+
+      <rect x="930" y="218" width="290" height="60" rx="6" fill="#f7f0fa" stroke="#8e44ad"/>
+      <text x="942" y="241" font-weight="bold">COMPLAINT TEMPLATE → AJIT</text>
+      <text x="942" y="259" font-size="10" fill="#6b7a89">words + blanks · Granite fills, never decides</text>
+
+      <rect x="930" y="296" width="290" height="60" rx="6" fill="#f7f0fa" stroke="#8e44ad"/>
+      <text x="942" y="319" font-weight="bold">CONTROL-BILL JSON → AJIT</text>
+      <text x="942" y="337" font-size="10" fill="#6b7a89">6–8 correct items · all-green restraint beat</text>
+
+      <rect x="930" y="374" width="290" height="60" rx="6" fill="#fdf3e9" stroke="#e67e22"/>
+      <text x="942" y="397" font-weight="bold">LEASE RULEBOOK → MURGESH + VRAJESH</text>
+      <text x="942" y="415" font-size="10" fill="#6b7a89">5 clauses · 3 illegal · proves the tree</text>
+
+      <rect x="930" y="452" width="290" height="60" rx="6" fill="#edf4fa" stroke="#2980b9"/>
+      <text x="942" y="475" font-weight="bold">COUNTER-NOTICE TEMPLATE → VRAJESH</text>
+      <text x="942" y="493" font-size="10" fill="#6b7a89">lease-path letter · words + blanks</text>
+
+      <rect x="930" y="530" width="290" height="60" rx="6" fill="#edf4fa" stroke="#2980b9"/>
+      <text x="942" y="553" font-weight="bold">“RULE SAYS” STRINGS → VRAJESH</text>
+      <text x="942" y="571" font-size="10" fill="#6b7a89">one plain human line per proof card</text>
+
+      <rect x="930" y="608" width="290" height="60" rx="6" fill="#edf4fa" stroke="#2980b9"/>
+      <text x="942" y="631" font-weight="bold">CITATION ONE-PAGER → VRAJESH</text>
+      <text x="942" y="649" font-size="10" fill="#6b7a89">6 bulletproof stats + sources · deck fuel</text>
+    </g>
+
+    <!-- right wires + deadline tags -->
+    <g stroke-width="2.5">
+      <circle cx="810" cy="92"  r="3.5" fill="#f39c12"/><line x1="810" y1="92"  x2="928" y2="92"  stroke="#f39c12" marker-end="url(#a-amber)"/>
+      <circle cx="810" cy="170" r="3.5" fill="#e67e22"/><line x1="810" y1="170" x2="928" y2="170" stroke="#e67e22" marker-end="url(#a-orange)"/>
+      <circle cx="810" cy="248" r="3.5" fill="#8e44ad"/><line x1="810" y1="248" x2="928" y2="248" stroke="#8e44ad" marker-end="url(#a-violet)"/>
+      <circle cx="810" cy="326" r="3.5" fill="#8e44ad"/><line x1="810" y1="326" x2="928" y2="326" stroke="#8e44ad" marker-end="url(#a-violet)"/>
+      <circle cx="810" cy="404" r="3.5" fill="#e67e22"/><line x1="810" y1="404" x2="928" y2="404" stroke="#e67e22" marker-end="url(#a-orange)"/>
+      <circle cx="810" cy="482" r="3.5" fill="#2980b9"/><line x1="810" y1="482" x2="928" y2="482" stroke="#2980b9" marker-end="url(#a-blue)"/>
+      <circle cx="810" cy="560" r="3.5" fill="#2980b9"/><line x1="810" y1="560" x2="928" y2="560" stroke="#2980b9" marker-end="url(#a-blue)"/>
+      <circle cx="810" cy="638" r="3.5" fill="#2980b9"/><line x1="810" y1="638" x2="928" y2="638" stroke="#2980b9" marker-end="url(#a-blue)"/>
+    </g>
+    <g font-family="Consolas, monospace" font-size="9.5" fill="#6b7a89" text-anchor="middle">
+      <text x="869" y="85">P1 · 13:00</text>
+      <text x="869" y="163">P2 · 16:00</text>
+      <text x="869" y="241">P2 · 18:00</text>
+      <text x="869" y="319">P3 · 20:00</text>
+      <text x="869" y="397">P3 · 22:00</text>
+      <text x="869" y="475">P4 · 23:30</text>
+      <text x="869" y="553">P5 · 12:00</text>
+      <text x="869" y="631">P6 · 18:00</text>
+    </g>
+
+    <!-- ============ COMMON GROUND BUS ============ -->
+    <line x1="600" y1="650" x2="600" y2="758" stroke="#27ae60" stroke-width="3"/>
+    <circle cx="600" cy="650" r="4" fill="#27ae60"/>
+    <rect x="20" y="758" width="1200" height="42" rx="6" fill="#f0faf3" stroke="#27ae60" stroke-width="2.5"/>
+    <text x="620" y="784" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1e8449">★ COMMON GROUND BUS — THE CITATION GATE: every number ships with a named source · RuleRow schema FROZEN P1 · “SOURCE NOT FOUND” beats a made-up number, every time</text>
+    <text x="620" y="830" text-anchor="middle" font-size="10" font-style="italic" fill="#8a97a3">Every artifact above passes through this gate before it touches a teammate. The team waits 10 minutes for a correct citation rather than demoing a wrong number.</text>
+  </svg>
+
+  <div class="legend">
+    <span><i class="sw" style="background:#27ae60"></i> Green — contract bus (schema / citation gate)</span>
+    <span><i class="sw" style="background:#16a085"></i> Teal — official source documents</span>
+    <span><i class="sw" style="background:#e67e22"></i> Orange — wire to MURGESH (engine)</span>
+    <span><i class="sw" style="background:#8e44ad"></i> Violet — wire to AJIT (Granite / QA)</span>
+    <span><i class="sw" style="background:#2980b9"></i> Blue — wire to VRAJESH (screen / deck)</span>
+    <span><i class="sw" style="background:#f39c12"></i> Amber — demo-critical (the planted trap)</span>
+  </div>
+</section>
+
+<!-- ================= OUTPUT PIN TABLE ================= -->
+<section>
+  <h2 class="out">Output-by-Output Wiring Reference (pin-by-pin)</h2>
+  <table>
+    <tr><th>#</th><th>Artifact</th><th>Wire to</th><th>Deadline</th><th>Exactly what it carries</th><th>Unblocks</th><th>If late → fallback (nobody waits)</th></tr>
+    <tr><td>1</td><td class="mono">trap.json</td><td><span class="pill p-amber">VRAJESH</span></td><td class="mono">P1 · 13:00 (C4 pre-sprint)</td><td>Planted line no., official value ₹2 (paracetamol MRP), expected gap</td><td>Vrajesh’s trap-card beat (P3 20:00) — the demo’s red-card moment</td><td>Pre-agreed before 8 Aug (checklist C4). No fallback — the deterministic demo lives on this being byte-exact.</td></tr>
+    <tr><td>2</td><td class="mono">rulebook_bill.json</td><td><span class="pill p-orange">MURGESH</span></td><td class="mono">P2 · 16:00</td><td>10–15 RuleRows: item_category, match_terms[], official_value+unit, official_source+url, rule_says_plain, severity</td><td>Murgesh’s compare engine (03_compare) + MCP lookup_rule</td><td>Murgesh builds against a hardcoded 3-row stub and swaps yours in later — he never sits idle, you never rush a source.</td></tr>
+    <tr><td>3</td><td class="mono">template_complaint.md</td><td><span class="pill p-violet">AJIT</span></td><td class="mono">P2 · 18:00</td><td>Complaint letter words with blanks + banner slot (“AI-generated — review before sending”)</td><td>Ajit’s Granite fill (step 06) AND the no-model fallback</td><td>Ajit writes a minimal placeholder template; you replace wording later.</td></tr>
+    <tr><td>4</td><td class="mono">control_bill.json</td><td><span class="pill p-violet">AJIT</span></td><td class="mono">P3 · 20:00</td><td>6–8 items that are ALL CORRECT → all-green cards (restraint beat: the system doesn’t accuse everyone)</td><td>Ajit’s P7 control-bill path</td><td>Cut the restraint beat (cut list: end-P5). Never invent items to fill it.</td></tr>
+    <tr><td>5</td><td class="mono">rulebook_lease.json</td><td><span class="pill p-orange">MURGESH</span> <span class="pill p-blue">VRAJESH</span></td><td class="mono">P3 · 22:00</td><td>5 clauses, 3 illegal: clause_type, legal_status, law_ref+url, rule_says_plain, suggested_fix_plain</td><td>Lease switch on the SAME screen (P5) — proof of the tree</td><td>FIRST thing cut. Prove the tree with words + one deck screenshot instead of a live switch.</td></tr>
+    <tr><td>6</td><td class="mono">template_counter_notice.md</td><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P4 · 23:30</td><td>Lease-path letter words + blanks (same banner rule)</td><td>Lease letter slot in the right box</td><td>Cut with the lease stub; narrate it.</td></tr>
+    <tr><td>7</td><td class="mono">rule_says_plain strings</td><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P5 · 12:00</td><td>One plain human line for EVERY card — this is what the citizen actually reads</td><td>Vrajesh’s P5 screen polish</td><td>Cards temporarily show raw citation text — never a paraphrase by anyone else.</td></tr>
+    <tr><td>8</td><td class="mono">citation_one_pager.md</td><td><span class="pill p-blue">VRAJESH</span></td><td class="mono">P6 · 18:00</td><td>The 6 bulletproof stats + their sources (28.57L cases, 2.2% reported, 1.37L insurance complaints, 8Cr challans, 40% gig earnings, 44% OOP spend)</td><td>Vrajesh’s deck (he embeds 3)</td><td>Deck ships with fewer stats. An unsourced number NEVER ships.</td></tr>
+  </table>
+  <p class="note"><b>The anti-wait rule:</b> if a handoff TO Manas is late (e.g., schema shape), he works his next independent task — he never sits idle and never rebuilds a teammate’s piece. If Manas is late, the receiver uses the fallback above. The wire bends; the sprint doesn’t stop.</p>
+</section>
+
+<!-- ================= FIELD MAP ================= -->
+<section>
+  <h2 class="map">RuleRow Field Map — the 4 simple things → the schema</h2>
+  <table>
+    <tr><th>The simple thing Manas writes</th><th>Bill RuleRow field(s)</th><th>Lease RuleRow field(s)</th><th>Engineering note</th></tr>
+    <tr><td><b>1 · THE NAME</b> — what the item is called on the paper</td><td class="mono">item_category (+ procedure_code)</td><td class="mono">clause_type</td><td>Plus <span class="mono">match_terms[]</span> on both — the synonyms lookup_rule matches against. Agreed convention with Murgesh; a thin list = a silent miss.</td></tr>
+    <tr><td><b>2 · THE NUMBER</b> — the official price / rule</td><td class="mono">official_value + official_unit</td><td class="mono">legal_status: illegal | risky | info</td><td>Unit must normalize against the bill’s unit (per-tablet vs per-tablet — never per-tablet vs line-total). Compare normalizes using official_unit.</td></tr>
+    <tr><td><b>3 · THE SOURCE</b> — where the number came from</td><td class="mono">official_source + official_source_url</td><td class="mono">law_ref + law_ref_url</td><td>Citation gate. No source → <span class="mono">status:"UNVERIFIED"</span> → card says “unverified”, never a gap.</td></tr>
+    <tr><td><b>4 · THE SIMPLE SENTENCE</b> — one human line</td><td class="mono">rule_says_plain</td><td class="mono">rule_says_plain + suggested_fix_plain</td><td>Rendered verbatim on the citizen screen. Manas is the ONLY author of these strings.</td></tr>
+    <tr><td><b>Honesty bit</b> — “I couldn’t find a clean source”</td><td class="mono">status: "UNVERIFIED" + notes</td><td class="mono">status: "UNVERIFIED"</td><td>A correct outcome, not a failure. Silence over false alarm.</td></tr>
+  </table>
+</section>
+
+<!-- ================= TIMELINE ================= -->
+<section>
+  <h2 class="time">Manas Phase Timeline (wall-clock · who he blocks)</h2>
+  <table>
+    <tr><th>Phase</th><th>Time</th><th>Task</th><th>Done when…</th><th>Blocks</th></tr>
+    <tr><td class="mono">P0</td><td class="mono">D1 09:00–10:30</td><td>Load rulebook v0; confirm citation format with Vrajesh; print citation sheet</td><td>Citation sheet printed; format agreed</td><td>—</td></tr>
+    <tr><td class="mono">P1</td><td class="mono">D1 10:30–13:00</td><td>Finalize planted-trap values with Vrajesh; write to JSON</td><td>Trap JSON committed; V has the numbers</td><td class="mono">V P3</td></tr>
+    <tr><td class="mono">P2</td><td class="mono">D1 13:45–16:00</td><td>Complete bill rulebook to 10–15 rules — every row: name, number, SOURCE ref, plain sentence</td><td>Rulebook JSON complete + cited</td><td class="mono">M compare</td></tr>
+    <tr><td class="mono">P2</td><td class="mono">D1 16:00–18:00</td><td>Write complaint draft template (filled by Granite or fallback)</td><td>Template file ready for Ajit</td><td class="mono">A P3</td></tr>
+    <tr><td class="mono">P3</td><td class="mono">D1 18:00–20:00</td><td>Build CONTROL bill JSON (all-correct → all-green) with Ajit</td><td>Control JSON committed</td><td class="mono">A P7</td></tr>
+    <tr><td class="mono">P3</td><td class="mono">D1 20:00–22:00</td><td>Lease rulebook stub: 5 clauses, 3 illegal, each with law ref + plain text</td><td>Lease JSON committed</td><td class="mono">V,M P5</td></tr>
+    <tr><td class="mono">P4</td><td class="mono">D1 22:00–23:30</td><td>Write counter-notice template for the lease path</td><td>Lease template ready</td><td>—</td></tr>
+    <tr><td class="mono">P5</td><td class="mono">D2 07:00–12:00</td><td>Plain-language “what the rule says” strings for EVERY card</td><td>All cards have a human-readable rule line</td><td class="mono">V P5</td></tr>
+    <tr><td class="mono">P6</td><td class="mono">D2 12:45–18:00</td><td>Citation one-pager for Q&amp;A (6 bulletproof stats + sources)</td><td>One-pager printed; V puts 3 in deck</td><td class="mono">V deck</td></tr>
+    <tr><td class="mono">P7</td><td class="mono">D2 18:00–22:00</td><td>Sit with Vrajesh during rehearse #1; catch any wrong number/wording live</td><td>Live notes handed to V</td><td>—</td></tr>
+    <tr><td class="mono">P8</td><td class="mono">D2 22:00–24:00</td><td>Final source audit of deck + screen; prepare sources/curation Q&amp;A answers</td><td>Deck stats all cited; answers written</td><td>—</td></tr>
+    <tr><td class="mono">P9</td><td class="mono">D3 06:30–09:00</td><td>Verify on-screen numbers one last time after Ajit’s break-fixes; fix rulebook if a value was wrong</td><td>Screen numbers == source, post-fix</td><td>—</td></tr>
+    <tr><td class="mono">P10</td><td class="mono">D3 09:00→jury</td><td>Own the sources / curation / scale Q&amp;A; citation sheet at the table</td><td>Answers sharp; sheet in hand</td><td>—</td></tr>
+  </table>
+  <p class="note"><b>Long pole warning:</b> Manas’s rulebook (checklist C3) and the trap sign-off (C4) are pre-sprint items — if they’re red at 09:00 on 8 Aug, the whole team is ~6 hours behind before P1 starts. 2–3 rows per day starting NOW = green on arrival.</p>
+</section>
+
+<!-- ================= WARNINGS / CHECKLIST / EXAMPLE / BOUNDARY ================= -->
+<section>
+  <h2 class="warn">⚠ CRITICAL — NEVER DO THIS</h2>
+  <div class="warnbox">
+    <ul>
+      <li><b>NEVER make up a number.</b> No clean official source → write <span class="mono">“SOURCE NOT FOUND”</span> → the card says “check with a person.” A made-up number is a lie; the whole product is “prove, don’t guess.”</li>
+      <li><b>NEVER write “approximately ₹X.”</b> Exact value + unit, or UNVERIFIED. There is no third option.</li>
+      <li><b>NEVER ship a RuleRow without <span class="mono">match_terms[]</span>.</b> lookup_rule matches on them — a thin list means the rule is silently never found, and the card never appears. Silence where proof should be.</li>
+      <li><b>NEVER rename a RuleRow field after P1.</b> The schema is frozen — it is Murgesh’s contract. A shape problem is a 2-minute V–M sync, not a surprise edit.</li>
+      <li><b>NEVER let the trap value drift.</b> The planted official number (₹2) must stay byte-exact with Vrajesh’s signed-off spec — the deterministic demo depends on it.</li>
+      <li><b>NEVER let an unsourced number reach the screen or the deck.</b> Citation gate: the team waits 10 minutes for a correct citation rather than demo a wrong number. Manas has veto power here — use it.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="grid2">
+  <section>
+    <h2 class="check">✔ Manas Pre-Demo Checks</h2>
+    <div class="checkbox">
+      <ul>
+        <li><b>Pre-sprint C3:</b> bill rulebook v0 drafted — 10–15 rules, every row has a source ref. <i>(Long pole — start now, not on 8 Aug.)</i></li>
+        <li><b>Pre-sprint C4:</b> planted-trap values written down and signed off by Manas + Vrajesh.</li>
+        <li><b>Pre-sprint:</b> CGHS PDF, DPCO/NPPA list, Model Tenancy Act PDF saved locally (venue wifi is not a source).</li>
+        <li><b>Pre-sprint:</b> IBM GLE course “Future Forward: AI for Innovation” certificate done (Round-1 requirement, goes in the PPT).</li>
+        <li><b>P4 23:30:</b> verify every number on Vrajesh’s current screen against its source.</li>
+        <li><b>P8:</b> final source audit of deck + screen — zero unsourced numbers.</li>
+        <li><b>P9:</b> re-verify screen numbers after Ajit’s break-fixes.</li>
+        <li><b>P10:</b> citation sheet physically at the table; own the sources/curation/scale answers.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="ex" style="border-color:#6b7a89">Boundaries — What Manas does NOT do</h2>
+    <div class="boundbox">
+      <ul>
+        <li><b>No engine code</b> — Murgesh owns compare / hold / orchestrator. Manas feeds it JSON.</li>
+        <li><b>No screens or layout</b> — Vrajesh owns the 3-box page. Manas feeds it strings.</li>
+        <li><b>No model calls</b> — Ajit fills Manas’s template with Granite; Manas never touches the model.</li>
+        <li><b>He MAY</b> tell Murgesh a row shape is malformed or match_terms is too thin — that’s a contract issue, not content ownership.</li>
+        <li><b>He MAY</b> veto any on-screen number without a source — that veto is the product’s integrity layer.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<section>
+  <h2 class="ex">Worked Example — the first row to solder (this is also THE trap)</h2>
+  <pre>{
+  <span class="key">"rule_id"</span>: <span class="st">"bill-para-500"</span>,
+  <span class="key">"domain"</span>: <span class="st">"bill"</span>,
+  <span class="key">"item_category"</span>: <span class="st">"Paracetamol 500mg tablet"</span>,            <span class="cm">// ① THE NAME</span>
+  <span class="key">"match_terms"</span>: [<span class="st">"paracetamol"</span>, <span class="st">"crocin"</span>, <span class="st">"dolo"</span>, <span class="st">"calpol"</span>, <span class="st">"500mg"</span>],  <span class="cm">// lookup lever</span>
+  <span class="key">"official_value"</span>: <span class="num">2</span>,                                      <span class="cm">// ② THE NUMBER</span>
+  <span class="key">"official_unit"</span>: <span class="st">"per tablet"</span>,
+  <span class="key">"official_source"</span>: <span class="st">"MRP printed on strip / Drug Price Control Order (DPCO)"</span>,  <span class="cm">// ③ THE SOURCE</span>
+  <span class="key">"official_source_url"</span>: <span class="st">"photo of strip + NPPA list ref"</span>,
+  <span class="key">"rule_says_plain"</span>: <span class="st">"Paracetamol 500mg costs about ₹2 per tablet by law (MRP). If a hospital charged you ₹45 per tablet, that is a 20× markup and you were overcharged."</span>,  <span class="cm">// ④ SIMPLE SENTENCE</span>
+  <span class="key">"severity"</span>: <span class="st">"high"</span>,
+  <span class="key">"status"</span>: <span class="st">"VERIFIED"</span>
+}</pre>
+  <p class="note">This single row powers the stage moment: planted charge ₹45 → official ₹2 → gap ₹43/tablet → red card with 2 source links → the MRP trap “a human scanning fast would miss.” One row, five minutes, the whole story.</p>
+</section>
+
+<footer>
+  PRAMAAN · Individual Wiring Diagram ① of ④ · MANAS (ROOTS) · Next: ② MURGESH (TRUNK) · “You’re not making a list. You’re building the ground the whole product stands on.”
+</footer>
+
+</div>
+</body>
+</html>

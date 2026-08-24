@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ProofCard",
+  "type": "object",
+  "required": ["item", "your_value", "official_value", "gap", "status", "source_anchor", "rule_anchor", "compute_anchor", "rule_says_plain"],
+  "properties": {
+    "item":           { "type": "string" },
+    "your_value":     { "type": "number" },
+    "official_value": { "type": "number" },
+    "gap":            { "type": "number" },
+    "status":         { "enum": ["gap", "ok", "unverified"] },
+    "source_anchor": {
+      "type": "object",
+      "required": ["ref"],
+      "properties": {
+        "ref":             { "type": "string" },
+        "bbox":            { "type": "array", "items": { "type": "number" }, "minItems": 4, "maxItems": 4 },
+        "ocr_confidence":  { "type": "number" }
+      }
+    },
+    "rule_anchor": {
+      "type": "object",
+      "required": ["ref"],
+      "properties": {
+        "ref": { "type": "string" },
+        "url": { "type": "string" }
+      }
+    },
+    "compute_anchor": { "type": "string" },
+    "rule_says_plain":{ "type": "string" }
+  },
+  "additionalProperties": false
+}

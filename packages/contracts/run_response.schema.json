@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RunResponse",
+  "type": "object",
+  "required": ["run_id", "domain", "extracted_fields", "proof_cards", "hold", "draft", "audit"],
+  "properties": {
+    "run_id":           { "type": "string" },
+    "domain":           { "type": "string" },
+    "extracted_fields": { "type": "array" },
+    "proof_cards":      { "type": "array" },
+    "hold":             { "oneOf": [{ "type": "object" }, { "type": "null" }] },
+    "draft": {
+      "type": "object",
+      "required": ["text", "banner"],
+      "properties": {
+        "text":   { "type": "string" },
+        "banner": { "type": "string" }
+      }
+    },
+    "audit": { "type": "array" }
+  },
+  "additionalProperties": false
+}

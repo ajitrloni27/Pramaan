@@ -1,0 +1,22 @@
+To: {{landlord_name}}
+From: {{tenant_name}}
+Date: {{current_date}}
+Subject: Proposed Amendments to Draft Rental Agreement for {{property_address}}
+
+Dear {{landlord_name}},
+
+Thank you for sharing the draft rental agreement for {{property_address}}. After reviewing the terms against current statutory tenancy regulations, I found a clause that requires modification prior to execution:
+
+Draft Clause Category: {{clause_type}}
+Legal Assessment: {{legal_status}}
+Statutory Reference: {{law_ref}}
+Statutory Mandate: {{rule_says_plain}}
+
+To ensure the lease agreement remains legally compliant and binding for both parties, please replace the existing clause wording with the following standardized provision:
+
+"{{suggested_fix_plain}}"
+
+Please send over the revised agreement incorporating this update so we may proceed with signing.
+
+Sincerely,
+{{tenant_name}}

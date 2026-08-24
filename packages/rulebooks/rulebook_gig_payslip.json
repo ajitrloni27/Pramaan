@@ -1,0 +1,417 @@
+{
+  "metadata": {
+    "guideline_name": "Motor Vehicle Aggregator Guidelines, 2025",
+    "issued_by": "Ministry of Road Transport and Highways (MoRTH)",
+    "parent_act": "Motor Vehicles Act, 1988 (Section 93)",
+    "previous_version": "Motor Vehicle Aggregator Guidelines, 2020",
+    "adoption_deadline": "3 months from date of issue",
+    "source_url": "https://morth.nic.in/motor-vehicle-aggregator-guidelines-2025"
+  },
+  "definitions": {
+    "aggregator": "Entity providing digital platform for transportation services (as per MV Act Sec 2(1A)).",
+    "app": "Digital application developed/maintained by aggregator.",
+    "apportioned_fare": "Part of fare retained by aggregator.",
+    "driver_fare": "Part of fare payable to driver (includes toll/parking paid by driver).",
+    "dynamic_pricing": "Fare algorithm output raising price when demand > supply.",
+    "fare": "Total charges payable by passenger (includes toll, tax, parking).",
+    "journey": "Trip undertaken or not, from departure to destination.",
+    "licence": "Licence issued under Section 93 of MV Act.",
+    "on_board": "Registering drivers/vehicles on digital platform.",
+    "off_board": "Deregistering drivers/vehicles.",
+    "passenger": "Person using app for journey.",
+    "rating": "Assessment of journey quality based on aggregator parameters.",
+    "security_deposit": "Amount payable by aggregator (bank guarantee/insurance surety bond)."
+  },
+  "applicability": {
+    "clause": 2,
+    "applies_to": "Any aggregator operating within a State.",
+    "exemptions": [
+      "Entities providing only interoperable network (no direct onboarding)",
+      "Entities engaged in sale of tickets for public service vehicles"
+    ]
+  },
+  "licensing": {
+    "application": {
+      "clause": 4,
+      "form": "Form I",
+      "portal": "Designated Portal (Central Govt) / State Govt until portal ready",
+      "decision_timeline": "90 days from application",
+      "licencegranttimeline": "15 days from fee/deposit payment"
+    },
+    "fees": {
+      "clause": 5,
+      "grant": 500000,
+      "renewal": 25000,
+      "address_change": 25000
+    },
+    "security_deposit": {
+      "clause": 6,
+      "tiers": [
+        { "vehicles": "Up to 100 buses OR 1000 other MV", "amount": 1000000 },
+        { "vehicles": "Up to 1000 buses OR 10000 other MV", "amount": 2500000 },
+        { "vehicles": "> 1000 buses OR > 10000 other MV", "amount": 5000000 }
+      ]
+    },
+    "validity": {
+      "clause": 7,
+      "period_years": 5,
+      "renewalperiodyears": 5
+    },
+    "eligibility": {
+      "clause": 8,
+      "entity_types": [
+        "Company (Companies Act 2013)",
+        "LLP (LLP Act 2008)",
+        "Co-operative Society (Drivers/MV Owners)"
+      ],
+      "compliance_laws": [
+        "Motor Vehicles Act 1988",
+        "Digital Personal Data Protection Act 2023",
+        "Consumer Protection Act 2019",
+        "Information Technology Act 2000 + Intermediary Guidelines"
+      ]
+    }
+  },
+  "conditionsforlicence": {
+    "clause": 9,
+    "training": "Induction Training Programme (Clause 10) before onboarding.",
+    "commencement_intimation": "Written intimation to Competent Authority; update within 6 months of licence grant.",
+    "precommencementnotice": "72 hours prior to commencement, intimate authority + upload on portal.",
+    "healthsafetyguidelines": "Follow Central/State Govt health/public safety guidelines.",
+    "passenger_insurance": "Minimum Rs. 5 Lakh per passenger.",
+    "multiaggregatorpolicy": "Cannot prohibit/restrict drivers from operating with multiple aggregators.",
+    "rating_mechanism": "App must allow both driver and passenger to rate journey experience.",
+    "permit_compliance": "Must onboard vehicles with valid contract carriage permit.",
+    "past_cancellation": "Licence should not have been cancelled in past 1 year.",
+    "grievance_officer": {
+      "appointment": "Mandatory",
+      "duties": "Resolve grievances, provide details to Competent Authority online",
+      "visibility": "Name, email, phone on App and website"
+    }
+  },
+  "induction_training": {
+    "clause": 10,
+    "duration_hours": 40,
+    "format": "In-person + Virtual",
+    "curriculum": [
+      "App usage",
+      "Relevant Acts/Rules provisions",
+      "Motor Vehicles (Driving) Regulations 2017",
+      "First responder training (min 6 hours) for emergencies/accidents",
+      "Careful driving, traffic rules, MV maintenance, fuel efficiency, conduct",
+      "Route familiarization",
+      "Agreement terms/conditions",
+      "Gender sensitivity + Divyangjan sensitivity/mobility needs",
+      "Other State Govt required training"
+    ],
+    "portal_upload": "Training structure details must be uploaded on designated portal."
+  },
+  "driver_compliances": {
+    "clause": 11,
+    "onboarding_conditions": [
+      "Valid identity proof (CMVR Rule 4)",
+      "Valid driving licence for vehicle type/class throughout onboarding",
+      "Required experience (MV Act Sec 7(1))",
+      "Valid bank account in driver's name",
+      "No conviction in past 3 years for: DUI/drugs, cognizable offences under BNS 2023/BNSS 2023 (fraud, sexual offences, MV used for crime, property damage/theft, violence, terror, nuisance/danger)",
+      "Medical examination (fitness + eye check) by identified hospital/institution",
+      "Psychological analysis by aggregator to determine fitness",
+      "Police verification of character/antecedents (min 7 days prior to onboarding) + written record",
+      "Valid contract executed (in State language) specifying terms; standard terms available online"
+    ],
+    "welfare_conditions": [
+      "Health insurance: Min Rs. 5 Lakh per driver (increase % as notified by Central Govt)",
+      "Term insurance: Min Rs. 10 Lakh per driver (increase % as notified by Central Govt)",
+      "Social Security Code 2020 prevails upon notification/implementation",
+      "Annual Refresher Training (in-person + virtual); maintain records",
+      "Bottom 5 percentile rated drivers: Compulsory quarterly refresher training (else off-boarded)",
+      "Complaint inquiry: Within 3 days of registration; action only after inquiry; inform passenger of outcome"
+    ],
+    "digital_records": [
+      "Photograph",
+      "Physical copy of Driving Licence",
+      "Present residential address + proof (CMVR specified)",
+      "Verified bank account details",
+      "Two emergency contacts (name, address, contact info)",
+      "Authentication from SARATHI portal"
+    ]
+  },
+  "vehicle_compliances": {
+    "clause": 13,
+    "conditions": [
+      "Valid registration",
+      "Valid Certificate of Fitness (MV Act)",
+      "Display registration mark (CMVR)",
+      "Valid third-party insurance",
+      "Valid PUC certificate (CMVR 1989)",
+      "State/urban emission norms",
+      "City-specific fuel norms",
+      "Paid applicable MV taxes/dues",
+      "No unpaid challans for offences/contraventions under MV Act",
+      "Display copy of driver's licence + MV permit (if applicable) inside vehicle (back of front seat next to driver, visible to passengers) — except motorcycles",
+      "Functional VLTD/VLTS (AIS 140 compliant) + panic button (CMVR Rule 125H) connected to aggregator control room + State/UT integrated command centre",
+      "Disabled child lock mechanism (except 3-wheelers, motorcycles, buses)",
+      "Manual override for central locking (except 3-wheelers, motorcycles, buses)",
+      "Fire extinguisher (suitable capacity) inside vehicle (except motorcycles)",
+      "First-aid kit inside vehicle"
+    ],
+    "age_limit": {
+      "clause": "13.2",
+      "maxyearsfrom_registration": 8,
+      "rule": "Cannot onboard vehicles registered > 8 years ago; ensure all onboarded vehicles do not exceed 8 years since initial registration."
+    },
+    "verification_records": [
+      "Certificate of Registration",
+      "Certificate of Fitness",
+      "Chassis and engine numbers",
+      "Third-party insurance policy",
+      "PUC certificate",
+      "Pending e-challans count prior to onboarding + clearance before onboarding",
+      "Real-time authentication on VAHAN portal"
+    ]
+  },
+  "technology_compliances": {
+    "clause": 14,
+    "website_disclosure": [
+      "Ownership details",
+      "Registered address",
+      "Fare structure",
+      "Customer service contact info",
+      "Email address",
+      "Services offered"
+    ],
+    "app_requirements": [
+      "Compliant with applicable law",
+      "Accessible in English, Hindi, + official State/UT language (if not Hindi)",
+      "Cyber safety certified by CERT-In empaneled firm",
+      "Data generation/storage on App per DPDP Act 2023",
+      "Disclosure of fare share proportion, incentives, driver fare, apportioned fare (as notified by State Govt) on website + App",
+      "Live location sharing feature for passengers (until journey completion)",
+      "Special features for Divyangjan accessibility",
+      "Clear high-resolution picture of onboarded driver",
+      "Zero-tolerance policy for drugs/alcohol use by drivers on duty (upload policy + complaint procedure on website/App; immediate off-boarding pending inquiry upon complaint)",
+      "Driver contact info available to passenger for min 7 days post-journey",
+      "24x7 control room monitoring all onboarded vehicles (uninterrupted contact)",
+      "24x7 call centre (active phone + email on website/App) in English + State official language for journey/driver issues + grievance redressal",
+      "Cooperation with lawfully authorised authorities investigating accidents/incidents"
+    ]
+  },
+  "passenger_safety": {
+    "clause": 15,
+    "conditions": [
+      "VLTD/VLTS functioning properly + feed received + linked to State integrated Command Control Centre (includes in-App tracking for all MV including motorcycles/3-wheelers)",
+      "Driver follows App-indicated route; deviation signals control room → immediate connection with driver + passenger",
+      "Safety of passengers (especially children, women, divyangjan) + applicable law compliance ensured",
+      "App mechanism to verify driver identity matches police-verified onboarded identity",
+      "Regular checks by authorized personnel of onboarded vehicles"
+    ]
+  },
+  "non_discrimination": {
+    "clause": 16,
+    "policy": "Treat driver-owned/third-party-provided vehicles at parity with aggregator-owned vehicles."
+  },
+  "fare_regulation": {
+    "clause": 17,
+    "base_fare": {
+      "source": "State Govt notified fare for respective category/class",
+      "minimumdistancekm": 3,
+      "covers": "Dead mileage (distance without passenger + pickup distance/fuel)"
+    },
+    "dynamic_pricing": {
+      "min_discount": "50% lower than base fare",
+      "max_multiplier": "2x base fare"
+    },
+    "driver_share": {
+      "driverownedvehicle": {
+        "min_percentage": 80,
+        "includes": "All costs under driver fare",
+        "retainedbyaggregator": "Apportioned Fare (remaining)",
+        "settlement": "Daily/weekly/fortnightly (not later per agreement)"
+      },
+      "aggregatorownedvehicle": {
+        "min_percentage": 60,
+        "includes": "All costs under driver fare",
+        "retainedbyaggregator": "Apportioned Fare (remaining)"
+      },
+      "other_scenarios": "As per agreement between driver and aggregator"
+    },
+    "undeterminedfarestates": {
+      "rule": "Aggregator may notify base fare to State Govt; followed until State determines fare",
+      "other_classes": "Fixation by State Govt"
+    },
+    "deadmileagecharge": {
+      "rule": "No charge except when ride availment distance < 3 km",
+      "fare_calculation": "Only from journey origin to destination drop-off point"
+    }
+  },
+  "cancellation": {
+    "clause": 18,
+    "by_driver": {
+      "penalty": "10% of Fare (max Rs. 100)",
+      "condition": "Without valid reason (specified on website/App)"
+    },
+    "by_passenger": {
+      "fee": "10% of Fare (max Rs. 100)",
+      "condition": "Without valid reason (specified on website/App)",
+      "distribution": "Divided between driver and aggregator in same proportion as Clause 17 (fare regulation)"
+    }
+  },
+  "penalty_deduction": {
+    "clause": 19,
+    "rule": "Penalty (Clause 18) deducted from respective share (Clause 17) of driver or aggregator."
+  },
+  "sustainable_fleet": {
+    "clause": 20,
+    "rule": "State Govt may direct incremental annual increase in % of electric/alternate fuel/zero emission vehicles."
+  },
+  "divyangjan_fleet": {
+    "clause": 21,
+    "rule": "State Govt determines adequate number of Divyangjan-friendly MVs; directs aggregators to proportionately include in fleet."
+  },
+  "electricmobilityconversion": {
+    "clause": 22,
+    "rule": "Mandatory adherence to EV inclusion targets fixed by appropriate Govt/air quality regulator/State Govt."
+  },
+  "nontransportmotorcycles": {
+    "clause": 23,
+    "permissions": [
+      "State Govt may allow aggregation of non-transport motorcycles for passenger journeys (shared mobility, reduced congestion/pollution, affordable mobility, hyperlocal delivery, livelihood)",
+      "State Govt may permit under MV Act Sec 67(3)",
+      "State Govt may impose fees for authorizations (daily/weekly/fortnightly basis)",
+      "Onboarding must satisfy all guideline compliances"
+    ]
+  },
+  "suspension": {
+    "clause": 24,
+    "grounds": [
+      "Failure to ensure passenger/driver safety (including via quarterly rating parameter analysis)",
+      "Frequent fare issues: unjustified dynamic pricing, non-compliance with fare division guidelines, unsubstantiated charges on drivers",
+      "Failure to comply with driver contract obligations",
+      "Failure to comply with guidelines",
+      "Jeopardizing passenger safety/driver well-being",
+      "Safety standard violations resulting in road accidents",
+      "Severity of financial irregularities (via account audit)",
+      "Other parameters deemed fit by Competent Authority"
+    ],
+    "procedure": {
+      "order": "Suspension Order (reasons in writing)",
+      "maxperiodmonths": 3,
+      "hearingtimelinedays": 10,
+      "alternative_penalty": "Rs. 1 Lakh to Rs. 1 Crore (if suspension not expedient/feasible)"
+    },
+    "post_suspension": {
+      "immediate_stop": "All operations under Licence until revocation/period ends",
+      "undertaking": "Before expiry, written undertaking that suspension grounds resolved",
+      "acknowledgement_order": "Competent Authority passes order acknowledging resolution + undertaking receipt",
+      "probationary_period": {
+        "min_months": 2,
+        "max_months": 6,
+        "rule": "Resume operations; ensure compliance; infractions during this period may lead directly to cancellation (Clause 25)"
+      }
+    }
+  },
+  "cancellation_surrender": {
+    "clause": 25,
+    "cancellation_grounds": [
+      "Licence suspended within 3 financial years + another infraction under Clause 24",
+      "Violation of grievous nature endangering passenger/driver safety/security"
+    ],
+    "procedure": {
+      "showcausenotice": "Issued by Competent Authority",
+      "hearingtimelinedays": 10,
+      "decision": "Reasoned order; bring to notice of other States + Central Govt"
+    },
+    "consequences": {
+      "immediate_stop": "All operations under Licence",
+      "security_deposit": "Forfeited (without prejudice to cancellation order)"
+    },
+    "voluntary_surrender": {
+      "rule": "May surrender at any time; Security Deposit returned after deducting outstanding dues"
+    }
+  },
+  "appeal": {
+    "clause": 26,
+    "timeline_days": 30,
+    "authority": "Notified appellate authority designated by State Govt",
+    "form": "Memorandum disclosing grounds + requisite fee + copy of impugned order",
+    "decisiontimelinedays": 60,
+    "powers": "Pass orders as deemed fit"
+  },
+  "stategovtpowers": {
+    "clause": 27,
+    "information_call": "Written notice to call for information/documents/records to ensure compliance; includes power to conduct inquiry",
+    "authentication_enablement": "Enable aggregator to authenticate onboarded vehicles/drivers/owners via VAHAN and SARATHI portals"
+  },
+  "forms": {
+    "form_i": {
+      "title": "Application for Grant of Licence",
+      "clause_ref": "4.1",
+      "fields": [
+        "Full name",
+        "Head office address",
+        "Branch offices count + addresses",
+        "Registration certificate (Company/Firm/Co-op)",
+        "Key managerial personnel/authorized signatory details",
+        "Telephone, website, email",
+        "Number/type of vehicles proposed + separate list (vehicle numbers + permit particulars)",
+        "GPS/GPRS facility details",
+        "Other infrastructure details",
+        "Server location for data storage",
+        "Returns filed last 3 financial years (financial statements)",
+        "Application fee paid details",
+        "Security Deposit details"
+      ]
+    },
+    "form_ii": {
+      "title": "Application for Renewal of Licence",
+      "clause_ref": "7.2",
+      "fields": [
+        "Full name",
+        "Main office address",
+        "Branch offices count + addresses",
+        "Registration certificate",
+        "Key managerial personnel details",
+        "Telephone, website, email",
+        "Number/type of vehicles proposed + separate list",
+        "GPS/GPRS facility details",
+        "Other infrastructure details",
+        "Server location for data storage",
+        "Returns filed last 3 years",
+        "Licence details (number, suspensions count + details)",
+        "Fee paid details",
+        "Security Deposit details"
+      ]
+    },
+    "form_iii": {
+      "title": "Licence for Aggregator",
+      "clause_ref": "4.7",
+      "fields": [
+        "Full name of Aggregator",
+        "Main office address",
+        "Branch offices count + addresses",
+        "Telephone, website, email",
+        "Number of auto rickshaw/e-rickshaw/motor cab/motorcycle/bus (per enclosed list)",
+        "Particulars of manner of functioning",
+        "Application fee paid details",
+        "Security Deposit details"
+      ]
+    }
+  },
+  "pramaanintegrationnotes": {
+    "usage": "This JSON serves as the 'Official Rule' source for the Pramaan Engine when auditing Gig Payslips, Aggregator Terms of Service, or Driver Contracts.",
+    "matching_strategy": {
+      "faresharecheck": "Match 'Driver Payout' on payslip against Clause 17.4 (min 80% for driver-owned) or 17.5 (min 60% for aggregator-owned). Flag if below threshold.",
+      "dynamicpricingcheck": "Match 'Surge Multiplier' against Clause 17.3 (max 2x base fare). Flag if exceeds.",
+      "deadmileagecheck": "Match 'Pickup Charge' against Clause 17.8 (no charge unless ride < 3km). Flag unauthorized dead mileage charges.",
+      "cancellationfeecheck": "Match 'Cancellation Fee' against Clause 18 (max 10% of fare, capped at Rs. 100). Flag excess.",
+      "insurance_check": "Match 'Driver Insurance' coverage against Clause 11.2 (Health min 5L, Term min 10L). Flag if missing/below.",
+      "vehicleagecheck": "Match 'Vehicle Registration Date' against Clause 13.2 (max 8 years). Flag if exceeded.",
+      "multiaggregatorcheck": "Match 'Exclusivity Clause' in driver contract against Clause 9.6 (cannot restrict multi-aggregator operation). Flag exclusivity clauses as illegal.",
+      "grievanceofficercheck": "Verify presence of Grievance Officer details (name, email, phone) on App/website per Clause 9.10. Flag absence.",
+      "training_check": "Verify 'Induction Training' completion record against Clause 10 (min 40 hours). Flag if missing.",
+      "safetydevicecheck": "Verify 'Panic Button + VLTD' presence against Clause 13.1(xi). Flag absence."
+    },
+    "confidence_floor": 0.95,
+    "anchortype": "regulatoryguideline"
+  }
+}

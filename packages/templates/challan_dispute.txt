@@ -1,0 +1,29 @@
+TO: The Adjudicating Officer / Traffic Police Headquarters
+{{jurisdiction_zone}}
+{{city_state}}
+
+FROM: {{vehicle_owner_name}} (Vehicle No: {{vehicle_number}})
+DATE: {{current_date}}
+
+SUBJECT: REPRESENTATION AGAINST E-CHALLAN NO. {{challan_number}} DATED {{challan_date}}
+
+Dear Sir/Madam,
+
+I am writing to formally dispute the above-referenced e-challan. Upon review of the circumstances and applicable provisions of the Motor Vehicles Act, 1988, this challan is procedurally flawed.
+
+PRAMAAN FINDING:
+- Incident Date: {{incident_date}}
+- Violation Cited: {{violation_section}}
+- Legal Requirement: Motor Vehicles Act, 1988, Section {{section_number}}
+- Finding: {{rule_says_plain}} (e.g., "Under Section 160, the police officer must forward the accident report to the Claims Tribunal and Insurer within 30 days. This was not done, rendering the subsequent penalty notice procedurally invalid.")
+
+REQUEST FOR RESOLUTION:
+1. I request the immediate withdrawal/cancellation of Challan No. {{challan_number}}.
+2. Please provide the certified copy of the Forwarding Report submitted to the Claims Tribunal under Section 160, if any exists.
+
+If this representation is not addressed within 30 days, I will be constrained to approach the Jurisdictional Motor Accident Claims Tribunal (MACT) for appropriate relief.
+
+Sincerely,
+
+{{vehicle_owner_name}}
+[Sent via Pramaan Evidence Engine · AI-Generated Draft · Review Before Sending]

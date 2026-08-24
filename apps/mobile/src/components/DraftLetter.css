@@ -1,0 +1,34 @@
+.glass-letter-preview {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+  margin-bottom: 16px;
+  background: transparent;
+}
+
+.letter-header {
+  background: rgba(250, 204, 21, 0.2); /* Yellow tint */
+  padding: 8px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.letter-banner {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--proof-yellow);
+}
+
+.letter-body {
+  padding: 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  color: var(--glass-text);
+  max-height: 150px;
+  overflow-y: auto;
+}

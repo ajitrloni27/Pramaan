@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRAMAAN — VRAJESH (BARK) · The Complete Build Document</title>
+<style>
+  :root{
+    --ink:#1c2733; --paper:#f5f6f7; --card:#ffffff; --line:#cfd8e0;
+    --orange:#e67e22; --blue:#2980b9; --violet:#8e44ad; --teal:#16a085;
+    --green:#27ae60; --amber:#f39c12; --red:#c0392b; --gray:#6b7a89;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:'Segoe UI', system-ui, -apple-system, sans-serif; background:var(--paper); color:var(--ink); padding:24px;}
+  .sheet{max-width:1280px; margin:0 auto;}
+  header{background:var(--card); border:2px solid var(--ink); border-radius:8px; padding:18px 22px; margin-bottom:16px;}
+  header h1{font-size:22px; letter-spacing:.5px;}
+  header .sub{font-size:14px; color:var(--gray); margin-top:4px;}
+  header .meta{font-family:Consolas, monospace; font-size:11px; color:var(--gray); margin-top:8px; border-top:1px dashed var(--line); padding-top:8px;}
+  section{background:var(--card); border:1px solid var(--line); border-radius:8px; padding:18px 22px; margin-bottom:16px;}
+  h2{font-size:15px; text-transform:uppercase; letter-spacing:1px; border-left:6px solid var(--blue); padding-left:10px; margin-bottom:14px;}
+  h2.org{border-color:var(--orange);} h2.scr{border-color:var(--blue);} h2.demo{border-color:var(--amber);}
+  h2.deck{border-color:var(--violet);} h2.time{border-color:var(--teal);} h2.io{border-color:var(--green);}
+  h2.qa{border-color:var(--gray);} h2.gate{border-color:var(--green);} h2.warn{border-color:var(--red);}
+  h2.fire{border-color:var(--red);} h2.mem{border-color:var(--ink);}
+  svg{width:100%; height:auto; display:block; border:1px solid var(--line); border-radius:6px; background:#fff;}
+  table{width:100%; border-collapse:collapse; font-size:12.5px;}
+  th{background:#eef2f6; text-align:left; padding:8px 10px; border:1px solid var(--line); font-size:11.5px; text-transform:uppercase; letter-spacing:.5px;}
+  td{padding:8px 10px; border:1px solid var(--line); vertical-align:top;}
+  td.mono, .mono{font-family:Consolas, monospace; font-size:12px;}
+  .pill{display:inline-block; font-family:Consolas,monospace; font-size:10.5px; padding:1px 7px; border-radius:9px; color:#fff; white-space:nowrap;}
+  .p-orange{background:var(--orange);} .p-blue{background:var(--blue);} .p-violet{background:var(--violet);}
+  .p-amber{background:var(--amber);} .p-green{background:var(--green);} .p-teal{background:var(--teal);} .p-red{background:var(--red);} .p-gray{background:var(--gray);}
+  pre{background:#101820; color:#d8e2ea; border-radius:6px; padding:16px; font-family:Consolas, monospace; font-size:12.5px; line-height:1.55; overflow-x:auto;}
+  .cm{color:#7f97a8;} .st{color:#9fd68a;} .num{color:#f5c76a;} .key{color:#7ec8ff;}
+  .warnbox{border:2px solid var(--red); background:#fdf1f0; border-radius:6px; padding:14px 16px;}
+  .warnbox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  .firebox{border:2px solid var(--red); background:#fff5f4; border-radius:6px; padding:14px 16px;}
+  .firebox ol{margin:8px 0 8px 20px; font-size:13px; line-height:1.6;}
+  .checkbox{border:2px solid var(--green); background:#f0faf3; border-radius:6px; padding:14px 16px;}
+  .checkbox li{margin:8px 0 8px 18px; font-size:13px; line-height:1.5;}
+  .quotebox{border:2px solid var(--ink); background:#fbfcfd; border-radius:6px; padding:16px 18px; font-size:14px; line-height:1.7;}
+  .chips{display:flex; flex-wrap:wrap; gap:12px; margin:10px 0;}
+  .chip{font-size:12px; font-weight:600; padding:8px 14px; border-radius:20px;}
+  .chip.null{background:#f7f9fa; color:#8a97a3; border:2px dashed #cfd8e0;}
+  .chip.staged{background:#fff8ec; color:#b9770e; border:2px solid #f39c12;}
+  .chip.placed{background:#f0faf3; color:#1e8449; border:2px solid #27ae60;}
+  .chip.released{background:#f7f9fa; color:#6b7a89; border:2px solid #cfd8e0;}
+  .note{font-size:12px; color:var(--gray); margin-top:10px; line-height:1.5;}
+  footer{text-align:center; font-family:Consolas, monospace; font-size:11px; color:var(--gray); padding:10px 0 4px;}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header>
+  <h1>PRAMAAN — VRAJESH (BARK) · THE COMPLETE BUILD DOCUMENT</h1>
+  <div class="sub">Lead · Screen · Demo · Pitch · Coordination — <b>“Murgesh makes the verdict TRUE. You make it VISIBLE, BELIEVABLE, and DELIVERED — and you keep four people one team while you do it.”</b></div>
+  <div class="meta">DOC: PRM-WD-05 &nbsp;·&nbsp; REV A &nbsp;·&nbsp; The dedicated BARK brief (equivalent of murgesh.pdf / ajit.pdf / manas.pdf) &nbsp;·&nbsp; HackVerse Track 3 · 36-h Sprint · MAHE 8–10 Aug 2026</div>
+</header>
+
+<!-- ============ 0. WHY LOAD-BEARING ============ -->
+<section>
+  <h2>0 · Read this first — why your seat is load-bearing</h2>
+  <p style="font-size:13.5px; line-height:1.7;">
+  The jury never sees the engine. They see <b>your screen</b> rendering it, <b>your 90 seconds</b> proving it, and <b>your voice</b> defending it. Three different failures all land on you:
+  </p>
+  <ul style="margin:10px 0 0 20px; font-size:13px; line-height:1.7;">
+    <li><b>If the screen drifts from the engine</b> (schemas, shapes), the P3 merge breaks silently and the sprint burns — that’s why you build against a MOCK from P1 and treat the schema as a contract.</li>
+    <li><b>If the demo isn’t deterministic</b>, the stage breaks — that’s why the 90 seconds run on seeded data and every rehearsal is filmed.</li>
+    <li><b>If the team doesn’t stay one team</b>, four lanes become four solo projects — that’s why the all-hands, the two daily V–M syncs, the sleep call, and the cut decisions are YOURS.</li>
+  </ul>
+  <p style="font-size:13.5px; margin-top:10px;">You are not “the frontend guy.” You are the person who converts a correct engine into a <b>winning demonstration</b> — and the only person whose job is also the team itself.</p>
+</section>
+
+<!-- ============ 1. ROLE ============ -->
+<section>
+  <h2 class="org">1 · Your role — one line, and in the tree</h2>
+  <p style="font-size:13.5px; line-height:1.7;"><b>One line:</b> You build the bark — the screen that renders the engine’s truth verbatim, the demo that proves it deterministically, the pitch that sells it, and the coordination that keeps four people one team.</p>
+  <p style="font-size:13.5px; line-height:1.7; margin-top:8px;"><b>In the tree:</b> the bark is what the world touches. The trunk (Murgesh) carries the verdict; the sap (Ajit) feeds the reads and the words; the roots (Manas) hold the cited ground. The bark protects all of it and makes it legible. One screen, one demo, one voice — that’s your branch of the tree.</p>
+</section>
+
+<!-- ============ 2. CO-LEAD CONTRACT ============ -->
+<section>
+  <h2 class="org">2 · The co-lead contract — your side of it</h2>
+  <ul style="margin:0 0 0 20px; font-size:13px; line-height:1.8;">
+    <li><b>You hold the FINAL CALL</b> on direction, product, the screen, and the pitch. Murgesh owns the engine implementation — the HOW.</li>
+    <li><b>You WANT his push-back.</b> Before he builds something you specced, if he thinks the call is wrong, he says so. On technical-implementation disagreements his view carries real weight. That is your safety net, not insubordination.</li>
+    <li><b>Delegate with the WHY.</b> Murgesh executes faster and better when he understands the reasoning. If he asks “why,” the system is working — answer it.</li>
+    <li><b>Once aligned, the team commits.</b> No re-litigating after the decision.</li>
+    <li><b>Two daily V–M syncs</b> (phase start + mid, 10 min each) — for ALIGNMENT, not negotiation. Keep engine + screen in lockstep.</li>
+    <li><b>Schema-first (rule #1):</b> Murgesh freezes the 3 schemas at P1 10:30; you build against a mock from that moment. A schema change needs a 2-min V–M sync, never a surprise. If drift is found late, <b>the UI bends to the engine</b> — UI is cheaper to bend than verdict logic.</li>
+    <li><b>You are the sole merger of the app.</b> Murgesh is the sole merger of services/brain; packages/contracts needs both of you.</li>
+  </ul>
+</section>
+
+<!-- ============ 3. OWNERSHIP ============ -->
+<section>
+  <h2 class="org">3 · What you own — the complete list</h2>
+  <table>
+    <tr><th>Artifact</th><th>What it is</th><th>Built in</th></tr>
+    <tr><td class="mono">apps/mobile/**</td><td>The Ionic + Capacitor app — the only thing the jury watches</td><td>P1–P6</td></tr>
+    <tr><td class="mono">lib/dataSource.ts</td><td>ONE module, two modes (mock | live), one env-var flip — rule #2</td><td>P1, flipped P3</td></tr>
+    <tr><td>LeftBox / MiddleCards / RightAction</td><td>The 3-box screen (exact content mapping in §4)</td><td>P1–P4</td></tr>
+    <tr><td>Hold chip animation + audit viewer</td><td>The visual climax (amber→green “frozen, 72h”) + the trust trail</td><td>P4–P5</td></tr>
+    <tr><td>Bill/Lease dropdown</td><td>Same screen, new rulebook — proof of the tree</td><td>P5</td></tr>
+    <tr><td>Seed spec for <span class="mono">/run?seed=trap</span></td><td>The exact planted payload you hand Murgesh for the deterministic demo</td><td>P7</td></tr>
+    <tr><td>The 90-second beat sheet + rehearsals</td><td>8 beats, 88–92 seconds, filmed every time (§7)</td><td>P6–P10</td></tr>
+    <tr><td>The deck (6–8 slides) + the pitch</td><td>Flipped arrow + 3 cited stats; video starts at slide 4 (§8)</td><td>P7–P8</td></tr>
+    <tr><td>Coordination artifacts</td><td>All-hands · two daily syncs · sleep call · freeze tag · phone videos</td><td>all phases</td></tr>
+    <tr><td>Pre-sprint checklist items</td><td>C1, C2, C4 (w/ Manas), C6 (to Ajit), C7 (w/ Murgesh), C8 — you own the list (§14)</td><td>now → 8 Aug</td></tr>
+  </table>
+  <p class="note"><b>You do NOT own:</b> engine internals / schemas / MCP / hold logic (Murgesh — you consume <span class="mono">RunResponse</span>) · the OCR + Granite model calls (Ajit — you consume bbox, confidence, draft) · rulebook content + template wording + every cited number (Manas — you render his strings verbatim).</p>
+</section>
+
+<!-- ============ 4. THE 3-BOX SCREEN ============ -->
+<section>
+  <h2 class="scr">4 · The 3-box screen — exact content mapping</h2>
+  <svg viewBox="0 0 1240 440" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, sans-serif">
+    <rect width="1240" height="440" fill="#ffffff"/>
+    <defs>
+      <marker id="b-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2980b9"/></marker>
+    </defs>
+
+    <rect x="300" y="24" width="640" height="72" rx="8" fill="#edf4fa" stroke="#2980b9" stroke-width="2.5"/>
+    <text x="620" y="50" text-anchor="middle" font-size="13" font-weight="bold" fill="#21618c">RunResponse — the ONE object your screen renders (from Murgesh’s engine)</text>
+    <text x="620" y="74" text-anchor="middle" font-family="Consolas, monospace" font-size="10.5" fill="#1c2733">{ run_id, domain, extracted_fields[], proof_cards[], hold, draft{text,banner}, audit[] }</text>
+
+    <g stroke="#2980b9" stroke-width="2.5" fill="none">
+      <line x1="620" y1="96" x2="620" y2="126"/>
+      <line x1="220" y1="126" x2="1020" y2="126"/>
+      <line x1="220" y1="126" x2="220" y2="156" marker-end="url(#b-blue)"/>
+      <line x1="620" y1="126" x2="620" y2="156" marker-end="url(#b-blue)"/>
+      <line x1="1020" y1="126" x2="1020" y2="156" marker-end="url(#b-blue)"/>
+    </g>
+
+    <g stroke-width="2" font-size="10">
+      <rect x="40" y="158" width="360" height="230" rx="8" fill="#fff" stroke="#2980b9"/>
+      <text x="220" y="182" text-anchor="middle" font-weight="bold" font-size="12" fill="#21618c">LEFT BOX — YOUR PAPER</text>
+      <text x="220" y="200" text-anchor="middle" font-family="Consolas, monospace" font-size="9.5" fill="#6b7a89">renders: image + extracted_fields[]</text>
+      <line x1="56" y1="210" x2="384" y2="210" stroke="#cfd8e0"/>
+      <text x="56" y="230">• the document image (camera / seeded)</text>
+      <text x="56" y="250">• one rectangle per field — from bbox [x,y,w,h]</text>
+      <text x="56" y="270">• field.low_conf = true → rectangle goes YELLOW</text>
+      <text x="56" y="288" fill="#b9770e">   + “tap to confirm: {value}”</text>
+      <text x="56" y="316" fill="#6b7a89" font-style="italic">the rectangles are Ajit’s confidence</text>
+      <text x="56" y="332" fill="#6b7a89" font-style="italic">made visible — the SCAN beat lives here</text>
+      <text x="56" y="362" font-family="Consolas, monospace" font-size="9" fill="#8a97a3">blocks built: P2 13:45–15:30</text>
+
+      <rect x="440" y="158" width="360" height="230" rx="8" fill="#fff" stroke="#2980b9"/>
+      <text x="620" y="182" text-anchor="middle" font-weight="bold" font-size="12" fill="#21618c">MIDDLE BOX — THE PROOF</text>
+      <text x="620" y="200" text-anchor="middle" font-family="Consolas, monospace" font-size="9.5" fill="#6b7a89">renders: proof_cards[]</text>
+      <line x1="456" y1="210" x2="784" y2="210" stroke="#cfd8e0"/>
+      <text x="456" y="230">• per card: item · your_value → official_value → gap</text>
+      <text x="456" y="250">• status “gap” → RED · “ok” → GREEN</text>
+      <text x="456" y="268">• “unverified” → GRAY “check with a person”</text>
+      <text x="456" y="288">• 2 source links: source_anchor.ref + rule_anchor.url</text>
+      <text x="456" y="306">• compute_anchor shown as math: “45000 − 18000 = 27000”</text>
+      <text x="456" y="324">• rule_says_plain — Manas’s line, VERBATIM</text>
+      <text x="456" y="362" font-family="Consolas, monospace" font-size="9" fill="#8a97a3">card component: P1 11:30–13:00 · trap wiring: P3 20:00</text>
+
+      <rect x="840" y="158" width="360" height="230" rx="8" fill="#fff" stroke="#2980b9"/>
+      <text x="1020" y="182" text-anchor="middle" font-weight="bold" font-size="12" fill="#21618c">RIGHT BOX — THE ACTION</text>
+      <text x="1020" y="200" text-anchor="middle" font-family="Consolas, monospace" font-size="9.5" fill="#6b7a89">renders: draft + hold + audit</text>
+      <line x1="856" y1="210" x2="1184" y2="210" stroke="#cfd8e0"/>
+      <text x="856" y="230">• the letter (draft.text) + banner, ALWAYS:</text>
+      <text x="856" y="248" fill="#b9770e">   “AI-generated — review before sending”</text>
+      <text x="856" y="270">• hold chip: staged / placed / released (see §5)</text>
+      <text x="856" y="290">• consent TAP button → POST /consent</text>
+      <text x="856" y="308">• audit viewer: ordered trail, every tap visible</text>
+      <text x="856" y="326" fill="#6b7a89" font-style="italic">the ACT + CONSENT beats live here — the climax</text>
+      <text x="856" y="362" font-family="Consolas, monospace" font-size="9" fill="#8a97a3">blocks built: P2 15:30–18:00 · wired: P4 22:00</text>
+    </g>
+
+    <text x="620" y="416" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#c0392b">THE SCREEN NEVER RECOMPUTES GAPS · NEVER DECIDES HOLD STATUS · NEVER REWRITES THE DRAFT — it renders RunResponse VERBATIM. Murgesh is authoritative.</text>
+  </svg>
+
+  <pre style="margin-top:14px;"><span class="cm">// LeftBox — the yellow gate is Ajit’s flag, rendered by you</span>
+props: { image: string; fields: ExtractedField[] }   <span class="cm">// ExtractedField: { text, value, unit, bbox, confidence, low_conf }</span>
+<span class="cm">// for each field → draw rectangle from bbox; if field.low_conf → yellow + “tap to confirm: {value}”</span>
+
+<span class="cm">// MiddleCards — the proof stack</span>
+props: { cards: ProofCard[] }   <span class="cm">// ProofCard: { item, your_value, official_value, gap, status, source_anchor, rule_anchor, compute_anchor, rule_says_plain }</span>
+<span class="cm">// red / green / unverified colors come from card.status — you never compute them yourself</span>
+
+<span class="cm">// RightAction — letter + freeze + consent</span>
+props: { draft: { text, banner } | null; hold: HoldEvent | null; audit: AuditEvent[] }
+<span class="cm">// tap buttons: confirm_hold · withdraw_hold · send_letter → POST /consent → a NEW audit entry appears, visibly</span></pre>
+</section>
+
+<!-- ============ 5. DATASOURCE + HOLD CHIP ============ -->
+<section>
+  <h2 class="scr">5 · The dataSource switch (rule #2) + the hold chip states</h2>
+  <pre><span class="cm">// apps/mobile/src/lib/dataSource.ts — ONE module, TWO modes, ONE switch</span>
+<span class="key">type</span> Mode = <span class="st">"mock"</span> | <span class="st">"live"</span>;                     <span class="cm">// from env: RUN_MODE — flipped ONCE at P3</span>
+
+fetchRun(req: { image?: string; domain: <span class="st">"bill"</span> | <span class="st">"lease"</span>; seed?: <span class="st">"trap"</span> }): Promise&lt;RunResponse&gt;
+consent(run_id: string, action: <span class="st">"confirm_hold"</span> | <span class="st">"withdraw_hold"</span> | <span class="st">"send_letter"</span>): Promise&lt;{ audit: AuditEvent }&gt;
+
+<span class="cm">// mode "mock" → hand-built RunResponse JSON straight from the FROZEN schemas — you build the whole screen on this from P1</span>
+<span class="cm">// mode "live" → POST /run · GET /run?seed=trap · POST /consent (Murgesh’s engine)</span>
+<span class="cm">// the screen never knows which mode it’s in. That’s why P3 is a FLIP, not a rewrite — no find-and-replace across the UI, ever.</span></pre>
+
+  <p style="font-size:13px; margin:14px 0 6px;"><b>The hold chip — your visual climax. Four states, driven only by <span class="mono">hold.status</span>:</b></p>
+  <div class="chips">
+    <span class="chip null">hold = null → hidden · “no disputed amount”</span>
+    <span class="chip staged">STAGED → amber outline · “₹27,000 computed — tap to freeze”</span>
+    <span class="chip placed">PLACED → amber→green animation · “₹27,000 FROZEN · auto-releases in 72h”</span>
+    <span class="chip released">RELEASED → gray · “released · logged”</span>
+  </div>
+  <p class="note">The amber→green flip on the trap is THE moment the jury understands “agent” — polish it at P5 09:00–12:00. If the animation is behind schedule, the cut list says: static chip is OK — but the chip must still flip color, because that flip IS the story.</p>
+</section>
+
+<!-- ============ 6. ENGINE → SCREEN ============ -->
+<section>
+  <h2 class="scr">6 · The six engine steps — what each must look like on your screen</h2>
+  <table>
+    <tr><th>Engine step (Murgesh/Ajit)</th><th>What your screen must show</th><th>Demo beat</th></tr>
+    <tr><td class="mono">01 READ</td><td>Left box: bboxes appear one by one; ONE field goes yellow “tap to confirm”</td><td>SCAN 0:22–0:35</td></tr>
+    <tr><td class="mono">02 LOOKUP</td><td>(invisible — silent lookup; no card appears for unmatched fields, by design)</td><td>—</td></tr>
+    <tr><td class="mono">03 COMPARE</td><td>Middle: cards populate — greens first, then the 2 reds</td><td>PROVE 0:35–0:55</td></tr>
+    <tr><td class="mono">04 PROVE</td><td>Red card expands: your number · official number · the subtraction · 2 source links · Manas’s plain line</td><td>TRAP 0:55–1:05</td></tr>
+    <tr><td class="mono">05 ACT</td><td>Right: hold chip flips amber→green “frozen, 72h” — the climax</td><td>ACT 1:05–1:18</td></tr>
+    <tr><td class="mono">06 DRAFT</td><td>Right: letter renders with the banner; TAP button armed; tap writes a visible audit line</td><td>CONSENT 1:18–1:25</td></tr>
+  </table>
+  <p class="note">If a step has no screen moment, that’s intentional (silence over false alarm). Never invent UI for engine work that stays quiet — narrate it instead.</p>
+</section>
+
+<!-- ============ 7. DEMO ============ -->
+<section>
+  <h2 class="demo">7 · Demo determinism (rule #6) + the 90-second beat sheet</h2>
+  <p style="font-size:13px; margin-bottom:10px;">The stage flow runs on <b>PRE-SEEDED data that looks live</b>. No live OCR gamble, no live LLM gamble, no live network call in the 90 seconds. Live calls happen in the build; the demo is a rehearsed script. At P7 you kill live calls in the demo path and hand Murgesh the seed spec.</p>
+  <table>
+    <tr><th>Beat</th><th>Time</th><th>You say / do</th><th>Screen shows</th></tr>
+    <tr><td><b>Hook</b></td><td class="mono">0:00–0:12</td><td>The hospital-counter line + “nobody does the subtraction”</td><td>Title slide / black</td></tr>
+    <tr><td><b>Flip</b></td><td class="mono">0:12–0:22</td><td>“Everyone checks YOU; we check the system FOR you”</td><td>The flipped-arrow line</td></tr>
+    <tr><td><b>Scan</b></td><td class="mono">0:22–0:35</td><td>Point camera / load bill; “watch it read”</td><td>Left box: bboxes appear; one yellow tap-to-confirm</td></tr>
+    <tr><td><b>Prove</b></td><td class="mono">0:35–0:55</td><td>“Now the subtraction no human can do at the counter”</td><td>Middle: cards populate green, then 2 red</td></tr>
+    <tr><td><b>Trap</b></td><td class="mono">0:55–1:05</td><td>Point at the subtle MRP trap; “a human scanning fast misses this”</td><td>The subtle red card + its 2 source links</td></tr>
+    <tr><td><b>Act</b></td><td class="mono">1:05–1:18</td><td>“It doesn’t just write a letter — it freezes the money”</td><td>Right: hold chip amber→green “frozen, 72h”</td></tr>
+    <tr><td><b>Consent</b></td><td class="mono">1:18–1:25</td><td>“And nothing permanent happens until I tap”</td><td>Tap button; audit log writes</td></tr>
+    <tr><td><b>Tree</b></td><td class="mono">1:25–1:30</td><td>Switch dropdown Bill→Lease; “same machine, different rulebook”</td><td>Same screen, clause cards</td></tr>
+  </table>
+  <p class="note"><b>Target: 88–92 seconds.</b> If over → cut the Tree beat to a verbal line (no live switch). <b>Rehearsals:</b> P6 solo (you) · P7 #1 team · P8 #2 team · P10 ×3 back-to-back — every rehearsal filmed on a phone and watched ONCE for timing.</p>
+</section>
+
+<!-- ============ 8. DECK + SUBMISSION ============ -->
+<section>
+  <h2 class="deck">8 · The deck (6–8 slides) + Round-1 submission logistics</h2>
+  <table>
+    <tr><th>Slide</th><th>Content</th><th>Scores</th></tr>
+    <tr><td class="mono">1–3</td><td>Title + one-line · Team (4 names, USN, photos) + ALL FOUR GLE certificates · Track &amp; theme (“AI for Sustainable and Social Impact” + citizen-side proof line)</td><td>Presentation</td></tr>
+    <tr><td class="mono">4 ← video starts here</td><td>Problem: the 3 a.m. counter / “just sign here” lease / ₹487 rider + “the comparison is too tedious, too technical, too fast” + the scale stats (cited — 3 of Manas’s 6)</td><td>Impact 30%</td></tr>
+    <tr><td class="mono">5</td><td>Solution: one machine, one job · six steps any paper · swap the rulebook, don’t rebuild · “every verdict reproducible from two cited sources and one arithmetic expression”</td><td>Completeness 30%</td></tr>
+    <tr><td class="mono">6</td><td>Architecture: client captures+renders / brain decides · step 3 has NO AI · 3 anchors · the MCP hold (provisional, reversible, 72h) · IBM stack I–IV: Data Prep Kit · Granite · RAG · Agentic → <b>IBM for both RAG and Agentic</b></td><td>Completeness 30%</td></tr>
+    <tr><td class="mono">7</td><td>Novelty: the FLIP (arrow points back) + the TREE (one engine, many rulebooks) + real agent vs mail-merge + arithmetic verdicts + silence over false alarms · business: citizens via legal-aid/unions/forums/collectives, funded by selling the same engine to lawyers &amp; NGOs</td><td>Uniqueness 25%</td></tr>
+    <tr><td class="mono">8</td><td>Ethics: 5 gates + 3 hard limits + every AI line labeled · demo note (seeded, planted trap, yellow moment) · closing line: “It shows you the rule, the gap, and the proof — and only acts when you say so.”</td><td>Ethics 5%</td></tr>
+  </table>
+  <div class="warnbox" style="margin-top:12px; border-color:var(--amber); background:#fffaf0;">
+    <ul style="margin:0 0 0 18px; font-size:13px; line-height:1.7;">
+      <li><b>PPT:</b> upload to YOUR PERSONAL GOOGLE DRIVE (NOT OneDrive) · share permission “anybody with the link” · link goes in the Google Form.</li>
+      <li><b>Video:</b> max 3 minutes · <b>start explaining from slide 4</b> (skip 1–3) · MP4 only · ≥720p · upload to YouTube as PRIVATE · share “anybody with the link” · link in the same Google Form.</li>
+      <li><b>Round-1 weights:</b> Completeness 30 · Impact 30 · Uniqueness 25 · Presentation 10 · Ethics 5 — the deck above is built slide-by-slide to hit them.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 9. TIMELINE ============ -->
+<section>
+  <h2 class="time">9 · Your phase timeline — hour by hour</h2>
+  <table>
+    <tr><th>Phase</th><th>Time</th><th>Task</th><th>Done when…</th><th>Dep</th></tr>
+    <tr><td class="mono">P0</td><td class="mono">D1 09:00–10:30</td><td>Venue/wifi/repo; load team doc on shared screen; run 10-min all-hands (one-line + rules)</td><td>All four can say the one-line; repo cloned</td><td class="mono">blocks all</td></tr>
+    <tr><td class="mono">P1</td><td class="mono">D1 10:30–11:30</td><td>Sync w/ M: lock schemas. Build dataSource mock module + static 3-box skeleton</td><td>Skeleton renders with mock cards</td><td class="mono">blocked-by M schemas</td></tr>
+    <tr><td class="mono">P1</td><td class="mono">D1 11:30–13:00</td><td>Middle card component (your→official→gap→conf→ref) + red/green logic on mock</td><td>5 mock cards render correctly</td><td>—</td></tr>
+    <tr><td class="mono">P2</td><td class="mono">D1 13:45–15:30</td><td>Left box: doc image + bbox overlay + yellow confidence gate (Ajit’s output shape)</td><td>Low-conf field shows yellow + tap-to-confirm</td><td class="mono">blocked-by A shape</td></tr>
+    <tr><td class="mono">P2</td><td class="mono">D1 15:30–18:00</td><td>Right box: letter slot + banner + consent tap button + hold-status chip (3 states)</td><td>Tap button + chip render on mock hold event</td><td class="mono">blocked-by M hold schema</td></tr>
+    <tr><td class="mono">P3</td><td class="mono">D1 18:00–20:00</td><td>Sync w/ M; flip dataSource mock→live for proof cards; fix mismatches</td><td>Real engine cards render on screen</td><td class="mono">blocked-by M engine</td></tr>
+    <tr><td class="mono">P3</td><td class="mono">D1 20:00–22:00</td><td>Wire the planted-trap bill (Manas’s values); trap card flips red on cue</td><td>Trap bill shows 2 red cards deterministically</td><td class="mono">blocked-by N trap JSON</td></tr>
+    <tr><td class="mono">P4</td><td class="mono">D1 22:00–23:30</td><td>Wire hold chip to hold event; build audit-log viewer panel</td><td>Full bill flow visible on screen</td><td class="mono">blocked-by M hold+audit</td></tr>
+    <tr><td class="mono">P4</td><td class="mono">D1 23:30–24:00</td><td>All-hands: record one phone video of the flow; sleep call</td><td>Video saved; laptops closed by 00:30</td><td>—</td></tr>
+    <tr><td class="mono">P5</td><td class="mono">D2 07:00–09:00</td><td>Bill/Lease dropdown; wire lease rulebook into SAME screen</td><td>Switching to Lease shows clause cards + counter-notice</td><td class="mono">blocked-by N lease JSON</td></tr>
+    <tr><td class="mono">P5</td><td class="mono">D2 09:00–12:00</td><td>Hold animation polish (amber→green + text); make the freeze the visual climax</td><td>Hold chip animates cleanly on the trap</td><td>—</td></tr>
+    <tr><td class="mono">P6</td><td class="mono">D2 12:45–14:00</td><td>Render Ajit’s Granite draft + banner in right box; lay out the letter</td><td>Letter + banner render; template fallback works</td><td class="mono">blocked-by A Granite</td></tr>
+    <tr><td class="mono">P6</td><td class="mono">D2 14:00–18:00</td><td>Audit viewer polish + full-flow timing pass; first 90-sec run-through alone</td><td>One solo run under 90s</td><td>—</td></tr>
+    <tr><td class="mono">P7</td><td class="mono">D2 18:00–20:00</td><td>Lock demo to pre-seeded data (kill live calls in demo path); rehearse #1 w/ team</td><td>Demo identical across 2 runs</td><td>—</td></tr>
+    <tr><td class="mono">P7</td><td class="mono">D2 20:00–22:00</td><td>Build/finalize deck (6–8 slides); embed flipped-arrow + 3 bulletproof stats</td><td>Deck v1 presentable</td><td class="mono">blocked-by N citation sheet</td></tr>
+    <tr><td class="mono">P8</td><td class="mono">D2 22:00–24:00</td><td>Rehearse #2 (pitch + screen + trap); write objection answers; tag freeze commit</td><td>2 clean runs; freeze tag exists</td><td>—</td></tr>
+    <tr><td class="mono">P9</td><td class="mono">D3 06:30–09:00</td><td>DO NOT add features. Watch Ajit break it; fix ONLY what he logs; re-rehearse after each fix</td><td>Every logged bug fixed or cut</td><td class="mono">blocked-by A bug list</td></tr>
+    <tr><td class="mono">P10</td><td class="mono">D3 09:00→jury</td><td>3 back-to-back clean runs; Q&amp;A dry-run; deck lock; breathe</td><td>3 flawless runs; team calm</td><td>—</td></tr>
+  </table>
+</section>
+
+<!-- ============ 10. HANDOFFS ============ -->
+<section>
+  <h2 class="io">10 · Handoffs — who feeds you, who you feed</h2>
+  <table>
+    <tr><th>Direction</th><th>Wire</th><th>Phase</th><th>Artifact</th><th>If late → fallback</th></tr>
+    <tr><td rowspan="11"><b>IN —<br>who feeds you</b></td><td><span class="pill p-orange">MURGESH</span></td><td class="mono">P1 · 10:30</td><td>3 frozen schemas</td><td>Drafted pre-sprint (C5) — P1 is “freeze”, not “invent”</td></tr>
+    <tr><td><span class="pill p-violet">AJIT</span></td><td class="mono">P1 · by 13:00</td><td>OCR output contract</td><td>Build the left box against frozen ExtractedField; Ajit conforms</td></tr>
+    <tr><td><span class="pill p-teal">MANAS</span></td><td class="mono">P1 · by 13:00</td><td>Planted-trap JSON</td><td>Pre-agreed pre-sprint (C4) — no fallback; demo lives on it</td></tr>
+    <tr><td><span class="pill p-violet">AJIT</span></td><td class="mono">P2→P6</td><td>bbox + confidence</td><td>Static rectangles; gate narrated</td></tr>
+    <tr><td><span class="pill p-orange">MURGESH</span></td><td class="mono">P3 · 18:00</td><td>/run endpoint</td><td>Stay on mock — that’s what the switch is for</td></tr>
+    <tr><td><span class="pill p-teal">MANAS</span></td><td class="mono">P3 · by 22:00</td><td>Lease rulebook JSON</td><td>FIRST thing cut — prove the tree with words + one deck screenshot</td></tr>
+    <tr><td><span class="pill p-orange">MURGESH</span></td><td class="mono">P4</td><td>Hold + audit events</td><td>Static chip; audit narrated in Q&amp;A</td></tr>
+    <tr><td><span class="pill p-teal">MANAS</span></td><td class="mono">P5</td><td>“Rule says” strings</td><td>Cards show raw citation temporarily — never a paraphrase by anyone else</td></tr>
+    <tr><td><span class="pill p-violet">AJIT</span></td><td class="mono">P6 · by 14:00</td><td>Granite draft + banner</td><td>Template fallback renders with the same banner</td></tr>
+    <tr><td><span class="pill p-teal">MANAS</span></td><td class="mono">P6 · by 18:00</td><td>Citation one-pager</td><td>Deck ships with fewer stats — never an unsourced number</td></tr>
+    <tr><td><span class="pill p-orange">MURGESH</span></td><td class="mono">P7</td><td class="mono">/run?seed=trap</td><td>You stub the seed spec from the trap JSON; he finalizes</td></tr>
+    <tr><td rowspan="4"><b>OUT —<br>who you feed</b></td><td><span class="pill p-violet">AJIT</span></td><td class="mono">P0 (C6)</td><td>OCR handoff (existing code + 1 sample)</td><td>Pre-sprint — long pole, done THIS week</td></tr>
+    <tr><td><span class="pill p-orange">MURGESH</span></td><td class="mono">P7</td><td>Seed spec for the deterministic demo</td><td>He stubs it; you finalize</td></tr>
+    <tr><td><span class="pill p-gray">TEAM</span></td><td>all phases</td><td>All-hands · syncs · sleep call · freeze tag · phone videos</td><td>—</td></tr>
+    <tr><td><span class="pill p-blue">JURY</span></td><td class="mono">P10</td><td>90-sec demo + pitch + deck + Q&amp;A</td><td>—</td></tr>
+  </table>
+  <p class="note"><b>Anti-wait rule:</b> if a handoff TO you is late → build against mock/frozen schema and flip later. The wire bends; the sprint doesn’t stop.</p>
+</section>
+
+<!-- ============ 11. Q&A ============ -->
+<section>
+  <h2 class="qa">11 · Q&amp;A — the families you own</h2>
+  <table>
+    <tr><th>Family</th><th>Your one-line answer</th></tr>
+    <tr><td>Innovation / why this / moat / business model / what’s next</td><td>“The flip + the tree: we audit the system for the citizen, and one engine swaps rulebooks instead of rebuilding. The big players can’t copy this without turning on their own paying customers. We reach citizens through legal-aid authorities, tenant unions, patient forums, and gig collectives — and we fund it by selling the same engine to the lawyers and NGOs already drowning in these documents.”</td></tr>
+    <tr><td>Liability / does it act on its own?</td><td>“It places a provisional, reversible hold only on high-confidence reads, and it auto-releases in 72 hours. Nothing becomes permanent without an explicit, logged tap. The agent prepares; the person decides.”</td></tr>
+  </table>
+  <p class="note"><b>Full map (one voice per question — rule #9):</b> architecture/grounding/hold → Murgesh · innovation/moat/business/liability → YOU · OCR/low-confidence/hallucination → Ajit · sources/curation/scale → Manas. <b>Dry-run (P10, 15 min):</b> one person plays a hostile judge, fires 5 random questions at the 4 owners; every answer under 20 seconds — if it rambles, rewrite it to one line. You run the dry-run.</p>
+</section>
+
+<!-- ============ 12. GATES + CUT LIST + WAR ROOM ============ -->
+<section>
+  <h2 class="gate">12 · Demo-ready gates + cut list + the war room</h2>
+  <div class="checkbox">
+    <ul>
+      <li>Trap bill shows exactly the planned red cards, deterministically, <b>3 runs in a row</b>.</li>
+      <li>Hold chip flips to green with the frozen amount + 72h text.</li>
+      <li>Tap button writes a visible audit-log entry.</li>
+      <li>One yellow confidence-gate moment is in the flow (proves the safety story).</li>
+      <li>The “AI-generated — review before sending” banner is visible.</li>
+      <li>Every on-screen number is signed off by Manas against a source.</li>
+      <li>The 90-sec flow is under 92 seconds with the pitch spoken aloud.</li>
+      <li>No live network/LLM call in the demo path (seeded/template only).</li>
+      <li>Lease switch works OR is honestly cut and replaced by a deck screenshot.</li>
+    </ul>
+  </div>
+  <p class="note" style="margin-bottom:12px;">All must be true before the P8 freeze tag — or you do not freeze, you CUT. The wedge (bill + hold + proof + tap) is LAST to cut.</p>
+  <table>
+    <tr><th>If behind at…</th><th>Cut FIRST</th><th>Then</th><th>NEVER cut</th></tr>
+    <tr><td class="mono">end P2</td><td>Lease stub entirely</td><td>Audit viewer polish</td><td>Bill compare + proof cards</td></tr>
+    <tr><td class="mono">end P3</td><td>Live Granite (use template)</td><td>Hold animation (static chip ok)</td><td>The hold actually firing</td></tr>
+    <tr><td class="mono">end P5</td><td>Lease stub (if still not done)</td><td>Control-bill restraint beat</td><td>Deterministic trap flow</td></tr>
+    <tr><td class="mono">end P7</td><td>Deck to 4 slides</td><td>Audit viewer (mention in Q&amp;A)</td><td>The 90-sec demo + tap</td></tr>
+    <tr><td class="mono">P9</td><td>The unfixed edge case (narrate around it)</td><td>Any last-minute visual</td><td>The happy-path demo</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2 class="fire">🔥 If everything is on fire — the P7 war room (you call it)</h2>
+  <div class="firebox">
+    <p style="font-size:13px;"><b>If at P7 the wedge does not run end-to-end:</b> stop all four. 20-minute war room:</p>
+    <ol>
+      <li><b>Murgesh</b> reduces /run to the smallest path returning 3 proof cards + 1 hold from a hardcoded bill (bypass OCR, bypass Granite).</li>
+      <li><b>Ajit</b> stands down on OCR/Granite and helps you hardcode the demo data.</li>
+      <li><b>Manas</b> hand-writes the 3 cards’ numbers + sources on paper for you to type.</li>
+      <li><b>You</b> rebuild the screen against that hardcoded payload only.</li>
+    </ol>
+    <p style="font-size:13px; margin-top:8px;"><b>Goal:</b> a working, honest, NARROW demo by P8 — “we scoped to the verdict engine for the sprint” beats a wide broken one. Narrate OCR/Granite as the production path in Q&amp;A. This is not failure; it’s the correct trade for 36 hours. The architecture lives in the proposal and the repo; the demo is what the jury sees.</p>
+  </div>
+</section>
+
+<!-- ============ 13. NEVER ============ -->
+<section>
+  <h2 class="warn">13 · ⚠ The ten non-negotiables — you ENFORCE these</h2>
+  <div class="warnbox">
+    <ul>
+      <li><b>1 · Schema-first.</b> Schemas freeze P1; you build against mock; changes need a 2-min V–M sync, never a surprise. If drift is found late, the UI bends to the engine.</li>
+      <li><b>2 · One data source, one switch.</b> Everything behind dataSource (mock | live). Flip one env var at P3. No find-and-replace across the UI.</li>
+      <li><b>3 · DRI.</b> Your lane, your decision; others advise, never override. A committed wrong call beats an uncommitted right one.</li>
+      <li><b>4 · Two alphas, two syncs.</b> You and Murgesh, 10 min, twice a build-day. No more, no less.</li>
+      <li><b>5 · Citation gate.</b> No rule, no on-screen number, no slide stat ships without Manas’s sign-off. The team waits 10 minutes for a correct citation rather than demo a wrong number.</li>
+      <li><b>6 · Deterministic demo.</b> Pre-seeded data that looks live. No live OCR/LLM/network in the 90 seconds. The demo is a rehearsed script.</li>
+      <li><b>7 · Last 4 hours = Ajit.</b> No new features. Only breaking and fixing. A flawless demo of 80% beats 100% that glitches.</li>
+      <li><b>8 · Sleep both nights.</b> All four. The all-nighter writes the bug that breaks the 11 AM demo.</li>
+      <li><b>9 · One voice per question.</b> The owner answers; others stay quiet unless tagged. Four people talking = a team that didn’t rehearse.</li>
+      <li><b>10 · The tree stays a tree.</b> The lease is a rulebook swap on the SAME screen. Copy-pasting the engine = amputating the tree. Stop it.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 14. CHECKLIST ============ -->
+<section>
+  <h2 class="gate">14 · Pre-sprint checklist — you own it (GREEN before 09:00 on 8 Aug)</h2>
+  <table>
+    <tr><th>#</th><th>Item</th><th>Owner</th><th>Green when…</th></tr>
+    <tr><td class="mono">C1</td><td>IBM cert done (Agent Lab + RAG lab) — plus all four complete the GLE “Future Forward: AI for Innovation” course; certificates go in the PPT</td><td><b>You</b> (all four)</td><td>Both activities show complete</td></tr>
+    <tr><td class="mono">C2</td><td>Idea submitted + accepted (31 Jul gate)</td><td><b>You</b></td><td>Confirmation email in hand</td></tr>
+    <tr><td class="mono">C3</td><td>Bill rulebook v0 (10–15 rules + citations)</td><td>Manas</td><td>JSON exists, every row has a source ref</td></tr>
+    <tr><td class="mono">C4</td><td>Planted-trap values agreed (which line, official number, gap)</td><td>Manas + <b>you</b></td><td>Written down, both signed off</td></tr>
+    <tr><td class="mono">C5</td><td>3 JSON schemas drafted</td><td>Murgesh</td><td>3 schema files exist</td></tr>
+    <tr><td class="mono">C6</td><td>OCR pipeline handed off to Ajit</td><td><b>You</b> + Ajit</td><td>Ajit can run it on 1 sample bill</td></tr>
+    <tr><td class="mono">C7</td><td>Tech stack + repo scaffolded</td><td>Murgesh + <b>you</b></td><td>Empty repo, both can push</td></tr>
+    <tr><td class="mono">C8</td><td>One-line + flipped-arrow line memorized by all four</td><td>All (you verify)</td><td>Each can say it without the doc</td></tr>
+  </table>
+  <p class="note"><b>Mentor note:</b> the single biggest risk is treating prep as infinite and arriving with C3/C5/C6 red. The long poles are Manas’s rulebook and YOUR OCR handoff to Ajit — start both NOW, not on 8 Aug. A green checklist on arrival is worth more than a clever idea.</p>
+</section>
+
+<!-- ============ 15. MEMORIZED LINES ============ -->
+<section>
+  <h2 class="mem">15 · The lines you say out loud (C8 — all four memorize, you verify)</h2>
+  <div class="quotebox">
+    <b>The one line everyone memorizes:</b><br>
+    “Pramaan reads any paper you’re handed, compares it to the official rule, and hands you the proof of the gap — then waits for your tap before it does anything.”<br><br>
+    <b>Stage version:</b><br>
+    “It doesn’t tell you what it thinks. It shows you the rule, the gap, and the proof — and only acts when you say so.”<br><br>
+    <b>The flipped arrow (deck slide 7 + the hook of the pitch):</b><br>
+    “Every tool checks if you follow the rules. We check if the system follows the rules that protect you.”<br><br>
+    <b>The name is the pitch:</b> Pramaan means valid proof / verifiable evidence. The name is the promise.
+  </div>
+</section>
+
+<footer>
+  PRAMAAN · PRM-WD-05 · VRAJESH (BARK) — THE COMPLETE BUILD DOCUMENT · Series: ① ROOTS · ② TRUNK · ③ SAP · ④ BARK wiring · ⑤ BARK brief · Next: THE FULL CONNECTED BRAIN DIAGRAM · “One trunk, many branches, one demo — and you’re the one holding it together.”
+</footer>
+
+</div>
+</body>
+</html>

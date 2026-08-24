@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "act_name": "The Motor Vehicles Act, 1988",
+    "relevant_chapter": "Chapter XIV - Miscellaneous (Accidents & Claims)",
+    "source_file": "traffic challan.pdf",
+    "usage": "Used by Pramaan Engine to verify accident reporting compliance, insurance notification timelines, and Claims Tribunal jurisdiction for challan/claim disputes."
+  },
+  "sections": [
+    {
+      "section_number": 160,
+      "title": "Report of Accident to Claims Tribunal",
+      "content_summary": "Mandates the forwarding of accident reports to the Claims Tribunal and insurer within specific timelines.",
+      "rules": [
+        {
+          "ruleid": "MVACT160POLICE_REPORT",
+          "actor": "Officer in Charge of Police Station",
+          "action": "Forward copy of accident report/information recording",
+          "recipient": [
+            "Claims Tribunal having jurisdiction",
+            "Concerned Insurer"
+          ],
+          "timeline_days": 30,
+          "trigger": "Recording of information OR completion of report under Section 159",
+          "pramaan_flag": "If police report not forwarded within 30 days, flag as 'Procedural Violation - Section 160'."
+        },
+        {
+          "ruleid": "MVACT160OWNER_REPORT",
+          "actor": "Vehicle Owner",
+          "action": "Forward copy of accident report",
+          "recipient": [
+            "Claims Tribunal having jurisdiction"
+          ],
+          "timeline_days": 30,
+          "trigger": "Receipt of copy of report from police",
+          "condition": "Where a copy is made available to the owner",
+          "pramaan_flag": "If owner fails to forward report within 30 days of receipt, flag as 'Non-compliance - Section 160'."
+        }
+      ]
+    },
+    {
+      "section_number": 159,
+      "title": "Information regarding Accidents (Context for 160)",
+      "content_summary": "Requires police to record information regarding accidents involving injury or damage. This section triggers the reporting obligation in Section 160.",
+      "rules": [
+        {
+          "ruleid": "MVACT159RECORDING",
+          "actor": "Police Officer",
+          "action": "Record information or complete report regarding accident",
+          "details": "Must include details of vehicle, driver, injured persons, and nature of accident.",
+          "pramaan_flag": "Verify if FIR/ACC report exists. If challan issued without accident report where injury occurred, flag as 'Missing Documentation'."
+        }
+      ]
+    }
+  ],
+  "claimstribunalprocedures": {
+    "jurisdiction": "Claims Tribunal having jurisdiction over the area where accident occurred.",
+    "parties_involved": [
+      "Claimant (Injured party / Legal heirs)",
+      "Owner of Vehicle",
+      "Driver of Vehicle",
+      "Insurer of Vehicle"
+    ],
+    "document_flow": [
+      {
+        "step": 1,
+        "document": "Accident Information Report (FIR/ACC)",
+        "origin": "Police Station",
+        "destination": [
+          "Claims Tribunal",
+          "Insurer",
+          "Owner (if copy provided)"
+        ],
+        "deadline_days": 30
+      },
+      {
+        "step": 2,
+        "document": "Claim Application",
+        "origin": "Claimant",
+        "destination": "Claims Tribunal",
+        "note": "Can be filed based on the police report forwarded under Section 160."
+      }
+    ]
+  },
+  "pramaanintegrationnotes": {
+    "usage": "This JSON serves as the 'Official Rule' source for the Pramaan Engine when auditing Traffic Challans related to accidents or verifying insurance claim eligibility timelines.",
+    "matching_strategy": {
+      "reportingtimelinecheck": "Match 'Date of Accident' vs 'Date of Report Forwarding' against Section 160 (30 days). Flag delays.",
+      "insurancenotificationcheck": "Verify if 'Insurer' was notified within 30 days per Section 160. If challan/claim disputed due to late notice, check if police complied.",
+      "ownercompliancecheck": "If owner received report, verify forwarding to Tribunal within 30 days.",
+      "jurisdiction_check": "Ensure Claims Tribunal mentioned matches the accident location jurisdiction."
+    },
+    "confidence_floor": 0.95,
+    "anchortype": "legalstatute"
+  }
+}

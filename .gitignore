@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+**/node_modules/
+package-lock.json.bak
+
+# Build output
+dist/
+build/
+.vite/
+**/.vite/
+
+# Environment secrets
+.env
+.env.local
+.env.*.local
+
+# TypeScript cache
+*.tsbuildinfo
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# OCR Assets
+*.traineddata
+
+# Test output
+coverage/
+
+# Logs
+*.log
+npm-debug.log*

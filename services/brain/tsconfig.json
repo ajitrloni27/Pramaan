@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "noEmit": false,
+    "moduleResolution": "node16",
+    "module": "node16",
+    "ignoreDeprecations": "5.0",
+    "paths": {
+      "@pramaan/contracts": ["../../packages/contracts/types.ts"]
+    }
+  },
+  "include": ["src/**/*", "test/**/*", "../../packages/contracts/types.ts"]
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@pramaan/brain",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "self-check": "tsx test/self_check.ts"
+  },
+  "dependencies": {
+    "@ibm-cloud/watsonx-ai": "^1.7.16",
+    "@modelcontextprotocol/sdk": "latest",
+    "express": "latest",
+    "tesseract.js": "^7.0.0",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/express": "latest",
+    "@types/node": "latest",
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}

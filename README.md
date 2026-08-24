@@ -1,10 +1,27 @@
 # Pramaan
 
-**One engine. Proof, not opinions. Built once, branches forever.**
+**The Team Document · HackVerse Track 3: AI Revenue Recovery**
+*One engine. Proof, not opinions. Built once, branches forever.*
+
+---
+
+## 🏆 How This Fits Track 03: AI Revenue Recovery (The "Flip")
+
+The Track 3 prompt typically targets businesses recovering money from users (e.g., abandoned checkouts, failed subscriptions). **We flipped the script.** 
+
+Pramaan is an AI Revenue Recovery agent for the **consumer**. It helps everyday citizens recover money that is slipping away due to hospital overcharges, illegal rental deposit clauses, or missing gig worker wages. 
+
+We hit every single requirement of the **Track 3 Bar**:
+1. **Show measured money recovered:** Pramaan calculates the exact mathematical gap (e.g., ₹27,000 overcharge) between a bill and the official legal rule.
+2. **Compliant Escalation:** It auto-drafts a formal, legally grounded dispute letter based on exact citations (like the NPPA or Tenancy Acts).
+3. **Stopping Rules (Consent Gate):** Pramaan never hallucinates actions. It prepares the proof but explicitly **stops and waits for your tap** before escalating or sending anything.
+4. **Audit Trail:** Every button pressed and action authorized is immutably logged in the system's audit trail.
+
+---
 
 ## The Problem
 
-Every day, people receive documents—like hospital bills, rental agreements, payslips, or medicine receipts—that dictate their finances or rights. The problem is that these documents are often complex, long, and hard to understand. People usually just accept them because comparing every line item to the official rules (such as a legal cap on rent deposits, or the standard rate for a medical procedure) is too tedious and technical to do in the moment. 
+Every day, people receive documents—like hospital bills, rental agreements, payslips, or medicine receipts—that dictate their finances or rights. The problem is that these documents are often complex, long, and hard to understand. People usually just accept them because comparing every line item to the official rules is too tedious and technical to do in the moment. 
 
 As a result, people lose money, waive their rights, or get underpaid simply because they don't have the time or expertise to verify the documents against the official rules.
 

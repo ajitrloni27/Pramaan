@@ -25,30 +25,26 @@ Think of it as a weighing scale: you can weigh apples or gold. The scale doesn't
 
 ## How to Run
 
-This project is a monorepo containing a backend AI comparison engine (`brain`) and a mobile frontend (`mobile`).
+This project is a monorepo containing a backend AI comparison engine (`brain`) and a mobile frontend (`mobile`). We provide two fast ways to spin up the entire architecture.
 
-### Prerequisites
-- Node.js (v18+)
-- npm
+### Option 1: One-Command Start (Turborepo)
+*Best for active development.*
 
-### 1. Install Dependencies
-Open a terminal at the root of the project and run:
+1. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+2. **Start Both Services Simultaneously:**
+   ```bash
+   npm run dev
+   ```
+*(This will boot the Express backend on port 3000 and the Vite mobile frontend on port 5173).*
+
+### Option 2: Docker Compose
+*Best for isolated, guaranteed reproducibility.*
+
+Ensure Docker Desktop is running, then in the root folder run:
 ```bash
-npm install
+docker compose up --build
 ```
-
-### 2. Start the Backend Engine
-The backend service powers the comparison pipeline. Open a terminal and run:
-```bash
-cd services/brain
-npm run dev
-```
-*(The backend will start on port 3000)*
-
-### 3. Start the Mobile App
-Open a **new, separate terminal** and start the frontend:
-```bash
-cd apps/mobile
-npm run dev
-```
-*(Vite will provide a local URL, usually `http://localhost:5173`, which you can open in your browser)*
+*(The backend will be mapped to port 3000 and the frontend to port 5173).*

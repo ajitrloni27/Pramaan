@@ -276,8 +276,8 @@ export async function read(req: RunRequest): Promise<ExtractedField[]> {
 
     return applyConfidenceGate(rawFields);
   } catch (err) {
-    console.error("[01_read] OCR failed:", err);
-    return [];
+    console.error("[01_read] OCR failed gracefully on blurry/tilted image:", err);
+    return []; // Return empty array to force hold: null
   }
   // ═══════════════ AJIT SEAM — END ══════════════════
 }

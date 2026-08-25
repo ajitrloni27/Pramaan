@@ -1,4 +1,4 @@
-# Pramaa
+# Pramaan
 
 ---
 ## The Problem

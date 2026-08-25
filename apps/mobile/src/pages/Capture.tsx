@@ -28,7 +28,7 @@ const tabs: { id: TabId; icon: React.ElementType; label: string }[] = [
 
 export const Capture: React.FC = () => {
   const history = useHistory();
-  const { state, setCapture } = useSession();
+  const { state, setCapture, setDomain } = useSession();
   const [tab, setTab] = useState<TabId>('text');
   const [text, setText] = useState('');
   const [uploadedFile, setUploadedFile] = useState<UploadedFileInfo | null>(null);
@@ -512,28 +512,49 @@ Vehicle No: DL-03-CC-9120
                         </div>
                       </div>
 
-                      {/* 1-Tap Quick Sample Auto-Fill Preset */}
-                      <button
-                        onClick={handleApplySample}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: 8,
-                          padding: '13px 16px',
-                          borderRadius: 14,
-                          background: 'rgba(255, 255, 255, 0.05)',
-                          border: '1px solid rgba(255, 255, 255, 0.12)',
-                          boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.08)',
-                          color: '#ffffff',
-                          fontSize: 13,
-                          fontWeight: 700,
-                          cursor: 'pointer',
-                        }}
-                      >
-                        <Zap size={14} color="#ffffff" />
-                        Auto-fill Statutory Sample ({state.domain.toUpperCase()})
-                      </button>
+                      {/* 1-Tap Quick Sample Auto-Fill Presets for Evaluators */}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 4 }}>
+                        <p style={{ fontSize: 12, fontWeight: 700, color: 'var(--c-text-2)', margin: '0 0 4px 4px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Evaluator Demo Presets</p>
+                        
+                        <button
+                          onClick={() => { setDomain('bill'); setText(sampleBills.bill); setErrorMsg(null); }}
+                          style={{
+                            display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 10, padding: '12px 16px', borderRadius: 12,
+                            background: state.domain === 'bill' ? 'rgba(52, 211, 153, 0.15)' : 'rgba(255, 255, 255, 0.05)',
+                            border: state.domain === 'bill' ? '1px solid rgba(52, 211, 153, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
+                            color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s'
+                          }}
+                        >
+                          <Zap size={14} color={state.domain === 'bill' ? "var(--c-success)" : "#fff"} />
+                          Medical Overcharge (CGHS & DPCO)
+                        </button>
+                        
+                        <button
+                          onClick={() => { setDomain('lease'); setText(sampleBills.lease); setErrorMsg(null); }}
+                          style={{
+                            display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 10, padding: '12px 16px', borderRadius: 12,
+                            background: state.domain === 'lease' ? 'rgba(52, 211, 153, 0.15)' : 'rgba(255, 255, 255, 0.05)',
+                            border: state.domain === 'lease' ? '1px solid rgba(52, 211, 153, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
+                            color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s'
+                          }}
+                        >
+                          <Zap size={14} color={state.domain === 'lease' ? "var(--c-success)" : "#fff"} />
+                          Illegal Security Deposit (Lease)
+                        </button>
+                        
+                        <button
+                          onClick={() => { setDomain('gig_payslip'); setText(sampleBills.gig_payslip); setErrorMsg(null); }}
+                          style={{
+                            display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: 10, padding: '12px 16px', borderRadius: 12,
+                            background: state.domain === 'gig_payslip' ? 'rgba(52, 211, 153, 0.15)' : 'rgba(255, 255, 255, 0.05)',
+                            border: state.domain === 'gig_payslip' ? '1px solid rgba(52, 211, 153, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
+                            color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', transition: 'all 0.2s'
+                          }}
+                        >
+                          <Zap size={14} color={state.domain === 'gig_payslip' ? "var(--c-success)" : "#fff"} />
+                          Gig Worker Deduction (MoRTH)
+                        </button>
+                      </div>
                     </div>
                   )}
 

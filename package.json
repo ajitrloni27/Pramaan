@@ -6,8 +6,14 @@
     "packages/*",
     "services/*"
   ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test"
+  },
   "devDependencies": {
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "turbo": "^2.0.0"
   },
   "dependencies": {
     "tesseract.js": "^7.0.0"

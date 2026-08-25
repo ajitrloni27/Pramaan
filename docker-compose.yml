@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  brain:
+    build:
+      context: ./services/brain
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - BRAIN_PORT=3000
+    volumes:
+      - ./services/brain:/app
+      - /app/node_modules
+
+  mobile:
+    build:
+      context: ./apps/mobile
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:3000
+    volumes:
+      - ./apps/mobile:/app
+      - /app/node_modules
+    depends_on:
+      - brain

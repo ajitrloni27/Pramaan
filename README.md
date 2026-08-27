@@ -1,6 +1,6 @@
 # Pramaan
 
----
+--- 
 ## The Problem
 
 Every day, people receive documents—like hospital bills, rental agreements, payslips, or medicine receipts—that dictate their finances or rights. The problem is that these documents are often complex, long, and hard to understand. People usually just accept them because comparing every line item to the official rules is too tedious and technical to do in the moment. 
